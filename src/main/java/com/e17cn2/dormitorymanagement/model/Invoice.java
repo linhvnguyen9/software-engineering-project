@@ -7,28 +7,37 @@ public class Invoice {
     private int id;
     private Date createdAt;
     private Date payingDate;
-    private Date dueDate;
     private double totalAmount;
     private double amountPaid;
     private Contract contract;
     private Employee employee;
     private ArrayList<UsedService> usedService;
+    private ElectricityMeter oldElectricityMeasurement;
+    private ElectricityMeter newElectricityMeasurement;
+    private WaterMeter oldWaterMeasurement;
+    private WaterMeter newWaterMeasurement;
 
+    //region Constructors
     public Invoice() {
     }
 
-    public Invoice(int id, Date createdAt, Date payingDate, Date dueDate, double totalAmount, double amountPaid, Contract contract, Employee employee, ArrayList<UsedService> usedService) {
+    public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, double amountPaid, Contract contract, Employee employee, ArrayList<UsedService> usedService, ElectricityMeter oldElectricityMeasurement, ElectricityMeter newElectricityMeasurement, WaterMeter oldWaterMeasurement, WaterMeter newWaterMeasurement) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
-        this.dueDate = dueDate;
         this.totalAmount = totalAmount;
         this.amountPaid = amountPaid;
         this.contract = contract;
         this.employee = employee;
         this.usedService = usedService;
+        this.oldElectricityMeasurement = oldElectricityMeasurement;
+        this.newElectricityMeasurement = newElectricityMeasurement;
+        this.oldWaterMeasurement = oldWaterMeasurement;
+        this.newWaterMeasurement = newWaterMeasurement;
     }
+    //endregion
 
+    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -51,14 +60,6 @@ public class Invoice {
 
     public void setPayingDate(Date payingDate) {
         this.payingDate = payingDate;
-    }
-
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
     }
 
     public double getTotalAmount() {
@@ -100,4 +101,37 @@ public class Invoice {
     public void setUsedService(ArrayList<UsedService> usedService) {
         this.usedService = usedService;
     }
+
+    public ElectricityMeter getOldElectricityMeasurement() {
+        return oldElectricityMeasurement;
+    }
+
+    public void setOldElectricityMeasurement(ElectricityMeter oldElectricityMeasurement) {
+        this.oldElectricityMeasurement = oldElectricityMeasurement;
+    }
+
+    public ElectricityMeter getNewElectricityMeasurement() {
+        return newElectricityMeasurement;
+    }
+
+    public void setNewElectricityMeasurement(ElectricityMeter newElectricityMeasurement) {
+        this.newElectricityMeasurement = newElectricityMeasurement;
+    }
+
+    public WaterMeter getOldWaterMeasurement() {
+        return oldWaterMeasurement;
+    }
+
+    public void setOldWaterMeasurement(WaterMeter oldWaterMeasurement) {
+        this.oldWaterMeasurement = oldWaterMeasurement;
+    }
+
+    public WaterMeter getNewWaterMeasurement() {
+        return newWaterMeasurement;
+    }
+
+    public void setNewWaterMeasurement(WaterMeter newWaterMeasurement) {
+        this.newWaterMeasurement = newWaterMeasurement;
+    }
+    //endregion
 }
