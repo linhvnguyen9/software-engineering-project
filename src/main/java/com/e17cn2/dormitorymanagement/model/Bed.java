@@ -1,5 +1,8 @@
 package com.e17cn2.dormitorymanagement.model;
 
+import javax.persistence.Table;
+
+@Table(name = "tblBed")
 public class Bed {
     private int id;
     private double price;
