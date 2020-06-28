@@ -5,6 +5,10 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
+import com.e17cn2.dormitorymanagement.dao.EmployeeDAO;
+import com.e17cn2.dormitorymanagement.model.Employee;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author linh
@@ -90,10 +94,20 @@ public class LoginFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        ManageHomeFrm manageHome = new ManageHomeFrm();
-        manageHome.setVisible(true);
-        dispose();
+        Employee employee = new Employee();
+            employee.setUsername(txtUsername.getText());
+            employee.setPassword(txtPassword.getText());
+			
+            EmployeeDAO dao = new EmployeeDAO();
+            if(dao.checkLogin(employee)) {
+		if(employee.getRole().equalsIgnoreCase("manager") || employee.getRole().equalsIgnoreCase("employee")) {
+                    (new ManageHomeFrm(employee)).setVisible(true);
+                    this.dispose();
+                }else
+                    JOptionPane.showMessageDialog(this, "The function of the role " + employee.getRole() + " is under construction!");
+		}else {
+                    JOptionPane.showMessageDialog(this, "Incorrect username and/or password!");
+		}
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

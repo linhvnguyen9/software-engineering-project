@@ -5,17 +5,22 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
+import com.e17cn2.dormitorymanagement.model.Employee;
+
 /**
  *
  * @author TGDD
  */
 public class ManageHomeFrm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ManageHomeFrm
-     */
-    public ManageHomeFrm() {
+    private Employee employee;
+    
+    public ManageHomeFrm(Employee employee) {
+        this.employee = employee;
         initComponents();
+        if (!employee.getRole().equalsIgnoreCase("manager")) {
+            btnStateDebt.setVisible(false);
+        }
     }
 
     /**
@@ -54,6 +59,11 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         btnPayBill.setText("Pay Monthly Bill");
 
         btnStateDebt.setText("State Debt Of Student");
+        btnStateDebt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStateDebtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,6 +128,10 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnStateDebtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStateDebtActionPerformed
+
+    }//GEN-LAST:event_btnStateDebtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -146,11 +160,11 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManageHomeFrm().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ManageHomeFrm().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
