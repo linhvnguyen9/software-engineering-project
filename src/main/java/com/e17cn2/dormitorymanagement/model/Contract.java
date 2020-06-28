@@ -1,14 +1,15 @@
 package com.e17cn2.dormitorymanagement.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Contract {
     private int id;
     private double price;
-    private double createDate;
+    private Date createDate;
     private double deposit;
-    private double waterReading;
-    private double electricityReading;
+    private WaterMeter waterReading;
+    private ElectricityMeter electricityReading;
     private Student student;
     private Employee employee;
     private ArrayList<BookedBed> bookedBeds;
@@ -17,7 +18,7 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int id, double price, double createDate, double deposit, double waterReading, double electricityReading, Student student, Employee employee, ArrayList<BookedBed> bookedBeds) {
+    public Contract(int id, double price, Date createDate, double deposit, WaterMeter waterReading, ElectricityMeter electricityReading, Student student, Employee employee, ArrayList<BookedBed> bookedBeds) {
         this.id = id;
         this.price = price;
         this.createDate = createDate;
@@ -28,7 +29,8 @@ public class Contract {
         this.employee = employee;
         this.bookedBeds = bookedBeds;
     }
-    //endregion
+
+//endregion
 
     //region Getters and setters
     public int getId() {
@@ -47,11 +49,11 @@ public class Contract {
         this.price = price;
     }
 
-    public double getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(double createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -63,19 +65,19 @@ public class Contract {
         this.deposit = deposit;
     }
 
-    public double getWaterReading() {
+    public WaterMeter getWaterReading() {
         return waterReading;
     }
 
-    public void setWaterReading(double waterReading) {
+    public void setWaterReading(WaterMeter waterReading) {
         this.waterReading = waterReading;
     }
 
-    public double getElectricityReading() {
+    public ElectricityMeter getElectricityReading() {
         return electricityReading;
     }
 
-    public void setElectricityReading(double electricityReading) {
+    public void setElectricityReading(ElectricityMeter electricityReading) {
         this.electricityReading = electricityReading;
     }
 
