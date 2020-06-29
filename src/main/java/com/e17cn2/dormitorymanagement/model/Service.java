@@ -1,9 +1,25 @@
 package com.e17cn2.dormitorymanagement.model;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "dichvu")
 public class Service {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    @Column(name = "ten")
     private String name;
+    
+    @Column(name = "donGia")
     private double price;
+    
+    @Column(name = "donViTinh")
     private String unit;
 
     public Service() {

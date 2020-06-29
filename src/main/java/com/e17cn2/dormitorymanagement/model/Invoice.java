@@ -31,15 +31,12 @@ public class Invoice {
     
     @Column(name = "soTienConNo")
     private double amountUnPaid;
+  
+    private Contract contract;
     
-    @Column(name = "tblHopDongid")
-    private int contractId;
+    private Employee employee;
     
-    @Column(name = "tblNhanVienid")
-    private int employeeId;
-    
-    @Column(name = "tblGiuongDatid")
-    private int BookedBedId;
+    private BookedBed BookedBed;
 
     //region Constructors
     public Invoice() {
@@ -47,7 +44,7 @@ public class Invoice {
 
     public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, 
             double amountPaid, boolean checkPayed, double amountUnPaid, 
-            int contractId, int employeeId, int BookedBedId) {
+            Contract contract, Employee employee, BookedBed BookedBed) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
@@ -55,9 +52,9 @@ public class Invoice {
         this.amountPaid = amountPaid;
         this.checkPayed = checkPayed;
         this.amountUnPaid = amountUnPaid;
-        this.contractId = contractId;
-        this.employeeId = employeeId;
-        this.BookedBedId = BookedBedId;
+        this.contract = contract;
+        this.employee = employee;
+        this.BookedBed = BookedBed;
     }
 
     //endregion
@@ -119,28 +116,29 @@ public class Invoice {
         this.amountUnPaid = amountUnPaid;
     }
 
-    public int getContractId() {
-        return contractId;
+    public Contract getContract() {
+        return contract;
     }
 
-    public void setContractId(int contractId) {
-        this.contractId = contractId;
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public int getBookedBedId() {
-        return BookedBedId;
+    public BookedBed getBookedBed() {
+        return BookedBed;
     }
 
-    public void setBookedBedId(int BookedBedId) {
-        this.BookedBedId = BookedBedId;
+    public void setBookedBed(BookedBed BookedBed) {
+        this.BookedBed = BookedBed;
     }
+    
     //endregion
 }

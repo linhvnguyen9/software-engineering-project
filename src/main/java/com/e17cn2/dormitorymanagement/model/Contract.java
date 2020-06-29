@@ -1,12 +1,25 @@
 package com.e17cn2.dormitorymanagement.model;
 
 import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name = "tblhopdong")
 public class Contract {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private double price;
+    
+    @Column(name = "ngaylap")
     private double createDate;
+    
+    @Column(name = "tienDatCoc")
     private double deposit;
+    
     private double waterReading;
     private double electricityReading;
     private Student student;
@@ -17,9 +30,10 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int id, double price, double createDate, double deposit, double waterReading, double electricityReading, Student student, Employee employee, ArrayList<BookedBed> bookedBeds) {
+    public Contract(int id, double createDate, double deposit, double waterReading, 
+            double electricityReading, Student student, Employee employee, 
+            ArrayList<BookedBed> bookedBeds) {
         this.id = id;
-        this.price = price;
         this.createDate = createDate;
         this.deposit = deposit;
         this.waterReading = waterReading;
@@ -38,15 +52,7 @@ public class Contract {
     public void setId(int id) {
         this.id = id;
     }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
+    
     public double getCreateDate() {
         return createDate;
     }

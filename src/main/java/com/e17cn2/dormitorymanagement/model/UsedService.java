@@ -1,17 +1,33 @@
 package com.e17cn2.dormitorymanagement.model;
 
-public class UsedService {
-    private int id;
-    private double qty;
-    private Service service;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name = "dichvusudung")
+public class UsedService {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
+    @Column(name = "soLuong")
+    private double quantity;
+    
+    private Service service;
+    
+    private Invoice invoice;
+            
     public UsedService() {
     }
 
-    public UsedService(int id, double qty, Service service) {
+    public UsedService(int id, double quantity, Service service, Invoice invoice) {
         this.id = id;
-        this.qty = qty;
+        this.quantity = quantity;
         this.service = service;
+        this.invoice = invoice;
     }
 
     public int getId() {
@@ -22,12 +38,20 @@ public class UsedService {
         this.id = id;
     }
 
-    public double getQty() {
-        return qty;
+    public double getQuantity() {
+        return quantity;
     }
 
-    public void setQty(double qty) {
-        this.qty = qty;
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     public Service getService() {
