@@ -1,4 +1,4 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,9 @@ public class RoomDTO {
 
     }
 
-    public RoomDTO(int id, String roomType, String roomName, String description, ArrayList<BedDTO> beds, List<ElectricityMeterDTO> electricityMeter, List<ElectricityMeterDTO> waterMeter) {
+    public RoomDTO(int id, String roomType, String roomName, String description,
+            ArrayList<BedDTO> beds, List<ElectricityMeterDTO> electricityMeter,
+            List<ElectricityMeterDTO> waterMeter) {
         this.id = id;
         this.roomType = roomType;
         this.roomName = roomName;
@@ -26,9 +28,7 @@ public class RoomDTO {
         this.electricityMeter = electricityMeter;
         this.waterMeter = waterMeter;
     }
-    //endregion
 
-    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -84,5 +84,5 @@ public class RoomDTO {
     public void setWaterMeter(List<ElectricityMeterDTO> waterMeter) {
         this.waterMeter = waterMeter;
     }
-    //endregion
+    
 }

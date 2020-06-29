@@ -1,4 +1,4 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +9,7 @@ public class InvoiceDTO {
     private Date payingDate;
     private double totalAmount;
     private double amountPaid;
-    private ContractDTO contract;
+    private ContractDto contract;
     private EmployeeDTO employee;
     private ArrayList<UsedServiceDTO> usedService;
     private ElectricityMeterDTO oldElectricityMeasurement;
@@ -21,7 +21,12 @@ public class InvoiceDTO {
     public InvoiceDTO() {
     }
 
-    public InvoiceDTO(int id, Date createdAt, Date payingDate, double totalAmount, double amountPaid, ContractDTO contract, EmployeeDTO employee, ArrayList<UsedServiceDTO> usedService, ElectricityMeterDTO oldElectricityMeasurement, ElectricityMeterDTO newElectricityMeasurement, WaterMeterDTO oldWaterMeasurement, WaterMeterDTO newWaterMeasurement) {
+    public InvoiceDTO(int id, Date createdAt, Date payingDate, double totalAmount, 
+            double amountPaid, ContractDto contract, EmployeeDTO employee, 
+            ArrayList<UsedServiceDTO> usedService,
+            ElectricityMeterDTO oldElectricityMeasurement,
+            ElectricityMeterDTO newElectricityMeasurement, 
+            WaterMeterDTO oldWaterMeasurement, WaterMeterDTO newWaterMeasurement) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
@@ -78,11 +83,11 @@ public class InvoiceDTO {
         this.amountPaid = amountPaid;
     }
 
-    public ContractDTO getContract() {
+    public ContractDto getContract() {
         return contract;
     }
 
-    public void setContract(ContractDTO contract) {
+    public void setContract(ContractDto contract) {
         this.contract = contract;
     }
 

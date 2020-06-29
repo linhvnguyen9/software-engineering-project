@@ -1,15 +1,31 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
-public class ServiceDTO {
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "dichvu")
+public class Service {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    @Column(name = "ten")
     private String name;
+    
+    @Column(name = "donGia")
     private double price;
+    
+    @Column(name = "donViTinh")
     private String unit;
 
-    public ServiceDTO() {
+    public Service() {
     }
 
-    public ServiceDTO(int id, String name, double price, String unit) {
+    public Service(int id, String name, double price, String unit) {
         this.id = id;
         this.name = name;
         this.price = price;

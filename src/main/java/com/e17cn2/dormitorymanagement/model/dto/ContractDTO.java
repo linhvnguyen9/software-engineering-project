@@ -1,10 +1,9 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.ArrayList;
 
-public class ContractDTO {
+public class ContractDto {
     private int id;
-    private double price;
     private double createDate;
     private double deposit;
     private double waterReading;
@@ -14,12 +13,13 @@ public class ContractDTO {
     private ArrayList<BookedBedDTO> bookedBeds;
 
     //region Constructors
-    public ContractDTO() {
+    public ContractDto() {
     }
 
-    public ContractDTO(int id, double price, double createDate, double deposit, double waterReading, double electricityReading, StudentDTO student, EmployeeDTO employee, ArrayList<BookedBedDTO> bookedBeds) {
+    public ContractDto(int id, double createDate, double deposit, 
+            double waterReading, double electricityReading, StudentDTO student, 
+            EmployeeDTO employee, ArrayList<BookedBedDTO> bookedBeds) {
         this.id = id;
-        this.price = price;
         this.createDate = createDate;
         this.deposit = deposit;
         this.waterReading = waterReading;
@@ -28,23 +28,13 @@ public class ContractDTO {
         this.employee = employee;
         this.bookedBeds = bookedBeds;
     }
-    //endregion
 
-    //region Getters and setters
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public double getCreateDate() {
@@ -102,5 +92,5 @@ public class ContractDTO {
     public void setBookedBeds(ArrayList<BookedBedDTO> bookedBeds) {
         this.bookedBeds = bookedBeds;
     }
-    //endregion
+    
 }

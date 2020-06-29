@@ -1,6 +1,6 @@
 package com.e17cn2.dormitorymanagement.dao;
 
-import com.e17cn2.dormitorymanagement.model.EmployeeDTO;
+import com.e17cn2.dormitorymanagement.model.dto.EmployeeDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,18 +11,18 @@ public class EmployeeDAO extends DAO{
         super();
     }
     
-    public boolean checkLogin(EmployeeDTO employee){
+    public boolean checkLogin(EmployeeDTO employeeDto){
         boolean result = false;
         
         String sql = "SELECT ten, chucVu FROM tblNhanVien WHERE tenTaiKhoan = ? AND matKhau = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, employee.getUsername());
-            ps.setString(2, employee.getPassword());
+            ps.setString(1, employeeDto.getUsername());
+            ps.setString(2, employeeDto.getPassword());
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-		employee.setName(rs.getString("ten"));
-		employee.setRole(rs.getString("chucVu"));
+		employeeDto.setName(rs.getString("ten"));
+		employeeDto.setRole(rs.getString("chucVu"));
 	
                 result = true;
             }

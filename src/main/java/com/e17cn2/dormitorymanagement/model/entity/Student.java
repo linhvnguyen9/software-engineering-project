@@ -1,23 +1,52 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class StudentDTO {
+@Table(name = "tblsinhvien")
+public class Student {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    @Column(name = "queQuan")
     private String homeTown;
+    
+    @Column(name = "ten")
     private String name;
+    
+    @Column(name = "ngayThangNamSinh")
     private Date dob;
+    
+    @Column(name = "cmt")
     private String idCard;
+    
+    @Column(name = "sdt")
     private String phone;
+    
+    @Column(name = "truong")
     private String school;
+    
+    @Column(name = "nienKhoa")
     private String year;
+    
+    @Column(name = "khoa")
     private String major;
 
     //region Constructors
-    public StudentDTO() {
+    public Student() {
     }
 
-    public StudentDTO(int id, String homeTown, String name, Date dob, String idCard, String phone, String school, String year, String major) {
+    
+    //endregion
+
+    public Student(int id, String homeTown, String name, Date dob, String idCard, 
+            String phone, String school, String year, String major) {
         this.id = id;
         this.homeTown = homeTown;
         this.name = name;
@@ -28,9 +57,7 @@ public class StudentDTO {
         this.year = year;
         this.major = major;
     }
-    //endregion
 
-    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -102,5 +129,6 @@ public class StudentDTO {
     public void setMajor(String major) {
         this.major = major;
     }
-    //endregion
+    
+    
 }

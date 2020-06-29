@@ -1,7 +1,7 @@
 package com.e17cn2.dormitorymanagement.dao;
 
 import static com.e17cn2.dormitorymanagement.dao.DAO.con;
-import com.e17cn2.dormitorymanagement.model.InvoiceDTO;
+import com.e17cn2.dormitorymanagement.model.dto.InvoiceDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;

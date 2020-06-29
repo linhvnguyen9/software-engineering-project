@@ -1,4 +1,4 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.dto;
 
 public class RoomStatDTO {
     private double occupancyRate;
