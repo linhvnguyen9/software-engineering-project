@@ -6,6 +6,7 @@
 package com.e17cn2.dormitorymanagement.view;
 
 import com.e17cn2.dormitorymanagement.model.EmployeeDTO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,14 +14,16 @@ import com.e17cn2.dormitorymanagement.model.EmployeeDTO;
  */
 public class ManageHomeFrm extends javax.swing.JFrame {
 
-    private EmployeeDTO employee;
+    private EmployeeDTO employeeDTO;
     
-    public ManageHomeFrm(EmployeeDTO employee) {
-        this.employee = employee;
+    
+    public ManageHomeFrm(EmployeeDTO employeeDTO) {
+        this.employeeDTO = employeeDTO;
         initComponents();
-        if (!employee.getRole().equalsIgnoreCase("manager")) {
+        if (!employeeDTO.getRole().equalsIgnoreCase("manager")) {
             btnStateDebt.setVisible(false);
         }
+       
     }
 
     /**
@@ -40,6 +43,7 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         btnReportBroken = new javax.swing.JButton();
         btnPayBill = new javax.swing.JButton();
         btnStateDebt = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +69,13 @@ public class ManageHomeFrm extends javax.swing.JFrame {
             }
         });
 
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,25 +88,24 @@ public class ManageHomeFrm extends javax.swing.JFrame {
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 31, Short.MAX_VALUE)
+                        .addGap(0, 44, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnCreateContract)
-                                .addGap(86, 86, 86))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnCreateBill)
-                                .addGap(85, 85, 85)))
+                            .addComponent(btnCreateContract)
+                            .addComponent(btnCreateBill))
+                        .addGap(72, 72, 72)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPayBill, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnReportBroken, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(btnStateDebt, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel1)
+                        .addContainerGap(281, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(btnStateDebt, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,26 +121,35 @@ public class ManageHomeFrm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(btnCreateContract, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(btnManaBed, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCreateBill, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPayBill, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(23, 23, 23)
-                .addComponent(btnStateDebt)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreateBill, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPayBill, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManaBed, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnStateDebt)
+                    .addComponent(btnLogout))
+                .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStateDebtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStateDebtActionPerformed
-
+            StudentDebtStatFrm statFrm = new StudentDebtStatFrm();
+        statFrm.setVisible(true);
     }//GEN-LAST:event_btnStateDebtActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        LoginFrm loginFrm = new LoginFrm();
+       int logout = JOptionPane.showConfirmDialog(this,"Bạn có muốn đăng xuất?");
+       if(logout==JOptionPane.YES_OPTION){
+           loginFrm.setVisible(true);
+           this.dispose();
+       }
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +189,7 @@ public class ManageHomeFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateBill;
     private javax.swing.JButton btnCreateContract;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnManaBed;
     private javax.swing.JButton btnManaRoom;
     private javax.swing.JButton btnPayBill;

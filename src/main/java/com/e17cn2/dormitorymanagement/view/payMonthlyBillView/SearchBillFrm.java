@@ -129,16 +129,16 @@ public class SearchBillFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ArrayList<InvoiceDTO> listSearch = new ArrayList<InvoiceDTO>();
-        String key=jTextField1.getText();
-        listSearch=InvoiceDAO.searchInvoid(key);
-        
-        tmSearch.setRowCount(0);
-        
-        for (InvoiceDTO s:listSearch){
-            Object[] object= new Object[];
-            tmSearch.addRow();
-        }
+//        ArrayList<InvoiceDTO> listSearch = new ArrayList<InvoiceDTO>();
+//        String key=jTextField1.getText();
+//        listSearch=InvoiceDAO.searchInvoid(key);
+//        
+//        tmSearch.setRowCount(0);
+//        
+//        for (InvoiceDTO s:listSearch){
+//            Object[] object= new Object[];
+//            tmSearch.addRow();
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
