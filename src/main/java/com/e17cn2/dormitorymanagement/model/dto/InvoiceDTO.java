@@ -20,7 +20,10 @@ public class InvoiceDTO {
     public InvoiceDTO() {
     }
 
-    public InvoiceDTO(int id, Date createdAt, Date payingDate, double totalAmount, double amountPaid, double amountUnPaid, boolean checkPayed, ContractDTO contract, EmployeeDTO employee, BookedBedDTO bookedBedDTO, ArrayList<UsedServiceDTO> usedService) {
+    public InvoiceDTO(int id, Date createdAt, Date payingDate, double totalAmount,
+            double amountPaid, double amountUnPaid, boolean checkPayed, 
+            ContractDTO contract, EmployeeDTO employee, BookedBedDTO bookedBedDTO, 
+            ArrayList<UsedServiceDTO> usedService) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
@@ -121,7 +124,5 @@ public class InvoiceDTO {
     public void setUsedService(ArrayList<UsedServiceDTO> usedService) {
         this.usedService = usedService;
     }
-    
-    
 
 }

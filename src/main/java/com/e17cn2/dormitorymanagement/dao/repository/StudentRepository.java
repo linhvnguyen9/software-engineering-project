@@ -9,6 +9,7 @@ import com.e17cn2.dormitorymanagement.model.dto.StudentDTO;
 import com.e17cn2.dormitorymanagement.model.entity.Student;
 import java.util.List;
 import java.util.Optional;
+import com.e17cn2.dormitorymanagement.model.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

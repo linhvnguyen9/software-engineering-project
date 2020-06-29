@@ -9,6 +9,7 @@ import com.e17cn2.dormitorymanagement.model.dto.ContractDTO;
 import com.e17cn2.dormitorymanagement.model.entity.Contract;
 import java.util.List;
 import java.util.Optional;
+import com.e17cn2.dormitorymanagement.model.entity.Contract;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

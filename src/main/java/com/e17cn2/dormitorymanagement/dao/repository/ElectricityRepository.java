@@ -9,6 +9,7 @@ import com.e17cn2.dormitorymanagement.model.dto.ElectricityMeterDTO;
 import com.e17cn2.dormitorymanagement.model.entity.ElectricityMeter;
 import java.util.List;
 import java.util.Optional;
+import com.e17cn2.dormitorymanagement.model.entity.ElectricityMeter;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -16,16 +16,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author BVCN 88
  */
 public interface BookedBedRepository extends JpaRepository<BookedBed, Integer>{
-    
-     List<BookedBed> findAll();
 
-     Optional<BookedBed> findById(Integer id);
+    List<BookedBed> findAll();
 
-     BookedBed save(BookedBed saveBookedBed);
+    Optional<BookedBed> findById(Integer id);
+
+    @Override
+    BookedBed save(BookedBed saved);
      
-     BookedBed update(BookedBed updateBookedBed);
+    BookedBed update(BookedBed updateBookedBed);
      
-     void delete(BookedBed deleteBookedBed);
-    
-    
+    void delete(BookedBed deleteBookedBed);
 }

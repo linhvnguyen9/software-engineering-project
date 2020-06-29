@@ -9,6 +9,7 @@ import com.e17cn2.dormitorymanagement.model.dto.InvoiceDTO;
 import com.e17cn2.dormitorymanagement.model.entity.Invoice;
 import java.util.List;
 import java.util.Optional;
+import com.e17cn2.dormitorymanagement.model.entity.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
