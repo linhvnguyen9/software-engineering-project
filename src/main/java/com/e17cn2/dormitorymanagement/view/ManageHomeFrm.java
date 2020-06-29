@@ -5,7 +5,7 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
-import com.e17cn2.dormitorymanagement.model.Employee;
+import com.e17cn2.dormitorymanagement.model.EmployeeDTO;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,13 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class ManageHomeFrm extends javax.swing.JFrame {
 
-    private Employee employee;
+    private EmployeeDTO employeeDTO;
     
     
-    public ManageHomeFrm(Employee employee) {
-        this.employee = employee;
+    public ManageHomeFrm(EmployeeDTO employeeDTO) {
+        this.employeeDTO = employeeDTO;
         initComponents();
-        if (!employee.getRole().equalsIgnoreCase("manager")) {
+        if (!employeeDTO.getRole().equalsIgnoreCase("manager")) {
             btnStateDebt.setVisible(false);
         }
        

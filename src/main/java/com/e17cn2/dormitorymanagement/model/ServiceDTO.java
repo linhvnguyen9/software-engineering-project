@@ -1,15 +1,15 @@
 package com.e17cn2.dormitorymanagement.model;
 
-public class Service {
+public class ServiceDTO {
     private int id;
     private String name;
     private double price;
     private String unit;
 
-    public Service() {
+    public ServiceDTO() {
     }
 
-    public Service(int id, String name, double price, String unit) {
+    public ServiceDTO(int id, String name, double price, String unit) {
         this.id = id;
         this.name = name;
         this.price = price;

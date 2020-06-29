@@ -6,7 +6,7 @@
 package com.e17cn2.dormitorymanagement.view;
 
 import com.e17cn2.dormitorymanagement.dao.EmployeeDAO;
-import com.e17cn2.dormitorymanagement.model.Employee;
+import com.e17cn2.dormitorymanagement.model.EmployeeDTO;
 import javax.swing.JOptionPane;
 
 /**
@@ -94,7 +94,7 @@ public class LoginFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        Employee employee = new Employee();
+        EmployeeDTO employee = new EmployeeDTO();
             employee.setUsername(txtUsername.getText());
             employee.setPassword(txtPassword.getText());
 			

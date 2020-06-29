@@ -2,17 +2,17 @@ package com.e17cn2.dormitorymanagement.model;
 
 import java.util.Date;
 
-public class BookedBed {
+public class BookedBedDTO {
     private int id;
     private Date checkinDate;
     private Date checkoutDate;
     private Date totalPrice;
-    private Bed bed;
+    private BedDTO bed;
 
-    public BookedBed() {
+    public BookedBedDTO() {
     }
 
-    public BookedBed(int id, Date checkinDate, Date checkoutDate, Date totalPrice, Bed bed) {
+    public BookedBedDTO(int id, Date checkinDate, Date checkoutDate, Date totalPrice, BedDTO bed) {
         this.id = id;
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
@@ -52,11 +52,11 @@ public class BookedBed {
         this.totalPrice = totalPrice;
     }
 
-    public Bed getBed() {
+    public BedDTO getBed() {
         return bed;
     }
 
-    public void setBed(Bed bed) {
+    public void setBed(BedDTO bed) {
         this.bed = bed;
     }
 }

@@ -1,12 +1,12 @@
 package com.e17cn2.dormitorymanagement.model;
 
-public class BedStat {
+public class RoomStatDTO {
     private double occupancyRate;
 
-    public BedStat() {
+    public RoomStatDTO() {
     }
 
-    public BedStat(double occupancyRate) {
+    public RoomStatDTO(double occupancyRate) {
         this.occupancyRate = occupancyRate;
     }
 }

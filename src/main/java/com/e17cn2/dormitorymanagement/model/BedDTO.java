@@ -1,15 +1,15 @@
 package com.e17cn2.dormitorymanagement.model;
 
-public class Bed {
+public class BedDTO {
     private int id;
     private double price;
     private String description;
     private String type;
 
-    public Bed() {
+    public BedDTO() {
     }
 
-    public Bed(int id, double price, String description, String type) {
+    public BedDTO(int id, double price, String description, String type) {
         this.id = id;
         this.price = price;
         this.description = description;

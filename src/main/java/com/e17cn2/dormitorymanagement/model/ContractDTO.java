@@ -2,22 +2,22 @@ package com.e17cn2.dormitorymanagement.model;
 
 import java.util.ArrayList;
 
-public class Contract {
+public class ContractDTO {
     private int id;
     private double price;
     private double createDate;
     private double deposit;
     private double waterReading;
     private double electricityReading;
-    private Student student;
-    private Employee employee;
-    private ArrayList<BookedBed> bookedBeds;
+    private StudentDTO student;
+    private EmployeeDTO employee;
+    private ArrayList<BookedBedDTO> bookedBeds;
 
     //region Constructors
-    public Contract() {
+    public ContractDTO() {
     }
 
-    public Contract(int id, double price, double createDate, double deposit, double waterReading, double electricityReading, Student student, Employee employee, ArrayList<BookedBed> bookedBeds) {
+    public ContractDTO(int id, double price, double createDate, double deposit, double waterReading, double electricityReading, StudentDTO student, EmployeeDTO employee, ArrayList<BookedBedDTO> bookedBeds) {
         this.id = id;
         this.price = price;
         this.createDate = createDate;
@@ -79,27 +79,27 @@ public class Contract {
         this.electricityReading = electricityReading;
     }
 
-    public Student getStudent() {
+    public StudentDTO getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(StudentDTO student) {
         this.student = student;
     }
 
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
 
-    public ArrayList<BookedBed> getBookedBeds() {
+    public ArrayList<BookedBedDTO> getBookedBeds() {
         return bookedBeds;
     }
 
-    public void setBookedBeds(ArrayList<BookedBed> bookedBeds) {
+    public void setBookedBeds(ArrayList<BookedBedDTO> bookedBeds) {
         this.bookedBeds = bookedBeds;
     }
     //endregion

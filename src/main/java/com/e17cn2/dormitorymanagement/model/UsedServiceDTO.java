@@ -1,14 +1,14 @@
 package com.e17cn2.dormitorymanagement.model;
 
-public class UsedService {
+public class UsedServiceDTO {
     private int id;
     private double qty;
-    private Service service;
+    private ServiceDTO service;
 
-    public UsedService() {
+    public UsedServiceDTO() {
     }
 
-    public UsedService(int id, double qty, Service service) {
+    public UsedServiceDTO(int id, double qty, ServiceDTO service) {
         this.id = id;
         this.qty = qty;
         this.service = service;
@@ -30,11 +30,11 @@ public class UsedService {
         this.qty = qty;
     }
 
-    public Service getService() {
+    public ServiceDTO getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(ServiceDTO service) {
         this.service = service;
     }
 }
