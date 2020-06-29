@@ -5,18 +5,14 @@ import java.util.Date;
 public class WaterMeter {
     private int id;
     private float currentReading;
-    private double unitPrice;
-    private String unit;
     private Date measuringDate;
 
     public WaterMeter() {
     }
 
-    public WaterMeter(int id, float currentReading, double unitPrice, String unit, Date measuringDate) {
+    public WaterMeter(int id, float currentReading, Date measuringDate) {
         this.id = id;
         this.currentReading = currentReading;
-        this.unitPrice = unitPrice;
-        this.unit = unit;
         this.measuringDate = measuringDate;
     }
 
@@ -34,22 +30,6 @@ public class WaterMeter {
 
     public void setCurrentReading(float currentReading) {
         this.currentReading = currentReading;
-    }
-
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
     }
 
     public Date getMeasuringDate() {

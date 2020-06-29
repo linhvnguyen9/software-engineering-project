@@ -1,6 +1,7 @@
 package com.e17cn2.dormitorymanagement.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Room {
     private int id;
@@ -8,14 +9,15 @@ public class Room {
     private String roomName;
     private String description;
     private ArrayList<Bed> beds;
-    private ElectricityMeter electricityMeter;
-    private WaterMeter waterMeter;
+    private List<ElectricityMeter> electricityMeter;
+    private List<ElectricityMeter> waterMeter;
 
+    //region Constructor
     public Room() {
 
     }
 
-    public Room(int id, String roomType, String roomName, String description, ArrayList<Bed> beds, ElectricityMeter electricityMeter, WaterMeter waterMeter) {
+    public Room(int id, String roomType, String roomName, String description, ArrayList<Bed> beds, List<ElectricityMeter> electricityMeter, List<ElectricityMeter> waterMeter) {
         this.id = id;
         this.roomType = roomType;
         this.roomName = roomName;
@@ -24,7 +26,9 @@ public class Room {
         this.electricityMeter = electricityMeter;
         this.waterMeter = waterMeter;
     }
+    //endregion
 
+    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -65,19 +69,20 @@ public class Room {
         this.beds = beds;
     }
 
-    public ElectricityMeter getElectricityMeter() {
+    public List<ElectricityMeter> getElectricityMeter() {
         return electricityMeter;
     }
 
-    public void setElectricityMeter(ElectricityMeter electricityMeter) {
+    public void setElectricityMeter(List<ElectricityMeter> electricityMeter) {
         this.electricityMeter = electricityMeter;
     }
 
-    public WaterMeter getWaterMeter() {
+    public List<ElectricityMeter> getWaterMeter() {
         return waterMeter;
     }
 
-    public void setWaterMeter(WaterMeter waterMeter) {
+    public void setWaterMeter(List<ElectricityMeter> waterMeter) {
         this.waterMeter = waterMeter;
     }
+    //endregion
 }

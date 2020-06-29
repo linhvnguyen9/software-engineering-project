@@ -13,6 +13,7 @@ public class Student {
     private String year;
     private String major;
 
+    //region Constructors
     public Student() {
     }
 
@@ -27,7 +28,9 @@ public class Student {
         this.year = year;
         this.major = major;
     }
+    //endregion
 
+    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -99,4 +102,5 @@ public class Student {
     public void setMajor(String major) {
         this.major = major;
     }
+    //endregion
 }
