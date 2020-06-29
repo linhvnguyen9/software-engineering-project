@@ -87,10 +87,13 @@ public class EditBillFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JOptionPane.showMessageDialog(null,"Ban co chac muon reset");
-        PayMonthlyBillFrm payMonthlyBillFrm=new PayMonthlyBillFrm();
-        payMonthlyBillFrm.setVisible(true);
-        dispose();
+        int choose = JOptionPane.showConfirmDialog(rootPane,"BẠN MUỐN RESET","CÂU H",JOptionPane.YES_NO_OPTION);
+        if(choose == JOptionPane.YES_OPTION){
+            PayMonthlyBillFrm payMonthlyBillFrm=new PayMonthlyBillFrm();
+            payMonthlyBillFrm.setVisible(true);
+            dispose();
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

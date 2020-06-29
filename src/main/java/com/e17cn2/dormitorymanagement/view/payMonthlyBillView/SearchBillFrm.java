@@ -18,8 +18,8 @@ public class SearchBillFrm extends javax.swing.JFrame {
 
     private DefaultTableModel tmSearch;
     public SearchBillFrm() {
-        initTable();
         initComponents();
+        //initTable();
     }
     public int getId(int id){
         return id;
@@ -125,7 +125,7 @@ public class SearchBillFrm extends javax.swing.JFrame {
         int row=jTable1.getSelectedRow();
         getId(row);
         payMonthlyBillFrm.setVisible(true);
-        
+        dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

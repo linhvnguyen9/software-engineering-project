@@ -6,6 +6,8 @@
 package com.e17cn2.dormitorymanagement.view;
 
 import com.e17cn2.dormitorymanagement.model.EmployeeDTO;
+import com.e17cn2.dormitorymanagement.view.payMonthlyBillView.PayMonthlyBillFrm;
+import com.e17cn2.dormitorymanagement.view.payMonthlyBillView.SearchBillFrm;
 import javax.swing.JOptionPane;
 
 /**
@@ -61,6 +63,11 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         btnReportBroken.setText("Report Broken");
 
         btnPayBill.setText("Pay Monthly Bill");
+        btnPayBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPayBillActionPerformed(evt);
+            }
+        });
 
         btnStateDebt.setText("State Debt Of Student");
         btnStateDebt.addActionListener(new java.awt.event.ActionListener() {
@@ -150,6 +157,12 @@ public class ManageHomeFrm extends javax.swing.JFrame {
            this.dispose();
        }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnPayBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayBillActionPerformed
+        SearchBillFrm searchBillFrm=new SearchBillFrm();
+        searchBillFrm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnPayBillActionPerformed
 
     /**
      * @param args the command line arguments
