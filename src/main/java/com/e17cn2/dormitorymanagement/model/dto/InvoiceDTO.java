@@ -9,40 +9,31 @@ public class InvoiceDTO {
     private Date payingDate;
     private double totalAmount;
     private double amountPaid;
-    private ContractDto contract;
+    private double amountUnPaid;
+    private boolean checkPayed;
+    private ContractDTO contract;
     private EmployeeDTO employee;
+    private BookedBedDTO bookedBedDTO;
     private ArrayList<UsedServiceDTO> usedService;
-    private ElectricityMeterDTO oldElectricityMeasurement;
-    private ElectricityMeterDTO newElectricityMeasurement;
-    private WaterMeterDTO oldWaterMeasurement;
-    private WaterMeterDTO newWaterMeasurement;
-
+    
     //region Constructors
     public InvoiceDTO() {
     }
 
-    public InvoiceDTO(int id, Date createdAt, Date payingDate, double totalAmount, 
-            double amountPaid, ContractDto contract, EmployeeDTO employee, 
-            ArrayList<UsedServiceDTO> usedService,
-            ElectricityMeterDTO oldElectricityMeasurement,
-            ElectricityMeterDTO newElectricityMeasurement, 
-            WaterMeterDTO oldWaterMeasurement, WaterMeterDTO newWaterMeasurement) {
+    public InvoiceDTO(int id, Date createdAt, Date payingDate, double totalAmount, double amountPaid, double amountUnPaid, boolean checkPayed, ContractDTO contract, EmployeeDTO employee, BookedBedDTO bookedBedDTO, ArrayList<UsedServiceDTO> usedService) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
         this.totalAmount = totalAmount;
         this.amountPaid = amountPaid;
+        this.amountUnPaid = amountUnPaid;
+        this.checkPayed = checkPayed;
         this.contract = contract;
         this.employee = employee;
+        this.bookedBedDTO = bookedBedDTO;
         this.usedService = usedService;
-        this.oldElectricityMeasurement = oldElectricityMeasurement;
-        this.newElectricityMeasurement = newElectricityMeasurement;
-        this.oldWaterMeasurement = oldWaterMeasurement;
-        this.newWaterMeasurement = newWaterMeasurement;
     }
-    //endregion
 
-    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -83,11 +74,27 @@ public class InvoiceDTO {
         this.amountPaid = amountPaid;
     }
 
-    public ContractDto getContract() {
+    public double getAmountUnPaid() {
+        return amountUnPaid;
+    }
+
+    public void setAmountUnPaid(double amountUnPaid) {
+        this.amountUnPaid = amountUnPaid;
+    }
+
+    public boolean isCheckPayed() {
+        return checkPayed;
+    }
+
+    public void setCheckPayed(boolean checkPayed) {
+        this.checkPayed = checkPayed;
+    }
+
+    public ContractDTO getContract() {
         return contract;
     }
 
-    public void setContract(ContractDto contract) {
+    public void setContract(ContractDTO contract) {
         this.contract = contract;
     }
 
@@ -99,6 +106,14 @@ public class InvoiceDTO {
         this.employee = employee;
     }
 
+    public BookedBedDTO getBookedBedDTO() {
+        return bookedBedDTO;
+    }
+
+    public void setBookedBedDTO(BookedBedDTO bookedBedDTO) {
+        this.bookedBedDTO = bookedBedDTO;
+    }
+
     public ArrayList<UsedServiceDTO> getUsedService() {
         return usedService;
     }
@@ -106,37 +121,7 @@ public class InvoiceDTO {
     public void setUsedService(ArrayList<UsedServiceDTO> usedService) {
         this.usedService = usedService;
     }
+    
+    
 
-    public ElectricityMeterDTO getOldElectricityMeasurement() {
-        return oldElectricityMeasurement;
-    }
-
-    public void setOldElectricityMeasurement(ElectricityMeterDTO oldElectricityMeasurement) {
-        this.oldElectricityMeasurement = oldElectricityMeasurement;
-    }
-
-    public ElectricityMeterDTO getNewElectricityMeasurement() {
-        return newElectricityMeasurement;
-    }
-
-    public void setNewElectricityMeasurement(ElectricityMeterDTO newElectricityMeasurement) {
-        this.newElectricityMeasurement = newElectricityMeasurement;
-    }
-
-    public WaterMeterDTO getOldWaterMeasurement() {
-        return oldWaterMeasurement;
-    }
-
-    public void setOldWaterMeasurement(WaterMeterDTO oldWaterMeasurement) {
-        this.oldWaterMeasurement = oldWaterMeasurement;
-    }
-
-    public WaterMeterDTO getNewWaterMeasurement() {
-        return newWaterMeasurement;
-    }
-
-    public void setNewWaterMeasurement(WaterMeterDTO newWaterMeasurement) {
-        this.newWaterMeasurement = newWaterMeasurement;
-    }
-    //endregion
 }

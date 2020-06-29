@@ -1,13 +1,24 @@
 package com.e17cn2.dormitorymanagement.dao;
 
 import static com.e17cn2.dormitorymanagement.dao.DAO.con;
+import com.e17cn2.dormitorymanagement.dao.repository.BedRepository;
+import com.e17cn2.dormitorymanagement.dao.repository.RoomRepository;
+import com.e17cn2.dormitorymanagement.model.dto.BedDTO;
 import com.e17cn2.dormitorymanagement.model.entity.Bed;
+import com.e17cn2.dormitorymanagement.model.entity.Room;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class BedDAO {
-
+public class BedDAO{
+    @Autowired
+    private BedRepository bedRepository;
+    
+    private RoomRepository roomRepository;
+    
+    private BedDAO bedDAO;
+    
     public BedDAO() {
         super();
     }
@@ -34,5 +45,12 @@ public class BedDAO {
 //        }	
         return result;
     }
+    
+    public  getBed(Integer id){
+        Bed bed =new Bed();
+        return convertToDto(bed);
+    }
+    
+    
 
 }

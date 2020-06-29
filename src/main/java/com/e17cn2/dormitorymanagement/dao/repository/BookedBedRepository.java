@@ -6,15 +6,26 @@
 package com.e17cn2.dormitorymanagement.dao.repository;
 
 import com.e17cn2.dormitorymanagement.model.dto.BookedBedDTO;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface BookedBedRepository extends JpaRepository<BookedBedDTO, Integer>{
+public interface BookedBedRepository extends JpaRepository<BookedBed, Integer>{
     
-    BookedBedDTO save(BookedBedDTO saved);
+     List<BookedBed> findAll();
+
+     Optional<BookedBed> findById(Integer id);
+
+     BookedBed save(BookedBed saveBookedBed);
+     
+     BookedBed update(BookedBed updateBookedBed);
+     
+     void delete(BookedBed deleteBookedBed);
     
     
 }
