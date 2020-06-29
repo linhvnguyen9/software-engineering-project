@@ -8,17 +8,18 @@ public class BookedBedDTO {
     private Date checkinDate;
     private Date checkoutDate;
     private Date totalPrice;
-    private BedDTO bed;
+    private BedDTO bedDto;
 
     public BookedBedDTO() {
     }
 
-    public BookedBedDTO(int id, Date checkinDate, Date checkoutDate, Date totalPrice, BedDTO bed) {
+    public BookedBedDTO(int id, Date checkinDate, Date checkoutDate, 
+            Date totalPrice, BedDTO bedDto) {
         this.id = id;
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
         this.totalPrice = totalPrice;
-        this.bed = bed;
+        this.bedDto = bedDto;
     }
 
     public int getId() {
@@ -53,11 +54,12 @@ public class BookedBedDTO {
         this.totalPrice = totalPrice;
     }
 
-    public BedDTO getBed() {
-        return bed;
+    public BedDTO getBedDto() {
+        return bedDto;
     }
 
-    public void setBed(BedDTO bed) {
-        this.bed = bed;
+    public void setBedDto(BedDTO bedDto) {
+        this.bedDto = bedDto;
     }
+
 }

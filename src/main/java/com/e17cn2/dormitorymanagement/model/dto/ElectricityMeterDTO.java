@@ -1,23 +1,21 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.Date;
-import javax.persistence.Column;
 
 public class ElectricityMeterDTO {
     private int id;
     private float currentReading;
     private Date measuringDate;
-    private int roomId;
+    private RoomDTO roomDto;
     
     public ElectricityMeterDTO() {
     }
 
-    public ElectricityMeterDTO(int id, float currentReading, Date measuringDate, 
-            int roomId) {
+    public ElectricityMeterDTO(int id, float currentReading, Date measuringDate, RoomDTO roomDto) {
         this.id = id;
         this.currentReading = currentReading;
         this.measuringDate = measuringDate;
-        this.roomId = roomId;
+        this.roomDto = roomDto;
     }
 
     public int getId() {
@@ -44,12 +42,12 @@ public class ElectricityMeterDTO {
         this.measuringDate = measuringDate;
     }
 
-    public int getRoomId() {
-        return roomId;
+    public RoomDTO getRoomDto() {
+        return roomDto;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setRoomDto(RoomDTO roomDto) {
+        this.roomDto = roomDto;
     }
-    
+
 }

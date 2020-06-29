@@ -1,28 +1,10 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Table(name = "tblnhanvien")
 public class EmployeeDTO {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "ten", nullable = false)
     private String name;
-    
-    @Column(name = "chucVu", nullable = false)
     private String role;
-    
-    @Column(name = "tenTaiKhoan", nullable = false)
     private String username;
-    
-    @Column(name = "matKhau", nullable = false)
     private String password;
 
     public EmployeeDTO() {
