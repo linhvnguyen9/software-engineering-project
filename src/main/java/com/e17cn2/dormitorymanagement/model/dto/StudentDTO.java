@@ -1,51 +1,23 @@
-package com.e17cn2.dormitorymanagement.model.entity;
+package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "tblsinhvien")
-public class Student {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class StudentDTO {
     private int id;
-    
-    @Column(name = "queQuan")
     private String homeTown;
-    
-    @Column(name = "ten")
     private String name;
-    
-    @Column(name = "ngayThangNamSinh")
     private Date dob;
-    
-    @Column(name = "cmt")
     private String idCard;
-    
-    @Column(name = "sdt")
     private String phone;
-    
-    @Column(name = "truong")
     private String school;
-    
-    @Column(name = "nienKhoa")
     private String year;
-    
-    @Column(name = "khoa")
     private String major;
 
     //region Constructors
-    public Student() {
+    public StudentDTO() {
     }
 
-    
-    //endregion
-
-    public Student(int id, String homeTown, String name, Date dob, String idCard, 
+    public StudentDTO(int id, String homeTown, String name, Date dob, String idCard,
             String phone, String school, String year, String major) {
         this.id = id;
         this.homeTown = homeTown;
@@ -129,6 +101,5 @@ public class Student {
     public void setMajor(String major) {
         this.major = major;
     }
-    
     
 }

@@ -1,32 +1,17 @@
-package com.e17cn2.dormitorymanagement.model.entity;
+package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "tblDongHoNuoc")
-public class WaterMeter {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class WaterMeterDTO {
     private int id;
-    
-    @Column(name = "chiSoHienTai")
     private float currentReading;
-    
-    @Column(name = "ngayLaySo")
     private Date measuringDate;
-    
-    @Column(name = "tblPhongid")
     private int PhongId;
 
-    public WaterMeter() {
+    public WaterMeterDTO() {
     }
 
-    public WaterMeter(int id, float currentReading, Date measuringDate, int PhongId) {
+    public WaterMeterDTO(int id, float currentReading, Date measuringDate, int PhongId) {
         this.id = id;
         this.currentReading = currentReading;
         this.measuringDate = measuringDate;

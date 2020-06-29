@@ -19,19 +19,6 @@ public class StudentDebtStatFrm extends javax.swing.JFrame {
      */
     public StudentDebtStatFrm() {
         initComponents();
-        
-        tblStatDebt.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                if(e.getValueIsAdjusting()){
-                    return;
-                }
-                DetailDebtStudentFrm debtStudentFrm = new DetailDebtStudentFrm();
-                debtStudentFrm.setVisible(true);
-                dispose();
-            }
-        });
        
     }
     
@@ -74,6 +61,11 @@ public class StudentDebtStatFrm extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tblStatDebt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblStatDebtMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblStatDebt);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -101,6 +93,14 @@ public class StudentDebtStatFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblStatDebtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStatDebtMouseClicked
+        // TODO add your handling code here:
+         DetailDebtStudentFrm debtStudentFrm = new DetailDebtStudentFrm();
+                debtStudentFrm.setVisible(true);
+                dispose();
+        
+    }//GEN-LAST:event_tblStatDebtMouseClicked
 
     /**
      * @param args the command line arguments

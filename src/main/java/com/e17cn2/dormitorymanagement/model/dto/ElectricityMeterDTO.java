@@ -1,36 +1,23 @@
-package com.e17cn2.dormitorymanagement.model.entity;
+package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "tblDongHoNuoc")
-public class WaterMeter {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ElectricityMeterDTO {
     private int id;
-    
-    @Column(name = "chiSoHienTai")
     private float currentReading;
-    
-    @Column(name = "ngayLaySo")
     private Date measuringDate;
+    private int roomId;
     
-    @Column(name = "tblPhongid")
-    private int PhongId;
-
-    public WaterMeter() {
+    public ElectricityMeterDTO() {
     }
 
-    public WaterMeter(int id, float currentReading, Date measuringDate, int PhongId) {
+    public ElectricityMeterDTO(int id, float currentReading, Date measuringDate, 
+            int roomId) {
         this.id = id;
         this.currentReading = currentReading;
         this.measuringDate = measuringDate;
-        this.PhongId = PhongId;
+        this.roomId = roomId;
     }
 
     public int getId() {
@@ -57,12 +44,12 @@ public class WaterMeter {
         this.measuringDate = measuringDate;
     }
 
-    public int getPhongId() {
-        return PhongId;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setPhongId(int PhongId) {
-        this.PhongId = PhongId;
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
-
+    
 }

@@ -26,7 +26,8 @@ public class ElectricityMeter {
     public ElectricityMeter() {
     }
 
-    public ElectricityMeter(int id, float currentReading, Date measuringDate, int roomId) {
+    public ElectricityMeter(int id, float currentReading, Date measuringDate,
+            int roomId) {
         this.id = id;
         this.currentReading = currentReading;
         this.measuringDate = measuringDate;
@@ -64,5 +65,5 @@ public class ElectricityMeter {
     public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
-    
+
 }

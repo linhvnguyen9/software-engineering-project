@@ -1,49 +1,32 @@
-package com.e17cn2.dormitorymanagement.model.entity;
+package com.e17cn2.dormitorymanagement.model.dto;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.ArrayList;
 
-@Table(name = "tblhopdong")
-public class Contract {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ContractDto {
     private int id;
-    
-    @Column(name = "ngaylap")
     private double createDate;
-    
-    @Column(name = "tienDatCoc")
     private double deposit;
-    
-    @Column(name = "tblDongHoNuocid")
     private double waterReading;
-    
-    @Column(name = "tblDonghoDienid")
     private double electricityReading;
-    
-    @Column(name = "tblSinhVienid")
-    private int studentId;
-    
-    @Column(name = "tblNhanVienid")
-    private int employeeId;
+    private StudentDTO student;
+    private EmployeeDTO employee;
+    private ArrayList<BookedBedDTO> bookedBeds;
 
     //region Constructors
-    public Contract() {
+    public ContractDto() {
     }
 
-    public Contract(int id, double createDate, double deposit, double waterReading,
-            double electricityReading, int studentId, int employeeId) {
+    public ContractDto(int id, double createDate, double deposit, 
+            double waterReading, double electricityReading, StudentDTO student, 
+            EmployeeDTO employee, ArrayList<BookedBedDTO> bookedBeds) {
         this.id = id;
         this.createDate = createDate;
         this.deposit = deposit;
         this.waterReading = waterReading;
         this.electricityReading = electricityReading;
-        this.studentId = studentId;
-        this.employeeId = employeeId;
+        this.student = student;
+        this.employee = employee;
+        this.bookedBeds = bookedBeds;
     }
 
     public int getId() {
@@ -86,20 +69,28 @@ public class Contract {
         this.electricityReading = electricityReading;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public StudentDTO getStudent() {
+        return student;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public void setStudent(StudentDTO student) {
+        this.student = student;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public EmployeeDTO getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(EmployeeDTO employee) {
+        this.employee = employee;
+    }
+
+    public ArrayList<BookedBedDTO> getBookedBeds() {
+        return bookedBeds;
+    }
+
+    public void setBookedBeds(ArrayList<BookedBedDTO> bookedBeds) {
+        this.bookedBeds = bookedBeds;
     }
     
 }

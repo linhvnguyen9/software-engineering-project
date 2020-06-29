@@ -1,8 +1,5 @@
 package com.e17cn2.dormitorymanagement.model.entity;
 
-import com.e17cn2.dormitorymanagement.model.entity.Employee;
-import com.e17cn2.dormitorymanagement.model.entity.Contract;
-import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

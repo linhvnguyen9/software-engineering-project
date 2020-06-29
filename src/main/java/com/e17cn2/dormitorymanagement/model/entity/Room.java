@@ -24,7 +24,6 @@ public class Room {
 
     //region Constructor
     public Room() {
-
     }
 
     public Room(int id, String roomType, String roomName, String description) {
@@ -34,9 +33,6 @@ public class Room {
         this.description = description;
     }
 
-    //endregion
-
-    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -68,5 +64,5 @@ public class Room {
     public void setDescription(String description) {
         this.description = description;
     }
-    //endregion
+
 }
