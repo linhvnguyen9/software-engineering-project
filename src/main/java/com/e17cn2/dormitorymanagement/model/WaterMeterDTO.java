@@ -2,15 +2,15 @@ package com.e17cn2.dormitorymanagement.model;
 
 import java.util.Date;
 
-public class ElectricityMeter {
+public class WaterMeterDTO {
     private int id;
     private float currentReading;
     private Date measuringDate;
 
-    public ElectricityMeter() {
+    public WaterMeterDTO() {
     }
 
-    public ElectricityMeter(int id, float currentReading, Date measuringDate) {
+    public WaterMeterDTO(int id, float currentReading, Date measuringDate) {
         this.id = id;
         this.currentReading = currentReading;
         this.measuringDate = measuringDate;

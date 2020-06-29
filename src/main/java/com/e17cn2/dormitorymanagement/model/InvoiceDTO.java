@@ -3,25 +3,25 @@ package com.e17cn2.dormitorymanagement.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Invoice {
+public class InvoiceDTO {
     private int id;
     private Date createdAt;
     private Date payingDate;
     private double totalAmount;
     private double amountPaid;
-    private Contract contract;
-    private Employee employee;
-    private ArrayList<UsedService> usedService;
-    private ElectricityMeter oldElectricityMeasurement;
-    private ElectricityMeter newElectricityMeasurement;
-    private WaterMeter oldWaterMeasurement;
-    private WaterMeter newWaterMeasurement;
+    private ContractDTO contract;
+    private EmployeeDTO employee;
+    private ArrayList<UsedServiceDTO> usedService;
+    private ElectricityMeterDTO oldElectricityMeasurement;
+    private ElectricityMeterDTO newElectricityMeasurement;
+    private WaterMeterDTO oldWaterMeasurement;
+    private WaterMeterDTO newWaterMeasurement;
 
     //region Constructors
-    public Invoice() {
+    public InvoiceDTO() {
     }
 
-    public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, double amountPaid, Contract contract, Employee employee, ArrayList<UsedService> usedService, ElectricityMeter oldElectricityMeasurement, ElectricityMeter newElectricityMeasurement, WaterMeter oldWaterMeasurement, WaterMeter newWaterMeasurement) {
+    public InvoiceDTO(int id, Date createdAt, Date payingDate, double totalAmount, double amountPaid, ContractDTO contract, EmployeeDTO employee, ArrayList<UsedServiceDTO> usedService, ElectricityMeterDTO oldElectricityMeasurement, ElectricityMeterDTO newElectricityMeasurement, WaterMeterDTO oldWaterMeasurement, WaterMeterDTO newWaterMeasurement) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
@@ -78,59 +78,59 @@ public class Invoice {
         this.amountPaid = amountPaid;
     }
 
-    public Contract getContract() {
+    public ContractDTO getContract() {
         return contract;
     }
 
-    public void setContract(Contract contract) {
+    public void setContract(ContractDTO contract) {
         this.contract = contract;
     }
 
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
 
-    public ArrayList<UsedService> getUsedService() {
+    public ArrayList<UsedServiceDTO> getUsedService() {
         return usedService;
     }
 
-    public void setUsedService(ArrayList<UsedService> usedService) {
+    public void setUsedService(ArrayList<UsedServiceDTO> usedService) {
         this.usedService = usedService;
     }
 
-    public ElectricityMeter getOldElectricityMeasurement() {
+    public ElectricityMeterDTO getOldElectricityMeasurement() {
         return oldElectricityMeasurement;
     }
 
-    public void setOldElectricityMeasurement(ElectricityMeter oldElectricityMeasurement) {
+    public void setOldElectricityMeasurement(ElectricityMeterDTO oldElectricityMeasurement) {
         this.oldElectricityMeasurement = oldElectricityMeasurement;
     }
 
-    public ElectricityMeter getNewElectricityMeasurement() {
+    public ElectricityMeterDTO getNewElectricityMeasurement() {
         return newElectricityMeasurement;
     }
 
-    public void setNewElectricityMeasurement(ElectricityMeter newElectricityMeasurement) {
+    public void setNewElectricityMeasurement(ElectricityMeterDTO newElectricityMeasurement) {
         this.newElectricityMeasurement = newElectricityMeasurement;
     }
 
-    public WaterMeter getOldWaterMeasurement() {
+    public WaterMeterDTO getOldWaterMeasurement() {
         return oldWaterMeasurement;
     }
 
-    public void setOldWaterMeasurement(WaterMeter oldWaterMeasurement) {
+    public void setOldWaterMeasurement(WaterMeterDTO oldWaterMeasurement) {
         this.oldWaterMeasurement = oldWaterMeasurement;
     }
 
-    public WaterMeter getNewWaterMeasurement() {
+    public WaterMeterDTO getNewWaterMeasurement() {
         return newWaterMeasurement;
     }
 
-    public void setNewWaterMeasurement(WaterMeter newWaterMeasurement) {
+    public void setNewWaterMeasurement(WaterMeterDTO newWaterMeasurement) {
         this.newWaterMeasurement = newWaterMeasurement;
     }
     //endregion

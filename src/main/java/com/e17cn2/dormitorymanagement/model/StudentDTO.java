@@ -2,7 +2,7 @@ package com.e17cn2.dormitorymanagement.model;
 
 import java.util.Date;
 
-public class Student {
+public class StudentDTO {
     private int id;
     private String homeTown;
     private String name;
@@ -14,10 +14,10 @@ public class Student {
     private String major;
 
     //region Constructors
-    public Student() {
+    public StudentDTO() {
     }
 
-    public Student(int id, String homeTown, String name, Date dob, String idCard, String phone, String school, String year, String major) {
+    public StudentDTO(int id, String homeTown, String name, Date dob, String idCard, String phone, String school, String year, String major) {
         this.id = id;
         this.homeTown = homeTown;
         this.name = name;

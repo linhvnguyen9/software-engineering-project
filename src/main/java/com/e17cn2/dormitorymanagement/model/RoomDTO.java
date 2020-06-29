@@ -3,21 +3,21 @@ package com.e17cn2.dormitorymanagement.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Room {
+public class RoomDTO {
     private int id;
     private String roomType;
     private String roomName;
     private String description;
-    private ArrayList<Bed> beds;
-    private List<ElectricityMeter> electricityMeter;
-    private List<ElectricityMeter> waterMeter;
+    private ArrayList<BedDTO> beds;
+    private List<ElectricityMeterDTO> electricityMeter;
+    private List<ElectricityMeterDTO> waterMeter;
 
     //region Constructor
-    public Room() {
+    public RoomDTO() {
 
     }
 
-    public Room(int id, String roomType, String roomName, String description, ArrayList<Bed> beds, List<ElectricityMeter> electricityMeter, List<ElectricityMeter> waterMeter) {
+    public RoomDTO(int id, String roomType, String roomName, String description, ArrayList<BedDTO> beds, List<ElectricityMeterDTO> electricityMeter, List<ElectricityMeterDTO> waterMeter) {
         this.id = id;
         this.roomType = roomType;
         this.roomName = roomName;
@@ -61,27 +61,27 @@ public class Room {
         this.description = description;
     }
 
-    public ArrayList<Bed> getBeds() {
+    public ArrayList<BedDTO> getBeds() {
         return beds;
     }
 
-    public void setBeds(ArrayList<Bed> beds) {
+    public void setBeds(ArrayList<BedDTO> beds) {
         this.beds = beds;
     }
 
-    public List<ElectricityMeter> getElectricityMeter() {
+    public List<ElectricityMeterDTO> getElectricityMeter() {
         return electricityMeter;
     }
 
-    public void setElectricityMeter(List<ElectricityMeter> electricityMeter) {
+    public void setElectricityMeter(List<ElectricityMeterDTO> electricityMeter) {
         this.electricityMeter = electricityMeter;
     }
 
-    public List<ElectricityMeter> getWaterMeter() {
+    public List<ElectricityMeterDTO> getWaterMeter() {
         return waterMeter;
     }
 
-    public void setWaterMeter(List<ElectricityMeter> waterMeter) {
+    public void setWaterMeter(List<ElectricityMeterDTO> waterMeter) {
         this.waterMeter = waterMeter;
     }
     //endregion

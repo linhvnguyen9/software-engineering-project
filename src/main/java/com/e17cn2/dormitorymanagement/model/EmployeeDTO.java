@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "tblnhanvien")
-public class Employee {
+public class EmployeeDTO {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class Employee {
     @Column(name = "matKhau", nullable = false)
     private String password;
 
-    public Employee() {
+    public EmployeeDTO() {
     }
 
-    public Employee(int id, String name, String role, String username, String password) {
+    public EmployeeDTO(int id, String name, String role, String username, String password) {
         this.id = id;
         this.name = name;
         this.role = role;

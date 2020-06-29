@@ -5,7 +5,7 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
-import com.e17cn2.dormitorymanagement.model.Employee;
+import com.e17cn2.dormitorymanagement.model.EmployeeDTO;
 
 /**
  *
@@ -13,9 +13,9 @@ import com.e17cn2.dormitorymanagement.model.Employee;
  */
 public class ManageHomeFrm extends javax.swing.JFrame {
 
-    private Employee employee;
+    private EmployeeDTO employee;
     
-    public ManageHomeFrm(Employee employee) {
+    public ManageHomeFrm(EmployeeDTO employee) {
         this.employee = employee;
         initComponents();
         if (!employee.getRole().equalsIgnoreCase("manager")) {
