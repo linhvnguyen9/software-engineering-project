@@ -19,18 +19,6 @@ public class BedManageFrm extends javax.swing.JFrame {
      */
     public BedManageFrm() {
         initComponents();
-        
-        tblBedManage.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if(e.getValueIsAdjusting()){
-                    return;
-                }
-                DisplayBillInfoFrm displayBillInfoFrm = new DisplayBillInfoFrm();
-                displayBillInfoFrm.setVisible(true);
-                dispose();
-            }
-        });
     }
 
     /**
@@ -62,6 +50,11 @@ public class BedManageFrm extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tblBedManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBedManageMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblBedManage);
@@ -102,6 +95,12 @@ public class BedManageFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblBedManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBedManageMouseClicked
+        DisplayBillInfoFrm billForm = new DisplayBillInfoFrm();
+        billForm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_tblBedManageMouseClicked
 
     /**
      * @param args the command line arguments
