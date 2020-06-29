@@ -1,4 +1,4 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -16,18 +16,20 @@ public class UsedService {
     @Column(name = "soLuong")
     private double quantity;
     
-    private Service service;
+    @Column(name = "DichVuid")
+    private int serviceId;
     
-    private Invoice invoice;
+    @Column(name = "tblHoaDonid")
+    private int invoiceId;
             
     public UsedService() {
     }
 
-    public UsedService(int id, double quantity, Service service, Invoice invoice) {
+    public UsedService(int id, double quantity, int serviceId, int invoiceId) {
         this.id = id;
         this.quantity = quantity;
-        this.service = service;
-        this.invoice = invoice;
+        this.serviceId = serviceId;
+        this.invoiceId = invoiceId;
     }
 
     public int getId() {
@@ -46,19 +48,20 @@ public class UsedService {
         this.quantity = quantity;
     }
 
-    public Invoice getInvoice() {
-        return invoice;
+    public int getServiceId() {
+        return serviceId;
     }
 
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
     }
 
-    public Service getService() {
-        return service;
+    public int getInvoiceId() {
+        return invoiceId;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
     }
+
 }

@@ -5,7 +5,7 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
-import com.e17cn2.dormitorymanagement.model.Employee;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
 import javax.swing.JOptionPane;
 
 /**

@@ -1,5 +1,6 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
+import com.e17cn2.dormitorymanagement.model.entity.Bed;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -20,16 +21,22 @@ public class BookedBed {
     @Column(name = "ngayTraGiuong")
     private Date checkoutDate;
     
-    private Bed bed;
+    @Column(name = "tblGiuongid")
+    private int bedId;
+    
+    @Column(name = "tblHopDongid")
+    private int contractId;
 
     public BookedBed() {
     }
 
-    public BookedBed(int id, Date checkinDate, Date checkoutDate, Bed bed) {
+    public BookedBed(int id, Date checkinDate, Date checkoutDate, int bedId, 
+            int contractId) {
         this.id = id;
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
-        this.bed = bed;
+        this.bedId = bedId;
+        this.contractId = contractId;
     }
 
     public int getId() {
@@ -56,11 +63,19 @@ public class BookedBed {
         this.checkoutDate = checkoutDate;
     }
 
-    public Bed getBed() {
-        return bed;
+    public int getBedId() {
+        return bedId;
     }
 
-    public void setBed(Bed bed) {
-        this.bed = bed;
+    public void setBedId(int bedId) {
+        this.bedId = bedId;
+    }
+
+    public int getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(int contractId) {
+        this.contractId = contractId;
     }
 }

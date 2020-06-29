@@ -1,5 +1,8 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
+import com.e17cn2.dormitorymanagement.model.entity.Contract;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -31,12 +34,15 @@ public class Invoice {
     
     @Column(name = "soTienConNo")
     private double amountUnPaid;
-  
-    private Contract contract;
     
-    private Employee employee;
+    @Column(name = "tblHopDongid")
+    private int contractId;
     
-    private BookedBed BookedBed;
+    @Column(name = "tblNhanVienid")
+    private int employeeId;
+    
+    @Column(name = "tblGiuongDatid")
+    private int BookedBedId;
 
     //region Constructors
     public Invoice() {
@@ -44,7 +50,7 @@ public class Invoice {
 
     public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, 
             double amountPaid, boolean checkPayed, double amountUnPaid, 
-            Contract contract, Employee employee, BookedBed BookedBed) {
+            int contractId, int employeeId, int BookedBedId) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
@@ -52,9 +58,9 @@ public class Invoice {
         this.amountPaid = amountPaid;
         this.checkPayed = checkPayed;
         this.amountUnPaid = amountUnPaid;
-        this.contract = contract;
-        this.employee = employee;
-        this.BookedBed = BookedBed;
+        this.contractId = contractId;
+        this.employeeId = employeeId;
+        this.BookedBedId = BookedBedId;
     }
 
     //endregion
@@ -116,29 +122,29 @@ public class Invoice {
         this.amountUnPaid = amountUnPaid;
     }
 
-    public Contract getContract() {
-        return contract;
+    public int getContractId() {
+        return contractId;
     }
 
-    public void setContract(Contract contract) {
-        this.contract = contract;
+    public void setContractId(int contractId) {
+        this.contractId = contractId;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public BookedBed getBookedBed() {
-        return BookedBed;
+    public int getBookedBedId() {
+        return BookedBedId;
     }
 
-    public void setBookedBed(BookedBed BookedBed) {
-        this.BookedBed = BookedBed;
+    public void setBookedBedId(int BookedBedId) {
+        this.BookedBedId = BookedBedId;
     }
     
-    //endregion
+//endregion
 }

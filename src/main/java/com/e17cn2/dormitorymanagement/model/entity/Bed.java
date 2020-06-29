@@ -1,4 +1,4 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -26,18 +26,19 @@ public class Bed {
     private String type;
     
     @Column(name = "tblPhongid")
-    private int phongId;
+    private int roomId;
 
     public Bed() {
     }
 
-    public Bed(int id, double price, String name, String description, String type, int phongId) {
+    public Bed(int id, double price, String name, String description, String type, 
+            int roomId) {
         this.id = id;
         this.price = price;
         this.name = name;
         this.description = description;
         this.type = type;
-        this.phongId = phongId;
+        this.roomId = roomId;
     }
 
     public int getId() {
@@ -72,12 +73,12 @@ public class Bed {
         this.type = type;
     }
 
-    public int getPhongId() {
-        return phongId;
+    public int getRoomId() {
+        return roomId;
     }
-    
-    public void setPhongId(int phongId) {
-        this.phongId = phongId;
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     public String getName() {
@@ -86,6 +87,6 @@ public class Bed {
 
     public void setName(String name) {
         this.name = name;
-    }
+    }   
     
 }

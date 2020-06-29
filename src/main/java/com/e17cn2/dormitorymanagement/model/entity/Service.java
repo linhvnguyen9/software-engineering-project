@@ -1,4 +1,4 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

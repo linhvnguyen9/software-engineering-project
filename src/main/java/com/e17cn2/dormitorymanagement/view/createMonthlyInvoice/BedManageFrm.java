@@ -5,9 +5,6 @@
  */
 package com.e17cn2.dormitorymanagement.view.createMonthlyInvoice;
 
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
 /**
  *
  * @author BVCN 88

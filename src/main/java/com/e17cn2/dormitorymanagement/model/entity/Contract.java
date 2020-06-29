@@ -1,5 +1,6 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
 import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -20,28 +21,33 @@ public class Contract {
     @Column(name = "tienDatCoc")
     private double deposit;
     
+    @Column(name = "tblDongHoNuocid")
     private double waterReading;
+    
+    @Column(name = "tblDonghoDienid")
     private double electricityReading;
-    private Student student;
-    private Employee employee;
-    private ArrayList<BookedBed> bookedBeds;
+    
+    @Column(name = "tblSinhVienid")
+    private int studentId;
+    
+    @Column(name = "tblNhanVienid")
+    private int employeeId;
 
     //region Constructors
     public Contract() {
     }
 
-    public Contract(int id, double createDate, double deposit, double waterReading, 
-            double electricityReading, Student student, Employee employee, 
-            ArrayList<BookedBed> bookedBeds) {
+    public Contract(int id, double createDate, double deposit, double waterReading,
+            double electricityReading, int studentId, int employeeId) {
         this.id = id;
         this.createDate = createDate;
         this.deposit = deposit;
         this.waterReading = waterReading;
         this.electricityReading = electricityReading;
-        this.student = student;
-        this.employee = employee;
-        this.bookedBeds = bookedBeds;
+        this.studentId = studentId;
+        this.employeeId = employeeId;
     }
+
     //endregion
 
     //region Getters and setters
@@ -85,28 +91,21 @@ public class Contract {
         this.electricityReading = electricityReading;
     }
 
-    public Student getStudent() {
-        return student;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
-
-    public ArrayList<BookedBed> getBookedBeds() {
-        return bookedBeds;
-    }
-
-    public void setBookedBeds(ArrayList<BookedBed> bookedBeds) {
-        this.bookedBeds = bookedBeds;
-    }
+    
     //endregion
 }
