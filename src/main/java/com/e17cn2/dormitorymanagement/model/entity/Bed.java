@@ -3,15 +3,17 @@ package com.e17cn2.dormitorymanagement.model.entity;
 public class Bed {
     private int id;
     private double price;
+    private String name;
     private String description;
     private String type;
 
     public Bed() {
     }
 
-    public Bed(int id, double price, String description, String type) {
+    public Bed(int id, double price, String name, String description, String type) {
         this.id = id;
         this.price = price;
+        this.name = name;
         this.description = description;
         this.type = type;
     }
@@ -28,6 +30,14 @@ public class Bed {
         return price;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public void setPrice(double price) {
         this.price = price;
     }
