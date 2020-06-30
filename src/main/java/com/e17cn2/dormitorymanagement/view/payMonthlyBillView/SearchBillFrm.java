@@ -6,7 +6,7 @@
 package com.e17cn2.dormitorymanagement.view.payMonthlyBillView;
 
 import com.e17cn2.dormitorymanagement.dao.InvoiceDAO;
-import com.e17cn2.dormitorymanagement.model.dto.InvoiceDTO;
+import com.e17cn2.dormitorymanagement.model.entity.Invoice;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 

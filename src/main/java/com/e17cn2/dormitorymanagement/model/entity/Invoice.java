@@ -1,65 +1,45 @@
 package com.e17cn2.dormitorymanagement.model.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "tblhoadon")
 public class Invoice {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "ngayLap")
     private Date createdAt;
-    
-    @Column(name = "ngayThanhToan")
     private Date payingDate;
-    
-    @Column(name = "tongTien")
     private double totalAmount;
-    
-    @Column(name = "tienDaNhan")
     private double amountPaid;
-    
-    @Column(name = "daThanhToan")
-    private boolean checkPayed;
-    
-    @Column(name = "soTienConNo")
-    private double amountUnPaid;
-    
-    @Column(name = "tblHopDongid")
-    private int contractId;
-    
-    @Column(name = "tblNhanVienid")
-    private int employeeId;
-    
-    @Column(name = "tblGiuongDatid")
-    private int BookedBedId;
+    private Contract contract;
+    private Employee employee;
+    private ArrayList<UsedService> usedService;
+    private ElectricityMeter oldElectricityMeasurement;
+    private ElectricityMeter newElectricityMeasurement;
+    private WaterMeter oldWaterMeasurement;
+    private WaterMeter newWaterMeasurement;
 
     //region Constructors
     public Invoice() {
     }
 
     public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, 
-            double amountPaid, boolean checkPayed, double amountUnPaid, 
-            int contractId, int employeeId, int BookedBedId) {
+            double amountPaid, Contract contract, Employee employee, 
+            ArrayList<UsedService> usedService,
+            ElectricityMeter oldElectricityMeasurement,
+            ElectricityMeter newElectricityMeasurement, 
+            WaterMeter oldWaterMeasurement, WaterMeter newWaterMeasurement) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
         this.totalAmount = totalAmount;
         this.amountPaid = amountPaid;
-        this.checkPayed = checkPayed;
-        this.amountUnPaid = amountUnPaid;
-        this.contractId = contractId;
-        this.employeeId = employeeId;
-        this.BookedBedId = BookedBedId;
+        this.contract = contract;
+        this.employee = employee;
+        this.usedService = usedService;
+        this.oldElectricityMeasurement = oldElectricityMeasurement;
+        this.newElectricityMeasurement = newElectricityMeasurement;
+        this.oldWaterMeasurement = oldWaterMeasurement;
+        this.newWaterMeasurement = newWaterMeasurement;
     }
-
     //endregion
 
     //region Getters and setters
@@ -103,45 +83,60 @@ public class Invoice {
         this.amountPaid = amountPaid;
     }
 
-    public boolean isCheckPayed() {
-        return checkPayed;
+    public Contract getContract() {
+        return contract;
     }
 
-    public void setCheckPayed(boolean checkPayed) {
-        this.checkPayed = checkPayed;
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 
-    public double getAmountUnPaid() {
-        return amountUnPaid;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setAmountUnPaid(double amountUnPaid) {
-        this.amountUnPaid = amountUnPaid;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public int getContractId() {
-        return contractId;
+    public ArrayList<UsedService> getUsedService() {
+        return usedService;
     }
 
-    public void setContractId(int contractId) {
-        this.contractId = contractId;
+    public void setUsedService(ArrayList<UsedService> usedService) {
+        this.usedService = usedService;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public ElectricityMeter getOldElectricityMeasurement() {
+        return oldElectricityMeasurement;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setOldElectricityMeasurement(ElectricityMeter oldElectricityMeasurement) {
+        this.oldElectricityMeasurement = oldElectricityMeasurement;
     }
 
-    public int getBookedBedId() {
-        return BookedBedId;
+    public ElectricityMeter getNewElectricityMeasurement() {
+        return newElectricityMeasurement;
     }
 
-    public void setBookedBedId(int BookedBedId) {
-        this.BookedBedId = BookedBedId;
+    public void setNewElectricityMeasurement(ElectricityMeter newElectricityMeasurement) {
+        this.newElectricityMeasurement = newElectricityMeasurement;
     }
-    
-//endregion
+
+    public WaterMeter getOldWaterMeasurement() {
+        return oldWaterMeasurement;
+    }
+
+    public void setOldWaterMeasurement(WaterMeter oldWaterMeasurement) {
+        this.oldWaterMeasurement = oldWaterMeasurement;
+    }
+
+    public WaterMeter getNewWaterMeasurement() {
+        return newWaterMeasurement;
+    }
+
+    public void setNewWaterMeasurement(WaterMeter newWaterMeasurement) {
+        this.newWaterMeasurement = newWaterMeasurement;
+    }
+    //endregion
 }

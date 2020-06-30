@@ -1,35 +1,17 @@
 package com.e17cn2.dormitorymanagement.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Table(name = "dichvusudung")
 public class UsedService {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "soLuong")
-    private double quantity;
-    
-    @Column(name = "DichVuid")
-    private int serviceId;
-    
-    @Column(name = "tblHoaDonid")
-    private int invoiceId;
-            
+    private double qty;
+    private Service service;
+
     public UsedService() {
     }
 
-    public UsedService(int id, double quantity, int serviceId, int invoiceId) {
+    public UsedService(int id, double qty, Service service) {
         this.id = id;
-        this.quantity = quantity;
-        this.serviceId = serviceId;
-        this.invoiceId = invoiceId;
+        this.qty = qty;
+        this.service = service;
     }
 
     public int getId() {
@@ -40,28 +22,19 @@ public class UsedService {
         this.id = id;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public double getQty() {
+        return qty;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void setQty(double qty) {
+        this.qty = qty;
     }
 
-    public int getServiceId() {
-        return serviceId;
+    public Service getService() {
+        return service;
     }
 
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
+    public void setService(Service service) {
+        this.service = service;
     }
-
-    public int getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(int invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
 }
