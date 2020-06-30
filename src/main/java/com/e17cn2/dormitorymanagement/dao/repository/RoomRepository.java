@@ -5,13 +5,13 @@
  */
 package com.e17cn2.dormitorymanagement.dao.repository;
 
-import com.e17cn2.dormitorymanagement.model.dto.RoomDTO;
+import com.e17cn2.dormitorymanagement.model.entity.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface RoomRepository extends JpaRepository<RoomDTO, Integer>{
+public interface RoomRepository extends JpaRepository<Room, Integer>{
     
 }

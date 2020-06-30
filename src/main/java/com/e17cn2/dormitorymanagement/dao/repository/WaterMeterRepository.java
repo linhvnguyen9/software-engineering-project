@@ -6,12 +6,13 @@
 package com.e17cn2.dormitorymanagement.dao.repository;
 
 import com.e17cn2.dormitorymanagement.model.dto.WaterMeterDTO;
+import com.e17cn2.dormitorymanagement.model.entity.WaterMeter;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface WaterMeterRepository extends JpaRepository<WaterMeterDTO, Integer>{
+public interface WaterMeterRepository extends JpaRepository<WaterMeter, Integer>{
     
 }

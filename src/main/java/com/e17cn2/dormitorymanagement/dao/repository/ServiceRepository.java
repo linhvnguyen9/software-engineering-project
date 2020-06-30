@@ -5,13 +5,13 @@
  */
 package com.e17cn2.dormitorymanagement.dao.repository;
 
-import com.e17cn2.dormitorymanagement.model.dto.ServiceDTO;
+import com.e17cn2.dormitorymanagement.model.entity.Service;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface ServiceRepository extends JpaRepository<ServiceDTO, Integer>{
+public interface ServiceRepository extends JpaRepository<Service, Integer>{
     
 }

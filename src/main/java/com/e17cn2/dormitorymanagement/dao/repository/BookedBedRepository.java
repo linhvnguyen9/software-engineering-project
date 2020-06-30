@@ -6,15 +6,17 @@
 package com.e17cn2.dormitorymanagement.dao.repository;
 
 import com.e17cn2.dormitorymanagement.model.dto.BookedBedDTO;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface BookedBedRepository extends JpaRepository<BookedBedDTO, Integer>{
+public interface BookedBedRepository extends JpaRepository<BookedBed, Integer>{
     
-    BookedBedDTO save(BookedBedDTO saved);
+    @Override
+    BookedBed save(BookedBed saved);
     
     
 }

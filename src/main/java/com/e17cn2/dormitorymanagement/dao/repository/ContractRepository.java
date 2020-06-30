@@ -5,13 +5,13 @@
  */
 package com.e17cn2.dormitorymanagement.dao.repository;
 
-import com.e17cn2.dormitorymanagement.model.dto.ContractDto;
+import com.e17cn2.dormitorymanagement.model.entity.Contract;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface ContractRepository extends JpaRepository<ContractDto, Integer>{
+public interface ContractRepository extends JpaRepository<Contract, Integer>{
     
 }

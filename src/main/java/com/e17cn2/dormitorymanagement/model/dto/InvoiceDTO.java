@@ -9,7 +9,7 @@ public class InvoiceDTO {
     private Date payingDate;
     private double totalAmount;
     private double amountPaid;
-    private ContractDto contract;
+    private ContractDTO contract;
     private EmployeeDTO employee;
     private ArrayList<UsedServiceDTO> usedService;
     private ElectricityMeterDTO oldElectricityMeasurement;
@@ -22,7 +22,7 @@ public class InvoiceDTO {
     }
 
     public InvoiceDTO(int id, Date createdAt, Date payingDate, double totalAmount, 
-            double amountPaid, ContractDto contract, EmployeeDTO employee, 
+            double amountPaid, ContractDTO contract, EmployeeDTO employee, 
             ArrayList<UsedServiceDTO> usedService,
             ElectricityMeterDTO oldElectricityMeasurement,
             ElectricityMeterDTO newElectricityMeasurement, 
@@ -83,11 +83,11 @@ public class InvoiceDTO {
         this.amountPaid = amountPaid;
     }
 
-    public ContractDto getContract() {
+    public ContractDTO getContract() {
         return contract;
     }
 
-    public void setContract(ContractDto contract) {
+    public void setContract(ContractDTO contract) {
         this.contract = contract;
     }
 

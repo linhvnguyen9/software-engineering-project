@@ -5,13 +5,13 @@
  */
 package com.e17cn2.dormitorymanagement.dao.repository;
 
-import com.e17cn2.dormitorymanagement.model.dto.InvoiceDTO;
+import com.e17cn2.dormitorymanagement.model.entity.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface InvoiceRepository extends JpaRepository<InvoiceDTO, Integer>{
+public interface InvoiceRepository extends JpaRepository<Invoice, Integer>{
     
 }
