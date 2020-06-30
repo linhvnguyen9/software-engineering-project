@@ -6,7 +6,7 @@
 package com.e17cn2.dormitorymanagement.view;
 
 import com.e17cn2.dormitorymanagement.dao.EmployeeDAO;
-import com.e17cn2.dormitorymanagement.model.Employee;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
 import javax.swing.JOptionPane;
 
 /**
@@ -94,17 +94,17 @@ public class LoginFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        Employee employee = new Employee();
-            employee.setUsername(txtUsername.getText());
-            employee.setPassword(txtPassword.getText());
+        Employee dto = new Employee();
+            dto.setUsername(txtUsername.getText());
+            dto.setPassword(txtPassword.getText());
 			
             EmployeeDAO dao = new EmployeeDAO();
-            if(dao.checkLogin(employee)) {
-		if(employee.getRole().equalsIgnoreCase("manager") || employee.getRole().equalsIgnoreCase("employee")) {
-                    (new ManageHomeFrm(employee)).setVisible(true);
+            if(dao.checkLogin(dto)) {
+		if(dto.getRole().equalsIgnoreCase("manager") || dto.getRole().equalsIgnoreCase("employee")) {
+                    (new ManageHomeFrm(dto)).setVisible(true);
                     this.dispose();
                 }else
-                    JOptionPane.showMessageDialog(this, "The function of the role " + employee.getRole() + " is under construction!");
+                    JOptionPane.showMessageDialog(this, "The function of the role " + dto.getRole() + " is under construction!");
 		}else {
                     JOptionPane.showMessageDialog(this, "Incorrect username and/or password!");
 		}

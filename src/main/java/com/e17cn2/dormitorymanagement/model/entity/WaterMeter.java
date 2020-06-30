@@ -1,19 +1,22 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
+import com.e17cn2.dormitorymanagement.model.dto.RoomDto;
 import java.util.Date;
 
-public class ElectricityMeter {
+public class WaterMeter {
     private int id;
     private float currentReading;
     private Date measuringDate;
+    private Room roomDto;
 
-    public ElectricityMeter() {
+    public WaterMeter() {
     }
 
-    public ElectricityMeter(int id, float currentReading, Date measuringDate) {
+    public WaterMeter(int id, float currentReading, Date measuringDate, Room roomDto) {
         this.id = id;
         this.currentReading = currentReading;
         this.measuringDate = measuringDate;
+        this.roomDto = roomDto;
     }
 
     public int getId() {
@@ -39,4 +42,13 @@ public class ElectricityMeter {
     public void setMeasuringDate(Date measuringDate) {
         this.measuringDate = measuringDate;
     }
+
+    public Room getRoomDto() {
+        return roomDto;
+    }
+
+    public void setRoomDto(Room roomDto) {
+        this.roomDto = roomDto;
+    }
+
 }

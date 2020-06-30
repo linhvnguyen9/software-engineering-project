@@ -1,11 +1,11 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Contract {
     private int id;
-    private double price;
-    private double createDate;
+    private Date createDate;
     private double deposit;
     private WaterMeter waterReading;
     private ElectricityMeter electricityReading;
@@ -17,9 +17,10 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int id, double price, double createDate, double deposit, WaterMeter waterReading, ElectricityMeter electricityReading, Student student, Employee employee, ArrayList<BookedBed> bookedBeds) {
+    public Contract(int id, Date createDate, double deposit,
+            WaterMeter waterReading, ElectricityMeter electricityReading, Student student,
+            Employee employee, ArrayList<BookedBed> bookedBeds) {
         this.id = id;
-        this.price = price;
         this.createDate = createDate;
         this.deposit = deposit;
         this.waterReading = waterReading;
@@ -39,19 +40,11 @@ public class Contract {
         this.id = id;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(double createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 

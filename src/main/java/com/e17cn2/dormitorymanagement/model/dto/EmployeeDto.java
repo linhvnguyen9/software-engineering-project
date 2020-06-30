@@ -1,4 +1,4 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.dto;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "tblnhanvien")
-public class Employee {
+public class EmployeeDto {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class Employee {
     @Column(name = "matKhau", nullable = false)
     private String password;
 
-    public Employee() {
+    public EmployeeDto() {
     }
 
-    public Employee(int id, String name, String role, String username, String password) {
+    public EmployeeDto(int id, String name, String role, String username, String password) {
         this.id = id;
         this.name = name;
         this.role = role;

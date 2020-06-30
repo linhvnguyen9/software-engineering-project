@@ -1,9 +1,9 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.dto;
 
-public class InvoiceStat {
+public class InvoiceStatDto {
     private double monthRevenue;
 
-    public InvoiceStat(double monthRevenue) {
+    public InvoiceStatDto(double monthRevenue) {
         this.monthRevenue = monthRevenue;
     }
 

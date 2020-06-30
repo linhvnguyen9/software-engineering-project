@@ -1,4 +1,4 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +21,12 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, double amountPaid, Contract contract, Employee employee, ArrayList<UsedService> usedService, ElectricityMeter oldElectricityMeasurement, ElectricityMeter newElectricityMeasurement, WaterMeter oldWaterMeasurement, WaterMeter newWaterMeasurement) {
+    public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, 
+            double amountPaid, Contract contract, Employee employee, 
+            ArrayList<UsedService> usedService,
+            ElectricityMeter oldElectricityMeasurement,
+            ElectricityMeter newElectricityMeasurement, 
+            WaterMeter oldWaterMeasurement, WaterMeter newWaterMeasurement) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;

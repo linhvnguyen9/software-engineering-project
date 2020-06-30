@@ -5,6 +5,8 @@
  */
 package com.e17cn2.dormitorymanagement.view.payMonthlyBillView;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author My PC
@@ -44,6 +46,11 @@ public class EditBillFrm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Reset");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,6 +85,13 @@ public class EditBillFrm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JOptionPane.showMessageDialog(null,"Ban co chac muon reset");
+        PayMonthlyBillFrm payMonthlyBillFrm=new PayMonthlyBillFrm();
+        payMonthlyBillFrm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

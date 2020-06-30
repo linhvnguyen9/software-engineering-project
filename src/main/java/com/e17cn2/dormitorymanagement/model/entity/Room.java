@@ -1,4 +1,4 @@
-package com.e17cn2.dormitorymanagement.model;
+package com.e17cn2.dormitorymanagement.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,9 @@ public class Room {
 
     }
 
-    public Room(int id, String roomType, String roomName, String description, ArrayList<Bed> beds, List<ElectricityMeter> electricityMeter, List<ElectricityMeter> waterMeter) {
+    public Room(int id, String roomType, String roomName, String description,
+            ArrayList<Bed> beds, List<ElectricityMeter> electricityMeter,
+            List<ElectricityMeter> waterMeter) {
         this.id = id;
         this.roomType = roomType;
         this.roomName = roomName;
@@ -26,9 +28,7 @@ public class Room {
         this.electricityMeter = electricityMeter;
         this.waterMeter = waterMeter;
     }
-    //endregion
 
-    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -84,5 +84,5 @@ public class Room {
     public void setWaterMeter(List<ElectricityMeter> waterMeter) {
         this.waterMeter = waterMeter;
     }
-    //endregion
+    
 }
