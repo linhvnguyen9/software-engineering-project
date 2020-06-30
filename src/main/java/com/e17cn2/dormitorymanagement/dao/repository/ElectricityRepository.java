@@ -5,13 +5,13 @@
  */
 package com.e17cn2.dormitorymanagement.dao.repository;
 
-import com.e17cn2.dormitorymanagement.model.dto.ElectricityMeterDTO;
+import com.e17cn2.dormitorymanagement.model.entity.ElectricityMeter;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface ElectricityRepository extends JpaRepository<ElectricityMeterDTO, Integer>{
+public interface ElectricityRepository extends JpaRepository<ElectricityMeter, Integer>{
     
 }

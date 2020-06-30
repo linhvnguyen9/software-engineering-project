@@ -5,13 +5,13 @@
  */
 package com.e17cn2.dormitorymanagement.dao.repository;
 
-import com.e17cn2.dormitorymanagement.model.dto.StudentDTO;
+import com.e17cn2.dormitorymanagement.model.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface StudentRepository extends JpaRepository<StudentDTO, Integer>{
+public interface StudentRepository extends JpaRepository<Student, Integer>{
     
 }

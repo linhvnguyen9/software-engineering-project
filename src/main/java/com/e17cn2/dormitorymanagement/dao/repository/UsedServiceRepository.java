@@ -5,13 +5,13 @@
  */
 package com.e17cn2.dormitorymanagement.dao.repository;
 
-import com.e17cn2.dormitorymanagement.model.dto.UsedServiceDTO;
+import com.e17cn2.dormitorymanagement.model.entity.UsedService;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author BVCN 88
  */
-public interface UsedServiceRepository extends JpaRepository<UsedServiceDTO, Integer>{
+public interface UsedServiceRepository extends JpaRepository<UsedService, Integer>{
     
 }
