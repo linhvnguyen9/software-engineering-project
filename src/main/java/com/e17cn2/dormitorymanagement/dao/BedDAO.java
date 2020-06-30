@@ -11,7 +11,7 @@ public class BedDAO {
     public BedDAO() {
         super();
     }
-    
+
     public ArrayList<BedDto> searchBed(String key){
 	ArrayList<BedDto> result = new ArrayList<BedDto>();
 //	String sql = "SELECT * FROM tblgiuong WHERE ma LIKE ?";
@@ -31,7 +31,7 @@ public class BedDAO {
 //            }
 //        }catch(Exception e){
 //            e.printStackTrace();
-//        }	
+//        }
         return result;
     }
 

@@ -1,13 +1,14 @@
 package com.e17cn2.dormitorymanagement.model.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Contract {
     private int id;
-    private double createDate;
+    private Date createDate;
     private double deposit;
-    private double waterReading;
-    private double electricityReading;
+    private WaterMeter waterReading;
+    private ElectricityMeter electricityReading;
     private Student student;
     private Employee employee;
     private ArrayList<BookedBed> bookedBeds;
@@ -16,8 +17,8 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int id, double createDate, double deposit, 
-            double waterReading, double electricityReading, Student student, 
+    public Contract(int id, Date createDate, double deposit,
+            WaterMeter waterReading, ElectricityMeter electricityReading, Student student,
             Employee employee, ArrayList<BookedBed> bookedBeds) {
         this.id = id;
         this.createDate = createDate;
@@ -28,7 +29,9 @@ public class Contract {
         this.employee = employee;
         this.bookedBeds = bookedBeds;
     }
+    //endregion
 
+    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -37,11 +40,11 @@ public class Contract {
         this.id = id;
     }
 
-    public double getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(double createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -53,19 +56,19 @@ public class Contract {
         this.deposit = deposit;
     }
 
-    public double getWaterReading() {
+    public WaterMeter getWaterReading() {
         return waterReading;
     }
 
-    public void setWaterReading(double waterReading) {
+    public void setWaterReading(WaterMeter waterReading) {
         this.waterReading = waterReading;
     }
 
-    public double getElectricityReading() {
+    public ElectricityMeter getElectricityReading() {
         return electricityReading;
     }
 
-    public void setElectricityReading(double electricityReading) {
+    public void setElectricityReading(ElectricityMeter electricityReading) {
         this.electricityReading = electricityReading;
     }
 
@@ -92,5 +95,5 @@ public class Contract {
     public void setBookedBeds(ArrayList<BookedBed> bookedBeds) {
         this.bookedBeds = bookedBeds;
     }
-    
+    //endregion
 }
