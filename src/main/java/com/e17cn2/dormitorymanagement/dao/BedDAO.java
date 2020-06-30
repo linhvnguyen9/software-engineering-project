@@ -51,7 +51,7 @@ public class BedDAO extends DAO {
             double bedPrice = rs.getDouble(5);
             String bedDesc = rs.getString(6);
 
-            Bed bed = new Bed(id, bedPrice, bedDesc, bedType); //TODO: Pull code from git to get Bed with bedName
+            Bed bed = new Bed(id, bedPrice, bedName, bedDesc, bedType);
             result.put(bed, roomName);
         }
 

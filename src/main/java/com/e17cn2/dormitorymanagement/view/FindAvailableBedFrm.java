@@ -5,9 +5,9 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
-import com.e17cn2.dormitorymanagement.model.Bed;
-import com.e17cn2.dormitorymanagement.model.Contract;
-import com.e17cn2.dormitorymanagement.model.Employee;
+import com.e17cn2.dormitorymanagement.model.entity.Bed;
+import com.e17cn2.dormitorymanagement.model.entity.Contract;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
 
 import javax.swing.JFrame;
 import java.util.Date;
@@ -178,7 +178,8 @@ public class FindAvailableBedFrm extends JFrame {
     private void selectBed() {
         //TODO: Get bed from selection
         Bed bed = new Bed();
-        Contract contract = new Contract(0, bed.getPrice(), new Date(), 0, null, null, null, employee, null);
+        //TODO: Insert into booked bed to prevent other employees from booking the same bed?
+        Contract contract = new Contract(0, new Date(), 0, null, null, null, employee, null);
         FindStudentFrm frm = new FindStudentFrm(contract);
         frm.setVisible(true);
         this.setVisible(false);

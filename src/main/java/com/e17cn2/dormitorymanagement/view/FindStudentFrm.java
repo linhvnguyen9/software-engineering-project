@@ -1,6 +1,6 @@
 package com.e17cn2.dormitorymanagement.view;
 
-import com.e17cn2.dormitorymanagement.model.Contract;
+import com.e17cn2.dormitorymanagement.model.entity.Contract;
 
 public class FindStudentFrm extends javax.swing.JFrame {
     private Contract contract;

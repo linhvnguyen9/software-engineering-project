@@ -1,6 +1,6 @@
 package com.e17cn2.dormitorymanagement.dao;
 
-import com.e17cn2.dormitorymanagement.model.Contract;
+import com.e17cn2.dormitorymanagement.model.entity.Contract;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
