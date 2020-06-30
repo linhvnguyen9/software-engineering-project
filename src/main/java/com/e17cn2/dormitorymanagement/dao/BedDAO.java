@@ -1,7 +1,7 @@
 package com.e17cn2.dormitorymanagement.dao;
 
 import static com.e17cn2.dormitorymanagement.dao.DAO.con;
-import com.e17cn2.dormitorymanagement.model.entity.Bed;
+import com.e17cn2.dormitorymanagement.model.dto.BedDto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ public class BedDAO {
         super();
     }
     
-    public ArrayList<Bed> searchBed(String key){
-	ArrayList<Bed> result = new ArrayList<Bed>();
+    public ArrayList<BedDto> searchBed(String key){
+	ArrayList<BedDto> result = new ArrayList<BedDto>();
 //	String sql = "SELECT * FROM tblgiuong WHERE ma LIKE ?";
 //	try{
 //            PreparedStatement ps = con.prepareStatement(sql);

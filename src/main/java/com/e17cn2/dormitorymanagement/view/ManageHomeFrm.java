@@ -6,7 +6,7 @@
 package com.e17cn2.dormitorymanagement.view;
 
 
-import com.e17cn2.dormitorymanagement.model.dto.EmployeeDTO;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class ManageHomeFrm extends javax.swing.JFrame {
 
-    private EmployeeDTO employeeDTO;
+    private Employee employeeDTO;
     
     
-    public ManageHomeFrm(EmployeeDTO employeeDTO) {
+    public ManageHomeFrm(Employee employeeDTO) {
         this.employeeDTO = employeeDTO;
         initComponents();
         if (!employeeDTO.getRole().equalsIgnoreCase("manager")) {
