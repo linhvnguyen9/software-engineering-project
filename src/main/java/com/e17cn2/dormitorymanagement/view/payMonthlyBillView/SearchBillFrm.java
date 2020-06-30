@@ -5,9 +5,19 @@
  */
 package com.e17cn2.dormitorymanagement.view.payMonthlyBillView;
 
+import com.e17cn2.dormitorymanagement.dao.BookedBedDAO;
+import com.e17cn2.dormitorymanagement.dao.ContractDAO;
 import com.e17cn2.dormitorymanagement.dao.InvoiceDAO;
 import com.e17cn2.dormitorymanagement.model.dto.InvoiceDTO;
+import com.e17cn2.dormitorymanagement.model.entity.Bed;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
+import com.e17cn2.dormitorymanagement.model.entity.Contract;
+import com.e17cn2.dormitorymanagement.model.entity.Invoice;
+import com.e17cn2.dormitorymanagement.model.entity.Student;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,15 +27,16 @@ import javax.swing.table.DefaultTableModel;
 public class SearchBillFrm extends javax.swing.JFrame {
 
     private DefaultTableModel tmSearch;
+    private int rowId;
     public SearchBillFrm() {
-        initTable();
         initComponents();
+        initTable();
     }
-    public int getId(int id){
-        return id;
+    public int getId(){
+        return rowId;
     }
     public void initTable(){
-        String[] col={"Ma Hoa don","Ten sinh vien","Giuong"};
+        String[] col={"Ma Hoa don","Ten sinh vien","Giuong","Loai Giuong"};
         tmSearch=new DefaultTableModel(col,0);
         jTable1.setModel(tmSearch);
     }    
@@ -123,22 +134,27 @@ public class SearchBillFrm extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         PayMonthlyBillFrm payMonthlyBillFrm =new PayMonthlyBillFrm();
         int row=jTable1.getSelectedRow();
-        getId(row);
+        Invoice invoice=new Invoice();
+        String id=jTable1.getValueAt(row,0).toString();
+        rowId=Integer.parseInt(id);
+        
         payMonthlyBillFrm.setVisible(true);
         
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        ArrayList<InvoiceDTO> listSearch = new ArrayList<InvoiceDTO>();
-//        String key=jTextField1.getText();
-//        listSearch=InvoiceDAO.searchInvoid(key);
-//        
-//        tmSearch.setRowCount(0);
-//        
-//        for (InvoiceDTO s:listSearch){
-//            Object[] object= new Object[];
-//            tmSearch.addRow();
-//        }
+        ArrayList<Invoice> listSearch = new ArrayList<Invoice>();
+        String key=jTextField1.getText();
+        InvoiceDAO invoice=new InvoiceDAO();
+        listSearch=invoice.searchInvoice(key.trim());
+        
+        tmSearch.setRowCount(0);
+        
+        for (Invoice s:listSearch){
+            
+            
+            tmSearch.addRow(new Object[] {s.getId(),"ok","ok","ok"});
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -2,7 +2,7 @@ package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.ArrayList;
 
-public class ContractDto {
+public class ContractDTO {
     private int id;
     private double createDate;
     private double deposit;
@@ -13,10 +13,10 @@ public class ContractDto {
     private ArrayList<BookedBedDTO> bookedBeds;
 
     //region Constructors
-    public ContractDto() {
+    public ContractDTO() {
     }
 
-    public ContractDto(int id, double createDate, double deposit, 
+    public ContractDTO(int id, double createDate, double deposit, 
             double waterReading, double electricityReading, StudentDTO student, 
             EmployeeDTO employee, ArrayList<BookedBedDTO> bookedBeds) {
         this.id = id;

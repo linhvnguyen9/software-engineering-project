@@ -1,4 +1,5 @@
 package com.e17cn2.dormitorymanagement.dao;
 
-public class BookedBedDAO {
+public class BookedBedDAO{
+    
 }
