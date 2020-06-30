@@ -1,32 +1,38 @@
 package com.e17cn2.dormitorymanagement.dao;
 
-import com.e17cn2.dormitorymanagement.model.Bed;
-
+import static com.e17cn2.dormitorymanagement.dao.DAO.con;
+import com.e17cn2.dormitorymanagement.model.dto.BedDto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-public class BedDAO extends DAO {
-    public List<Bed> findAvailableBed(Double maxPrice, Date checkinDate) throws SQLException {
-        ArrayList<Bed> result = new ArrayList<>();
+public class BedDAO {
 
-        String query = "SELECT * FROM tblBed WHERE price";
-        PreparedStatement preparedStatement = con.prepareStatement(query);
-        preparedStatement.setDate(1, checkinDate);
-        preparedStatement.setDouble(2, maxPrice);
-        ResultSet rs = preparedStatement.executeQuery();
-
-        while (rs.next()) {
-            Bed bed = new Bed();
-            bed.setId(rs.getInt(1));
-            bed.setPrice(rs.getDouble(2));
-            bed.set(rs.(2));
-            result.add()
-        }
-
+    public BedDAO() {
+        super();
     }
+
+    public ArrayList<BedDto> searchBed(String key){
+	ArrayList<BedDto> result = new ArrayList<BedDto>();
+//	String sql = "SELECT * FROM tblgiuong WHERE ma LIKE ?";
+//	try{
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setString(1, "%" + key + "%");
+//            ResultSet rs = ps.executeQuery();
+//
+//            while(rs.next()){
+//		Bed bed = new Bed(rs.getInt("id"),
+//                                  rs.getDouble("gia"),
+//                                  rs.getString("ma"),
+//                                  rs.getString("moTa"),
+//                                  rs.getString("loai"),
+//                                  rs.get);
+//		result.add(bed);
+//            }
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+        return result;
+    }
+
 }

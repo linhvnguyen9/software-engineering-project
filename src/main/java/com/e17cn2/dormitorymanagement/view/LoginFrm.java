@@ -5,6 +5,10 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
+import com.e17cn2.dormitorymanagement.dao.EmployeeDAO;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author linh
@@ -37,6 +41,11 @@ public class LoginFrm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Username");
 
@@ -83,6 +92,23 @@ public class LoginFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        Employee dto = new Employee();
+            dto.setUsername(txtUsername.getText());
+            dto.setPassword(txtPassword.getText());
+			
+            EmployeeDAO dao = new EmployeeDAO();
+            if(dao.checkLogin(dto)) {
+		if(dto.getRole().equalsIgnoreCase("manager") || dto.getRole().equalsIgnoreCase("employee")) {
+                    (new ManageHomeFrm(dto)).setVisible(true);
+                    this.dispose();
+                }else
+                    JOptionPane.showMessageDialog(this, "The function of the role " + dto.getRole() + " is under construction!");
+		}else {
+                    JOptionPane.showMessageDialog(this, "Incorrect username and/or password!");
+		}
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
