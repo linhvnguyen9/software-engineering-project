@@ -30,6 +30,10 @@ public class ElectricityMeter {
         return currentReading;
     }
 
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
     public void setCurrentReading(float currentReading) {
         this.currentReading = currentReading;
     }
