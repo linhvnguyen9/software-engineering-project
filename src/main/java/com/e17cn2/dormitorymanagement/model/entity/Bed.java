@@ -6,6 +6,8 @@ public class Bed {
     private String name;
     private String description;
     private String type;
+    private String roomName;
+    private int roomId;
 
     public Bed() {
     }
@@ -18,6 +20,25 @@ public class Bed {
         this.type = type;
     }
 
+    public Bed(int id, double price, String name, String description, String type, String roomName) {
+        this.id = id;
+        this.price = price;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.roomName = roomName;
+    }
+
+    public Bed(int id, double price, String name, String description, String type, String roomName, int roomId) {
+        this.id = id;
+        this.price = price;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.roomName = roomName;
+        this.roomId = roomId;
+    }
+
     public int getId() {
         return id;
     }
@@ -28,6 +49,14 @@ public class Bed {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPrice(double price) {
@@ -48,5 +77,33 @@ public class Bed {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
+    @Override
+    public String toString() {
+        return "Bed{" +
+                "id=" + id +
+                ", price=" + price +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                ", roomName='" + roomName + '\'' +
+                '}';
     }
 }

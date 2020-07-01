@@ -2,14 +2,13 @@ package com.e17cn2.dormitorymanagement.dao;
 
 import com.e17cn2.dormitorymanagement.model.entity.Bed;
 import com.e17cn2.dormitorymanagement.model.dto.BedDto;
+import org.springframework.data.util.Pair;
 
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class BedDAO extends DAO {
     public BedDAO() {
@@ -20,8 +19,8 @@ public class BedDAO extends DAO {
      * @param checkinDate Starting date
      * @return Map with Bed and Room name of Bed
      */
-    public Map<Bed, String> findAvailableBeds(Double maxPrice, Date checkinDate) throws SQLException {
-        HashMap<Bed, String> result = new HashMap<>();
+    public List<Pair<Bed, String>> findAvailableBeds(Double maxPrice, Date checkinDate) throws SQLException {
+        ArrayList<Pair<Bed, String>> result = new ArrayList<>();
 
         String query = "SELECT tblgiuong.id, tblphong.tenPhong, tblgiuong.ma, tblgiuong.loai, tblgiuong.gia, tblgiuong.moTa " +
                 "FROM tblphong, tblgiuong " +
@@ -52,7 +51,7 @@ public class BedDAO extends DAO {
             String bedDesc = rs.getString(6);
 
             Bed bed = new Bed(id, bedPrice, bedName, bedDesc, bedType);
-            result.put(bed, roomName);
+            result.add(Pair.of(bed, roomName));
         }
 
         return result;

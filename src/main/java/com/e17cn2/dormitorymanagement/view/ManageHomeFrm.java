@@ -7,6 +7,8 @@ package com.e17cn2.dormitorymanagement.view;
 
 
 import com.e17cn2.dormitorymanagement.model.entity.Employee;
+import com.e17cn2.dormitorymanagement.view.createcontract.FindAvailableBedFrm;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -56,6 +58,11 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         btnManaBed.setText("Manage Bed");
 
         btnCreateContract.setText("Create Contract");
+        btnCreateContract.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateContractActionPerformed(evt);
+            }
+        });
 
         btnCreateBill.setText("Create Monthly Bill");
 
@@ -90,9 +97,9 @@ public class ManageHomeFrm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 44, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCreateContract)
-                            .addComponent(btnCreateBill))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCreateBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCreateContract, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(72, 72, 72)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPayBill, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,15 +120,11 @@ public class ManageHomeFrm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnManaRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnReportBroken, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnCreateContract, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnManaRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReportBroken, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCreateContract, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateBill, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,7 +146,6 @@ public class ManageHomeFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStateDebtActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
         LoginFrm loginFrm = new LoginFrm();
        int logout = JOptionPane.showConfirmDialog(this,"Bạn có muốn đăng xuất?");
        if(logout==JOptionPane.YES_OPTION){
@@ -151,6 +153,12 @@ public class ManageHomeFrm extends javax.swing.JFrame {
            this.dispose();
        }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnCreateContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateContractActionPerformed
+        FindAvailableBedFrm frm = new FindAvailableBedFrm(employeeDTO);
+        frm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCreateContractActionPerformed
 
     /**
      * @param args the command line arguments

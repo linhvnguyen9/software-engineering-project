@@ -13,9 +13,9 @@ public class StudentDAO extends DAO {
     public List<Student> findStudentByName(String nameQuery) throws SQLException {
         ArrayList<Student> result = new ArrayList<Student>();
 
-        String query = "SELECT * FROM tblSinhVien WHERE ten LIKE %?%";
+        String query = "SELECT * FROM tblsinhvien WHERE ten LIKE ?";
         PreparedStatement psmt = con.prepareStatement(query);
-        psmt.setString(1, nameQuery);
+        psmt.setString(1, "%"+nameQuery+"%");
 
         ResultSet rs = psmt.executeQuery();
 
@@ -26,20 +26,16 @@ public class StudentDAO extends DAO {
         return result;
     }
 
-    public List<Student> findStudentByIdCard(String idCard) throws SQLException {
-        ArrayList<Student> result = new ArrayList<Student>();
-
-        String query = "SELECT * FROM tblSinhVien WHERE ten=?";
+    public Student findStudentByIdCard(String idCard) throws SQLException {
+        String query = "SELECT * FROM tblsinhvien WHERE cmt = ?";
         PreparedStatement psmt = con.prepareStatement(query);
         psmt.setString(1, idCard);
 
         ResultSet rs = psmt.executeQuery();
 
-        while (rs.next()) {
-            Student student = mapToStudent(rs);
-            result.add(student);
-        }
-        return result;
+        if (rs.next()) {
+            return mapToStudent(rs);
+        } return null;
     }
 
     private Student mapToStudent(ResultSet rs) throws SQLException {
