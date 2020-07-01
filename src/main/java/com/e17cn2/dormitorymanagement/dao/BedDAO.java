@@ -34,5 +34,26 @@ public class BedDAO {
 //        }	
         return result;
     }
+    public Bed getBedByInvoiceId(int key){
+        Bed bed=new Bed();
+		String sql = "SELECT tblGiuong.id,tblGiuong.gia,tblGiuong.ma,tblGiuong.mota,tblGiuong.loai\n"
+                        + "FROM tblHoaDon,tblGiuongDat,tblGiuong WHERE tblHoaDon.tblGiuongDatid=tblGiuongDat.id AND "
+                        + "tblGiuongDat.tblGiuongid=tblGiuong.id AND tblhoadon.id = ?";
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, key);
+			ResultSet rs = ps.executeQuery();
 
+			if(rs.next()){
+                           bed.setId(rs.getInt("id"));
+                           bed.setPrice(rs.getDouble("gia"));
+                           bed.setDescription(rs.getString("mota"));
+                           bed.setType(rs.getString("loai"));
+                           bed.setName(rs.getString("ma"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}	
+		return bed;
+	}
 }

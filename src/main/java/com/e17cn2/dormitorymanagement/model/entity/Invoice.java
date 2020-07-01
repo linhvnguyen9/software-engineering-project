@@ -66,7 +66,7 @@ public class Invoice {
     public int getId() {
         return id;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -98,7 +98,7 @@ public class Invoice {
     public double getAmountPaid() {
         return amountPaid;
     }
-
+    
     public void setAmountPaid(double amountPaid) {
         this.amountPaid = amountPaid;
     }
