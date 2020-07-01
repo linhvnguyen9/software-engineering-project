@@ -1,41 +1,72 @@
 package com.e17cn2.dormitorymanagement.dao;
 
 import static com.e17cn2.dormitorymanagement.dao.DAO.con;
+import com.e17cn2.dormitorymanagement.model.dto.InvoiceDto;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
 import com.e17cn2.dormitorymanagement.model.entity.Invoice;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.util.Date;
 
-public class InvoiceDAO {
-    //Lay 2 chi so dien gan nhat
-    //select * from cnpm.tbldonghodien where tblPhongid IN 
-    //(SELECT tblPhongid FROM cnpm.tblgiuong WHERE id IN (SELECT tblGiuongid FROM tblgiuongdat WHERE id = ?)) 
-    //order by (ngayLaySo) DESC limit 2;
+public class InvoiceDAO extends DAO{
     
-    //Lay 2 chi so nuoc gan nhat
-    //select * from cnpm.tbldonghonuoc where tblPhongid IN 
-    //(SELECT tblPhongid FROM cnpm.tblgiuong WHERE id IN (SELECT tblGiuongid FROM tblgiuongdat WHERE id = ?)) 
-    //order by (ngayLaySo) DESC limit 2;
+    public boolean saveMonthlyInvoice(Invoice invoice, BookedBed bookedBed) throws SQLException{
+        String sql = "INSERT INTO tblhoadon VALUES (?,?,?,?,?,?,?,?,?,?)";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        InvoiceDto dto = convertToDto(invoice, bookedBed.getId());
+            
+        ps.setInt(1, increaseInvoiceId());
+        ps.setDate(2, (java.sql.Date) dto.getCreatedAt());
+        ps.setDate(3, null);
+        ps.setDouble(4, dto.getTotalAmount());
+        ps.setBoolean(5, dto.isCheckPayed());
+        ps.setInt(6, dto.getAmountUnPaid());
+        ps.setInt(7, dto.getAmountPaid());
+        ps.setInt(8, dto.getContractId());
+        ps.setInt(9, dto.getEmployeeId());
+        ps.setInt(10, dto.getBookedBedId());
+        
+        return ps.execute();
+    }
     
-    //tim giuong dat chua len hoa don thang nay
-    //select * from tblgiuong 
-    //where id IN 
-    //(select tblGiuongid from tblGiuongDat where id NOT IN (select tblGiuongDatid from tblhoadon where DATE_FORMAT(tblhoadon.ngayLap, '%y-%m') >= DATE_FORMAT(current_timestamp, '%y-%m')));
+    public int increaseInvoiceId(){
+        int id = 0;
+        String sql = "SELECT MAX(id) FROM tblhoadon;";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                id = rs.getInt(1);
+            }
+            }catch(SQLException e) {
+                e.printStackTrace();
+            }
+        id = id + 1;
+        
+        return id;
+    }
     
-    
-    //lay thong tin phong cua giuongdat
-    //select * from tblPhong where id IN(select tblPhongid from tblgiuong,tblgiuongdat where tblgiuong.id = tblgiuongdat.tblGiuongid);
-    
-    //Lay thong tin cua giuong
-    //select * from tblgiuong 
-    //where id IN (select tblGiuongid from tblGiuongDat);
-    
-    //Lay thong tin sinh vien
-    //select * from tblsinhvien 
-    //where id IN (select tblHopDong.tblSinhVienid FROM tblHopDong,tblGiuongDat where tblHopDong.id = tblGiuongDat.tblHopDongid and tblGiuongDat.id = ?);
-    
-    //Lay tong so tien con no cua cac hoa don truoc
-    //select sum(soTienConNo) from tblhoadon where tblGiuongDatid = ?;
-    
-    //Insert into tblhoadon values(?,?,?,?,?,?,?);
+    private InvoiceDto convertToDto(Invoice invoice, int bookedBedId){
+        InvoiceDto dto = new InvoiceDto();
+        Date currentDate = new Date();
+        
+        if (invoice != null) {
+            dto.setId(invoice.getId());
+            dto.setCreatedAt(currentDate);
+            dto.setPayingDate(null);
+            dto.setTotalAmount(invoice.getTotalAmount());
+            dto.setCheckPayed(false);
+            dto.setAmountUnPaid(invoice.getAmountUnPaid());
+            dto.setAmountPaid(invoice.getAmountPaid());
+            dto.setContractId(invoice.getContract().getId());
+            dto.setEmployeeId(invoice.getEmployee().getId());
+            dto.setBookedBedId(bookedBedId);
+            
+            return dto;
+        }else return null;
+    }
 }

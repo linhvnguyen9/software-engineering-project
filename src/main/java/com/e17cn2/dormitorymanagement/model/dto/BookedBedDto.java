@@ -1,6 +1,5 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
-import com.e17cn2.dormitorymanagement.model.dto.BedDto;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

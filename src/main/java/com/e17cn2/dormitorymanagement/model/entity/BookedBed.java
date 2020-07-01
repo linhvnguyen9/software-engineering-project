@@ -7,18 +7,15 @@ public class BookedBed {
     private int id;
     private Date checkinDate;
     private Date checkoutDate;
-    private Date totalPrice;
     private Bed bedDto;
 
     public BookedBed() {
     }
 
-    public BookedBed(int id, Date checkinDate, Date checkoutDate, 
-            Date totalPrice, Bed bedDto) {
+    public BookedBed(int id, Date checkinDate, Date checkoutDate, Bed bedDto) {
         this.id = id;
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
-        this.totalPrice = totalPrice;
         this.bedDto = bedDto;
     }
 
@@ -44,14 +41,6 @@ public class BookedBed {
 
     public void setCheckoutDate(Date checkoutDate) {
         this.checkoutDate = checkoutDate;
-    }
-
-    public Date getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Date totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public Bed getBedDto() {

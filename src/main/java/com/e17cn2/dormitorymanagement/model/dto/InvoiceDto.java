@@ -24,13 +24,13 @@ public class InvoiceDto {
     private double totalAmount;
     
     @Column(name = "tienDaNhan")
-    private double amountPaid;
+    private int amountPaid;
     
     @Column(name = "daThanhToan")
     private boolean checkPayed;
     
     @Column(name = "soTienConNo")
-    private double amountUnPaid;
+    private int amountUnPaid;
     
     @Column(name = "tblHopDongid")
     private int contractId;
@@ -44,10 +44,10 @@ public class InvoiceDto {
     //region Constructors
     public InvoiceDto() {
     }
-
-    public InvoiceDto(int id, Date createdAt, Date payingDate, double totalAmount, 
-            double amountPaid, boolean checkPayed, double amountUnPaid, 
-            int contractId, int employeeId, int BookedBedId) {
+    
+    public InvoiceDto(int id, Date createdAt, Date payingDate, double totalAmount,
+            int amountPaid, boolean checkPayed, int amountUnPaid, int contractId, 
+            int employeeId, int BookedBedId) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
@@ -60,9 +60,6 @@ public class InvoiceDto {
         this.BookedBedId = BookedBedId;
     }
 
-    //endregion
-
-    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -95,11 +92,11 @@ public class InvoiceDto {
         this.totalAmount = totalAmount;
     }
 
-    public double getAmountPaid() {
+    public int getAmountPaid() {
         return amountPaid;
     }
 
-    public void setAmountPaid(double amountPaid) {
+    public void setAmountPaid(int amountPaid) {
         this.amountPaid = amountPaid;
     }
 
@@ -111,11 +108,11 @@ public class InvoiceDto {
         this.checkPayed = checkPayed;
     }
 
-    public double getAmountUnPaid() {
+    public int getAmountUnPaid() {
         return amountUnPaid;
     }
 
-    public void setAmountUnPaid(double amountUnPaid) {
+    public void setAmountUnPaid(int amountUnPaid) {
         this.amountUnPaid = amountUnPaid;
     }
 
@@ -143,5 +140,4 @@ public class InvoiceDto {
         this.BookedBedId = BookedBedId;
     }
     
-//endregion
 }

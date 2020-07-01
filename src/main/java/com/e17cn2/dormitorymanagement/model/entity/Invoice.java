@@ -2,16 +2,19 @@ package com.e17cn2.dormitorymanagement.model.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Invoice {
     private int id;
     private Date createdAt;
     private Date payingDate;
     private double totalAmount;
-    private double amountPaid;
+    private int amountPaid;
+    private int amountUnPaid;
+    private boolean checkPayed;
     private Contract contract;
     private Employee employee;
-    private ArrayList<UsedService> usedService;
+    private List<UsedService> usedService;
     private ElectricityMeter oldElectricityMeasurement;
     private ElectricityMeter newElectricityMeasurement;
     private WaterMeter oldWaterMeasurement;
@@ -21,10 +24,13 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, 
-            double amountPaid, Contract contract, Employee employee, 
-            ArrayList<UsedService> usedService,
-            ElectricityMeter oldElectricityMeasurement,
+    
+    //endregion
+
+    public Invoice(int id, Date createdAt, Date payingDate, double totalAmount,
+            int amountPaid, int amountUnPaid, boolean checkPayed, 
+            Contract contract, Employee employee, List<UsedService> usedService,
+            ElectricityMeter oldElectricityMeasurement, 
             ElectricityMeter newElectricityMeasurement, 
             WaterMeter oldWaterMeasurement, WaterMeter newWaterMeasurement) {
         this.id = id;
@@ -32,6 +38,8 @@ public class Invoice {
         this.payingDate = payingDate;
         this.totalAmount = totalAmount;
         this.amountPaid = amountPaid;
+        this.amountUnPaid = amountUnPaid;
+        this.checkPayed = checkPayed;
         this.contract = contract;
         this.employee = employee;
         this.usedService = usedService;
@@ -40,9 +48,7 @@ public class Invoice {
         this.oldWaterMeasurement = oldWaterMeasurement;
         this.newWaterMeasurement = newWaterMeasurement;
     }
-    //endregion
 
-    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -75,12 +81,28 @@ public class Invoice {
         this.totalAmount = totalAmount;
     }
 
-    public double getAmountPaid() {
+    public int getAmountPaid() {
         return amountPaid;
     }
 
-    public void setAmountPaid(double amountPaid) {
+    public void setAmountPaid(int amountPaid) {
         this.amountPaid = amountPaid;
+    }
+
+    public int getAmountUnPaid() {
+        return amountUnPaid;
+    }
+
+    public void setAmountUnPaid(int amountUnPaid) {
+        this.amountUnPaid = amountUnPaid;
+    }
+
+    public boolean isCheckPayed() {
+        return checkPayed;
+    }
+
+    public void setCheckPayed(boolean checkPayed) {
+        this.checkPayed = checkPayed;
     }
 
     public Contract getContract() {
@@ -99,11 +121,11 @@ public class Invoice {
         this.employee = employee;
     }
 
-    public ArrayList<UsedService> getUsedService() {
+    public List<UsedService> getUsedService() {
         return usedService;
     }
 
-    public void setUsedService(ArrayList<UsedService> usedService) {
+    public void setUsedService(List<UsedService> usedService) {
         this.usedService = usedService;
     }
 
@@ -138,5 +160,5 @@ public class Invoice {
     public void setNewWaterMeasurement(WaterMeter newWaterMeasurement) {
         this.newWaterMeasurement = newWaterMeasurement;
     }
-    //endregion
+
 }

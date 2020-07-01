@@ -1,7 +1,7 @@
 package com.e17cn2.dormitorymanagement.dao;
 
+import static com.e17cn2.dormitorymanagement.dao.DAO.con;
 import com.e17cn2.dormitorymanagement.model.entity.Bed;
-import com.e17cn2.dormitorymanagement.model.dto.BedDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BedDAO extends DAO {
@@ -57,27 +58,55 @@ public class BedDAO extends DAO {
 
         return result;
     }
+    
+    public Bed findBedByBookedBedId(int id){
+        Bed bed = new Bed();
+        String sql = "SELECT * FROM tblgiuong" +
+                     "WHERE id IN (select tblGiuongid from tblGiuongDat WHERE tblgiuongdat.id = ?);";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(id));
 
-    public ArrayList<BedDto> searchBed(String key){
-        ArrayList<BedDto> result = new ArrayList<BedDto>();
-//	String sql = "SELECT * FROM tblgiuong WHERE ma LIKE ?";
-//	try{
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setString(1, "%" + key + "%");
-//            ResultSet rs = ps.executeQuery();
-//
-//            while(rs.next()){
-//		Bed bed = new Bed(rs.getInt("id"),
-//                                  rs.getDouble("gia"),
-//                                  rs.getString("ma"),
-//                                  rs.getString("moTa"),
-//                                  rs.getString("loai"),
-//                                  rs.get);
-//		result.add(bed);
-//            }
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-        return result;
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                bed.setId(rs.getInt("id"));
+                bed.setName(rs.getString("ma"));
+                bed.setPrice(rs.getDouble("gia"));
+                bed.setType(rs.getString("loai"));
+                bed.setDescription(rs.getString("moTa"));
+            }
+            }catch(SQLException e) {
+                e.printStackTrace();
+         }
+        return bed;
+    }
+    
+    public List<Bed> findAllBedByRoomId(int roomId){
+        List<Bed> beds = new ArrayList<>();
+        Bed bed;
+        
+        String sql = "SELECT * FROM tblgiuong WHERE tblPhongid = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(roomId));
+
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                bed = new Bed();
+                
+                bed.setId(rs.getInt("id"));
+                bed.setName(rs.getString("ma"));
+                bed.setPrice(rs.getDouble("gia"));
+                bed.setType(rs.getString("loai"));
+                bed.setDescription(rs.getString("moTa"));
+                
+                beds.add(bed);
+            }
+            }catch(SQLException e) {
+                e.printStackTrace();
+         }
+        return beds;
     }
 }
