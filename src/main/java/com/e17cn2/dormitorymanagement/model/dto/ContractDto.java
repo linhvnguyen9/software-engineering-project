@@ -1,34 +1,13 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Table(name = "tblhopdong")
 public class ContractDto {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "ngaylap")
     private double createDate;
-    
-    @Column(name = "tienDatCoc")
     private double deposit;
-    
-    @Column(name = "tblDongHoNuocid")
     private double waterReading;
-    
-    @Column(name = "tblDonghoDienid")
     private double electricityReading;
-    
-    @Column(name = "tblSinhVienid")
     private int studentId;
-    
-    @Column(name = "tblNhanVienid")
     private int employeeId;
 
     //region Constructors

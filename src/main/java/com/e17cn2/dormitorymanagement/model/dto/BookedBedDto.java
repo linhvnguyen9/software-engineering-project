@@ -1,29 +1,12 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "tblgiuongdat")
 public class BookedBedDto {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "ngayNhanGiuong")
     private Date checkinDate;
-    
-    @Column(name = "ngayTraGiuong")
     private Date checkoutDate;
-    
-    @Column(name = "tblGiuongid")
     private int bedId;
-    
-    @Column(name = "tblHopDongid")
     private int contractId;
 
     public BookedBedDto() {

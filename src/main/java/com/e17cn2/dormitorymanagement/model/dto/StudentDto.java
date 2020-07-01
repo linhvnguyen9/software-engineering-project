@@ -1,41 +1,17 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "tblsinhvien")
 public class StudentDto {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "queQuan")
     private String homeTown;
-    
-    @Column(name = "ten")
     private String name;
-    
-    @Column(name = "ngayThangNamSinh")
     private Date dob;
-    
-    @Column(name = "cmt")
     private String idCard;
-    
-    @Column(name = "sdt")
     private String phone;
-    
-    @Column(name = "truong")
     private String school;
-    
-    @Column(name = "nienKhoa")
     private String year;
-    
-    @Column(name = "khoa")
     private String major;
 
     //region Constructors

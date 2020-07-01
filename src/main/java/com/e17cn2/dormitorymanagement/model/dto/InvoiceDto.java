@@ -1,44 +1,17 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "tblhoadon")
 public class InvoiceDto {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "ngayLap")
     private Date createdAt;
-    
-    @Column(name = "ngayThanhToan")
     private Date payingDate;
-    
-    @Column(name = "tongTien")
     private double totalAmount;
-    
-    @Column(name = "tienDaNhan")
     private int amountPaid;
-    
-    @Column(name = "daThanhToan")
     private boolean checkPayed;
-    
-    @Column(name = "soTienConNo")
     private int amountUnPaid;
-    
-    @Column(name = "tblHopDongid")
     private int contractId;
-    
-    @Column(name = "tblNhanVienid")
     private int employeeId;
-    
-    @Column(name = "tblGiuongDatid")
     private int BookedBedId;
 
     //region Constructors

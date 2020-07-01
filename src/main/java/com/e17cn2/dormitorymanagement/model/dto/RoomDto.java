@@ -1,25 +1,9 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Table(name = "tblphong")
 public class RoomDto {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "kieuPhong")
     private String roomType;
-    
-    @Column(name = "tenPhong")
     private String roomName;
-    
-    @Column(name = "moTa")
     private String description;
 
     //region Constructor
