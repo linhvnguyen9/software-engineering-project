@@ -1,6 +1,7 @@
 package com.e17cn2.dormitorymanagement.model.entity;
 
 import com.e17cn2.dormitorymanagement.model.entity.Bed;
+
 import java.util.Date;
 
 public class BookedBed {
@@ -47,8 +48,19 @@ public class BookedBed {
         return bedDto;
     }
 
+
+
     public void setBedDto(Bed bedDto) {
         this.bedDto = bedDto;
     }
 
+    @Override
+    public String toString() {
+        return "BookedBed{" +
+                "id=" + id +
+                ", checkinDate=" + checkinDate +
+                ", checkoutDate=" + checkoutDate +
+                ", bedDto=" + bedDto.toString() +
+                '}';
+    }
 }

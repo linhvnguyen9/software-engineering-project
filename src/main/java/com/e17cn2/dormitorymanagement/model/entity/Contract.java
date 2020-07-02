@@ -1,5 +1,6 @@
 package com.e17cn2.dormitorymanagement.model.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Contract {
     private ElectricityMeter electricityReading;
     private Student student;
     private Employee employee;
-    private List<BookedBed> bookedBeds;
+    private ArrayList<BookedBed> bookedBeds;
 
     //region Constructors
     public Contract() {
@@ -19,7 +20,7 @@ public class Contract {
 
     public Contract(int id, Date createDate, double deposit,
             WaterMeter waterReading, ElectricityMeter electricityReading, Student student,
-            Employee employee, List<BookedBed> bookedBeds) {
+            Employee employee, ArrayList<BookedBed> bookedBeds) {
         this.id = id;
         this.createDate = createDate;
         this.deposit = deposit;
@@ -88,11 +89,11 @@ public class Contract {
         this.employee = employee;
     }
 
-    public List<BookedBed> getBookedBeds() {
+    public ArrayList<BookedBed> getBookedBeds() {
         return bookedBeds;
     }
 
-    public void setBookedBeds(List<BookedBed> bookedBeds) {
+    public void setBookedBeds(ArrayList<BookedBed> bookedBeds) {
         this.bookedBeds = bookedBeds;
     }
     //endregion

@@ -13,8 +13,9 @@ public class EmployeeDAO extends DAO{
     
     public boolean checkLogin(Employee employee){
         boolean result = false;
-        
+
         String sql = "SELECT id, ten, chucVu FROM tblNhanVien WHERE tenTaiKhoan = ? AND matKhau = ?";
+        
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, employee.getUsername());

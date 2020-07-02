@@ -584,7 +584,7 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
         DonGiaLabel.setText(String.valueOf(giaDien));
         DongGiaLabel.setText(String.valueOf(giaNuoc));
         
-        int tongTienNo = id.findAllAmountUnPaidByBookedBedId(bookedBed).getAmountUnPaid();
+        double tongTienNo = id.findAllAmountUnPaidByBookedBedId(bookedBed).getAmountUnPaid();
         DebtLabel.setText(String.valueOf(tongTienNo));
         
         Service service = new Service(1, null, 0, null);
@@ -605,7 +605,7 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
             Service service = new Service(1, null, 0, null);
             Invoice iv = new Invoice(id.increaseInvoiceId() - 1, null, null,
                     0, 0, 0, false, contract, employee, null);
-            UsedService usedService = new UsedService(0, 1, iv, service);
+            UsedService usedService = new UsedService(0, 1, iv, false ,service);
             usd.saveUsedService(usedService, iv);
             
             service.setId(2);

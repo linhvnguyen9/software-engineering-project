@@ -7,9 +7,9 @@ public class InvoiceDto {
     private Date createdAt;
     private Date payingDate;
     private double totalAmount;
-    private int amountPaid;
+    private double amountPaid;
     private boolean checkPayed;
-    private int amountUnPaid;
+    private double amountUnPaid;
     private int contractId;
     private int employeeId;
     private int BookedBedId;
@@ -19,7 +19,7 @@ public class InvoiceDto {
     }
     
     public InvoiceDto(int id, Date createdAt, Date payingDate, double totalAmount,
-            int amountPaid, boolean checkPayed, int amountUnPaid, int contractId, 
+            double amountPaid, boolean checkPayed, double amountUnPaid, int contractId, 
             int employeeId, int BookedBedId) {
         this.id = id;
         this.createdAt = createdAt;
@@ -65,11 +65,11 @@ public class InvoiceDto {
         this.totalAmount = totalAmount;
     }
 
-    public int getAmountPaid() {
+    public double getAmountPaid() {
         return amountPaid;
     }
 
-    public void setAmountPaid(int amountPaid) {
+    public void setAmountPaid(double amountPaid) {
         this.amountPaid = amountPaid;
     }
 
@@ -81,11 +81,11 @@ public class InvoiceDto {
         this.checkPayed = checkPayed;
     }
 
-    public int getAmountUnPaid() {
+    public double getAmountUnPaid() {
         return amountUnPaid;
     }
 
-    public void setAmountUnPaid(int amountUnPaid) {
+    public void setAmountUnPaid(double amountUnPaid) {
         this.amountUnPaid = amountUnPaid;
     }
 

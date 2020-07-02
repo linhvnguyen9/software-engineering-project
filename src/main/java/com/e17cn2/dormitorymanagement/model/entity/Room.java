@@ -18,8 +18,7 @@ public class Room {
     }
 
     public Room(int id, String roomType, String roomName, String description, 
-            List<Bed> beds, List<ElectricityMeter> electricityMeter, 
-            List<WaterMeter> waterMeter) {
+            List<Bed> beds, List<ElectricityMeter> electricityMeter, List<WaterMeter> waterMeter) {
         this.id = id;
         this.roomType = roomType;
         this.roomName = roomName;
@@ -28,6 +27,12 @@ public class Room {
         this.electricityMeter = electricityMeter;
         this.waterMeter = waterMeter;
     }
+
+    public Room(int roomId) {
+        this.id = roomId;
+    }
+
+    
 
     public int getId() {
         return id;

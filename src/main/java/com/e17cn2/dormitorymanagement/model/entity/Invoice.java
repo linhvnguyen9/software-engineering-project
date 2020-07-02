@@ -8,8 +8,8 @@ public class Invoice {
     private Date createdAt;
     private Date payingDate;
     private double totalAmount;
-    private int amountPaid;
-    private int amountUnPaid;
+    private double amountPaid;
+    private double amountUnPaid;
     private boolean checkPayed;
     private Contract contract;
     private Employee employee;
@@ -19,11 +19,8 @@ public class Invoice {
     public Invoice() {
     }
 
-    
-    //endregion
-
     public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, 
-            int amountPaid, int amountUnPaid, boolean checkPayed, Contract contract, 
+            double amountPaid, double amountUnPaid, boolean checkPayed, Contract contract, 
             Employee employee, List<UsedService> usedService) {
         this.id = id;
         this.createdAt = createdAt;
@@ -36,6 +33,8 @@ public class Invoice {
         this.employee = employee;
         this.usedService = usedService;
     }
+    
+    //endregion
 
     public int getId() {
         return id;
@@ -69,16 +68,20 @@ public class Invoice {
         this.totalAmount = totalAmount;
     }
 
-    public int getAmountPaid() {
+    public double getAmountPaid() {
         return amountPaid;
     }
 
-    public void setAmountPaid(int amountPaid) {
+    public void setAmountPaid(double amountPaid) {
         this.amountPaid = amountPaid;
     }
 
-    public int getAmountUnPaid() {
+    public double getAmountUnPaid() {
         return amountUnPaid;
+    }
+
+    public void setAmountUnPaid(double amountUnPaid) {
+        this.amountUnPaid = amountUnPaid;
     }
 
     public void setAmountUnPaid(int amountUnPaid) {
@@ -116,5 +119,4 @@ public class Invoice {
     public void setUsedService(List<UsedService> usedService) {
         this.usedService = usedService;
     }
-
 }

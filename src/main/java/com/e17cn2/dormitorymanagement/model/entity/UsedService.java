@@ -4,15 +4,17 @@ public class UsedService {
     private int id;
     private double qty;
     private Invoice invoice;
+    private boolean checkUnpaid;
     private Service service;
 
     public UsedService() {
     }
 
-    public UsedService(int id, double qty, Invoice invoice, Service service) {
+    public UsedService(int id, double qty, Invoice invoice, boolean checkUnpaid, Service service) {
         this.id = id;
         this.qty = qty;
         this.invoice = invoice;
+        this.checkUnpaid = checkUnpaid;
         this.service = service;
     }
 
@@ -20,16 +22,12 @@ public class UsedService {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public double getQty() {
         return qty;
     }
 
-    public void setQty(double qty) {
-        this.qty = qty;
+    public boolean isCheckUnpaid() {
+        return checkUnpaid;
     }
 
     public Invoice getInvoice() {
@@ -44,8 +42,20 @@ public class UsedService {
         return service;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setQty(double qty) {
+        this.qty = qty;
+    }
+
+    public void setCheckUnpaid(boolean checkUnpaid) {
+        this.checkUnpaid = checkUnpaid;
+    }
+
     public void setService(Service service) {
         this.service = service;
     }
-
+    
 }
