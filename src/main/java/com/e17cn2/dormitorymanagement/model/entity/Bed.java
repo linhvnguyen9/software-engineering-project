@@ -104,6 +104,7 @@ public class Bed {
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
                 ", roomName='" + roomName + '\'' +
+                ", roomId=" + roomId +
                 '}';
     }
 }

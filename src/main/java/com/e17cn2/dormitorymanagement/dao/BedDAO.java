@@ -28,7 +28,7 @@ public class BedDAO extends DAO {
     public List<Pair<Bed, String>> findAvailableBeds(Double maxPrice, Date checkinDate) throws SQLException {
         ArrayList<Pair<Bed, String>> result = new ArrayList<>();
 
-        String query = "SELECT tblgiuong.id, tblphong.tenPhong, tblgiuong.ma, tblgiuong.loai, tblgiuong.gia, tblgiuong.moTa " +
+        String query = "SELECT tblgiuong.id, tblphong.tenPhong, tblgiuong.ma, tblgiuong.loai, tblgiuong.gia, tblgiuong.moTa, tblgiuong.tblPhongid " +
                 "FROM tblphong, tblgiuong " +
                 "WHERE tblphong.id=tblgiuong.tblPhongid " +
                 "AND tblgiuong.gia <= ?" +
@@ -55,8 +55,9 @@ public class BedDAO extends DAO {
             String bedType = rs.getString(4);
             double bedPrice = rs.getDouble(5);
             String bedDesc = rs.getString(6);
+            int roomId = rs.getInt(7);
 
-            Bed bed = new Bed(id, bedPrice, bedName, bedDesc, bedType);
+            Bed bed = new Bed(id, bedPrice, bedName, bedDesc, bedType, roomName, roomId);
             result.add(Pair.of(bed, roomName));
         }
 
@@ -65,7 +66,7 @@ public class BedDAO extends DAO {
     
     public Bed findBedByBookedBedId(int id){
         Bed bed = new Bed();
-        String sql = "SELECT * FROM tblgiuong" +
+        String sql = "SELECT * FROM tblgiuong " +
                      "WHERE id IN (select tblGiuongid from tblGiuongDat WHERE tblgiuongdat.id = ?);";
         
         try {

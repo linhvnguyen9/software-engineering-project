@@ -60,7 +60,7 @@ public class BookedBed {
                 "id=" + id +
                 ", checkinDate=" + checkinDate +
                 ", checkoutDate=" + checkoutDate +
-                ", bedDto=" + bedDto.toString() +
+                ", bedDto=" + bedDto +
                 '}';
     }
 }

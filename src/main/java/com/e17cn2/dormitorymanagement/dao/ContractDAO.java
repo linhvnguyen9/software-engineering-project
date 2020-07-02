@@ -93,6 +93,7 @@ public class ContractDAO extends DAO {
         psmt1.setDouble(1, waterReading.getCurrentReading());
         psmt1.setDate(2, new java.sql.Date(new Date().getTime()));
         psmt1.setInt(3, contract.getBookedBeds().get(0).getBedDto().getRoomId());
+        System.out.println("tblPhongId: " + contract.getBookedBeds().get(0).getBedDto().getRoomId());
         psmt1.executeUpdate();
         ResultSet result1 = psmt1.getGeneratedKeys();
         result1.next();
