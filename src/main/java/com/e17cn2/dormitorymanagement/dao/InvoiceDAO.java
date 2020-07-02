@@ -22,8 +22,8 @@ public class InvoiceDAO extends DAO{
         ps.setDate(2, null);
         ps.setDouble(3, dto.getTotalAmount());
         ps.setBoolean(4, dto.isCheckPayed());
-        ps.setInt(5, dto.getAmountUnPaid());
-        ps.setInt(6, dto.getAmountPaid());
+        ps.setInt(5, 0);
+        ps.setInt(6, 0);
         ps.setInt(7, dto.getContractId());
         ps.setInt(8, dto.getEmployeeId());
         ps.setInt(9, dto.getBookedBedId());

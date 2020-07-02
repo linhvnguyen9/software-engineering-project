@@ -14,10 +14,6 @@ public class Invoice {
     private Contract contract;
     private Employee employee;
     private List<UsedService> usedService;
-    private ElectricityMeter oldElectricityMeasurement;
-    private ElectricityMeter newElectricityMeasurement;
-    private WaterMeter oldWaterMeasurement;
-    private WaterMeter newWaterMeasurement;
 
     //region Constructors
     public Invoice() {
@@ -26,12 +22,9 @@ public class Invoice {
     
     //endregion
 
-    public Invoice(int id, Date createdAt, Date payingDate, double totalAmount,
-            int amountPaid, int amountUnPaid, boolean checkPayed, 
-            Contract contract, Employee employee, List<UsedService> usedService,
-            ElectricityMeter oldElectricityMeasurement, 
-            ElectricityMeter newElectricityMeasurement, 
-            WaterMeter oldWaterMeasurement, WaterMeter newWaterMeasurement) {
+    public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, 
+            int amountPaid, int amountUnPaid, boolean checkPayed, Contract contract, 
+            Employee employee, List<UsedService> usedService) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
@@ -42,10 +35,6 @@ public class Invoice {
         this.contract = contract;
         this.employee = employee;
         this.usedService = usedService;
-        this.oldElectricityMeasurement = oldElectricityMeasurement;
-        this.newElectricityMeasurement = newElectricityMeasurement;
-        this.oldWaterMeasurement = oldWaterMeasurement;
-        this.newWaterMeasurement = newWaterMeasurement;
     }
 
     public int getId() {
@@ -126,38 +115,6 @@ public class Invoice {
 
     public void setUsedService(List<UsedService> usedService) {
         this.usedService = usedService;
-    }
-
-    public ElectricityMeter getOldElectricityMeasurement() {
-        return oldElectricityMeasurement;
-    }
-
-    public void setOldElectricityMeasurement(ElectricityMeter oldElectricityMeasurement) {
-        this.oldElectricityMeasurement = oldElectricityMeasurement;
-    }
-
-    public ElectricityMeter getNewElectricityMeasurement() {
-        return newElectricityMeasurement;
-    }
-
-    public void setNewElectricityMeasurement(ElectricityMeter newElectricityMeasurement) {
-        this.newElectricityMeasurement = newElectricityMeasurement;
-    }
-
-    public WaterMeter getOldWaterMeasurement() {
-        return oldWaterMeasurement;
-    }
-
-    public void setOldWaterMeasurement(WaterMeter oldWaterMeasurement) {
-        this.oldWaterMeasurement = oldWaterMeasurement;
-    }
-
-    public WaterMeter getNewWaterMeasurement() {
-        return newWaterMeasurement;
-    }
-
-    public void setNewWaterMeasurement(WaterMeter newWaterMeasurement) {
-        this.newWaterMeasurement = newWaterMeasurement;
     }
 
 }

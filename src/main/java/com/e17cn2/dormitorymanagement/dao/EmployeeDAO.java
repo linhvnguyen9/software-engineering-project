@@ -14,13 +14,14 @@ public class EmployeeDAO extends DAO{
     public boolean checkLogin(Employee employee){
         boolean result = false;
         
-        String sql = "SELECT ten, chucVu FROM tblNhanVien WHERE tenTaiKhoan = ? AND matKhau = ?";
+        String sql = "SELECT id, ten, chucVu FROM tblNhanVien WHERE tenTaiKhoan = ? AND matKhau = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, employee.getUsername());
             ps.setString(2, employee.getPassword());
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
+                employee.setId(rs.getInt("id"));
 		employee.setName(rs.getString("ten"));
 		employee.setRole(rs.getString("chucVu"));
 	

@@ -1,6 +1,7 @@
 
 package com.e17cn2.dormitorymanagement.view.createMonthlyInvoice;
 
+import com.e17cn2.dormitorymanagement.dao.BookedBedDAO;
 import com.e17cn2.dormitorymanagement.dao.ContractDAO;
 import com.e17cn2.dormitorymanagement.dao.ElectricityMeterDAO;
 import com.e17cn2.dormitorymanagement.dao.InvoiceDAO;
@@ -18,11 +19,13 @@ import com.e17cn2.dormitorymanagement.model.entity.Invoice;
 import com.e17cn2.dormitorymanagement.model.entity.Room;
 import com.e17cn2.dormitorymanagement.model.entity.Service;
 import com.e17cn2.dormitorymanagement.model.entity.Student;
+import com.e17cn2.dormitorymanagement.model.entity.UsedService;
 import com.e17cn2.dormitorymanagement.model.entity.WaterMeter;
 import com.e17cn2.dormitorymanagement.view.LoginFrm;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -114,6 +117,7 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
         vehicleQuantityField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         EmployeeLabel = new javax.swing.JLabel();
+        parkingPriceLabel = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,7 +144,7 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Sửa thông tin hóa đơn");
+        jButton2.setText("Lưu hóa đơn");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -268,6 +272,8 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
 
         EmployeeLabel.setText("jLabel6");
 
+        parkingPriceLabel.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,7 +317,10 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
                                         .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(44, 44, 44)
                                         .addComponent(DebtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel50, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(TotalAmountlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,7 +358,7 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
                                                 .addComponent(BedNamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(TypeRoomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(RoomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addContainerGap())
+                        .addContainerGap(194, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,14 +401,15 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton2)
+                                .addGap(37, 37, 37))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(311, 311, 311)
-                                .addComponent(TotalAmountlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                                .addGap(26, 26, 26)
+                                .addComponent(parkingPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(109, 109, 109))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(227, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -482,9 +492,9 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(jButton2))
-                        .addGap(26, 26, 26)
+                        .addGap(18, 18, 18)
                         .addComponent(BackButton)
-                        .addContainerGap())
+                        .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel29)
                         .addGap(28, 28, 28)
@@ -500,12 +510,16 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel34)
                             .addComponent(ElectricityIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel37)
-                            .addComponent(DonGiaLabel)
-                            .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TotalAmountlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel37)
+                                    .addComponent(DonGiaLabel)
+                                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(TotalAmountlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel39)
@@ -525,7 +539,8 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(vehicleQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(vehicleQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(parkingPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))))
         );
 
@@ -536,8 +551,7 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
         int giaDien = 30000;
         int giaNuoc = 20000;
         
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
-        LocalDate currentDate = LocalDate.now(); 
+        Date now = new Date();
         InvoiceDAO id = new InvoiceDAO();
         StudentDAO sd = new StudentDAO();
         RoomDAO rd = new RoomDAO();
@@ -547,7 +561,7 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
         room = rd.getRoomInfoByBookedBedId(bookedBed.getId());
         
         InvoiceIdlabel.setText(String.valueOf(id.increaseInvoiceId()));
-        CreateAtLabel.setText(String.valueOf(dtf.format(currentDate)));
+        CreateAtLabel.setText(String.valueOf(now.getTime()));
         EmployeeLabel.setText(employee.getName());
         
         StudentNameLabel.setText(student.getName());
@@ -572,12 +586,35 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
         
         int tongTienNo = id.findAllAmountUnPaidByBookedBedId(bookedBed).getAmountUnPaid();
         DebtLabel.setText(String.valueOf(tongTienNo));
-        CleaningLabel.setText(String.valueOf(svd.getCleaningPrice()));
-
+        
+        Service service = new Service(1, null, 0, null);
+        CleaningLabel.setText(String.valueOf(svd.getServiceById(service).getPrice()));
+        
+        service.setId(2);
+        parkingPriceLabel.setText(String.valueOf(svd.getServiceById(service).getPrice()) + "/xe");
     }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        try {
+            UsedServiceDAO usd = new UsedServiceDAO();
+            InvoiceDAO id = new InvoiceDAO();
+            ContractDAO cd = new ContractDAO();
+            
+            Contract contract = cd.getContractByBookedBedId(bookedBed);
+            int quantity = Integer.parseInt(vehicleQuantityField.getText());
+            Service service = new Service(1, null, 0, null);
+            Invoice iv = new Invoice(id.increaseInvoiceId() - 1, null, null,
+                    0, 0, 0, false, contract, employee, null);
+            UsedService usedService = new UsedService(0, 1, iv, service);
+            usd.saveUsedService(usedService, iv);
+            
+            service.setId(2);
+            usedService.setQty(quantity);
+            usedService.setService(service);
+            usd.saveUsedService(usedService,iv);
+        } catch (SQLException ex) {
+            Logger.getLogger(DisplayBillInfoFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -586,15 +623,13 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
             WaterMeterDAO wmd = new WaterMeterDAO();
             InvoiceDAO id = new InvoiceDAO();
             RoomDAO rd = new RoomDAO();
-            ContractDAO cd = new ContractDAO();
-            UsedServiceDAO usd = new UsedServiceDAO();
+            ServiceDAO sd = new ServiceDAO();
             
-            List<ElectricityMeter> electricityMeter = emd.getElectricityMeter(bookedBed.getId());
-            List<WaterMeter> waterMeter = wmd.getWaterMeter(bookedBed.getId());
+            ContractDAO cd = new ContractDAO();
+            
             Contract contract = cd.getContractByBookedBedId(bookedBed);
             float electricityIndex = Float.parseFloat(ElectricityIndexField.getText());
             float waterIndex = Float.parseFloat(WaterIndexField.getText());
-            int quantity = Integer.parseInt(vehicleQuantityField.getText());
             room = rd.getRoomInfoByBookedBedId(bookedBed.getId());
             
             WaterMeter wm = new WaterMeter(0, waterIndex, null, room);
@@ -604,30 +639,24 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
             wmd.saveWaterMeter(wm);
             
             Service service = new Service(1, null, 0, null);
-            Invoice invoice = new Invoice(id.increaseInvoiceId(), null, null, 
-                    0, 0, 0, false, contract, employee, null, em, em, wm, wm);
+            double parkingPrice = sd.getServiceById(service).getPrice();
             
-//            UsedService usedService = new UsedService(0, 1, invoice, service);
-//            usd.saveUsedService(usedService);
-//            
-//            service.setId(2);
-//            usedService.setQty(quantity);
-//            usedService.setService(service);
-//            usd.saveUsedService(usedService);
+            service.setId(2);
+            double cleaningPrice = Double.parseDouble(vehicleQuantityField.getText()) * sd.getServiceById(service).getPrice();
             
-            invoice = new Invoice(0, null, null, caculateTotalMoney(), 0, 0,
-                    false, contract, employee, null,
-                    electricityMeter.get(1), electricityMeter.get(0),
-                    waterMeter.get(1), waterMeter.get(0));
+            Invoice invoice = new Invoice(0, null, null, caculateTotalMoney(waterIndex,
+                    electricityIndex, parkingPrice, cleaningPrice), 0, 0,
+                    false, contract, employee, null);
+            
             id.saveMonthlyInvoice(invoice, bookedBed);
-            
-            TotalAmountlabel.setText(String.valueOf(caculateTotalMoney()));
+            TotalAmountlabel.setText(String.valueOf(caculateTotalMoney(waterIndex,
+                    electricityIndex, parkingPrice, cleaningPrice)));
         } catch (SQLException ex) {
             Logger.getLogger(DisplayBillInfoFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     
-    private double caculateTotalMoney(){
+    private double caculateTotalMoney(float wIndex, float eIndex, double parkingPrice, double cleaningPrice) throws SQLException{
         int giaDien = 30000;
         int giaNuoc = 20000;
         double totalMoney = 0;
@@ -635,14 +664,19 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
         UsedServiceDAO ud = new UsedServiceDAO();
         ElectricityMeterDAO emd = new ElectricityMeterDAO();
         WaterMeterDAO wmd = new WaterMeterDAO();
+        RoomDAO rd = new RoomDAO();
+        BookedBedDAO bbd = new BookedBedDAO();
         List<ElectricityMeter> electricityMeter = emd.getElectricityMeter(bookedBed.getId());
         List<WaterMeter> waterMeter = wmd.getWaterMeter(bookedBed.getId());
         
-        float electrixIndex = Math.abs(electricityMeter.get(0).getCurrentReading() - electricityMeter.get(1).getCurrentReading());
-        float waterIndex = Math.abs(waterMeter.get(0).getCurrentReading() - waterMeter.get(1).getCurrentReading());
+        float electrixIndex = Math.abs(eIndex - electricityMeter.get(1).getCurrentReading());
+        float waterIndex = Math.abs(wIndex - waterMeter.get(1).getCurrentReading());
+        room = rd.getRoomInfoByBookedBedId(bookedBed.getId());
         
-        totalMoney += electrixIndex * giaDien + waterIndex * giaNuoc + idao.findAllAmountUnPaidByBookedBedId(bookedBed).getAmountUnPaid();
-        System.out.println(totalMoney);
+        int dienChia = (int) ((electrixIndex * giaDien)/bbd.countBookedBedInRoom(room));
+        int nuocChia = (int) ((waterIndex * giaNuoc)/bbd.countBookedBedInRoom(room));
+        
+        totalMoney += dienChia + nuocChia + parkingPrice + cleaningPrice + idao.findAllAmountUnPaidByBookedBedId(bookedBed).getAmountUnPaid();
         return totalMoney;
     }
     
@@ -763,6 +797,7 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel parkingPriceLabel;
     private javax.swing.JTextField vehicleQuantityField;
     // End of variables declaration//GEN-END:variables
 }
