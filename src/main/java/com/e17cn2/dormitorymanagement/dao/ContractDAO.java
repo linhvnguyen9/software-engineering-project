@@ -1,7 +1,6 @@
 package com.e17cn2.dormitorymanagement.dao;
 
 import com.e17cn2.dormitorymanagement.model.entity.*;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +13,7 @@ public class ContractDAO extends DAO {
     public static void main(String[] args) throws SQLException {
         ContractDAO contractDAO = new ContractDAO();
         ArrayList<BookedBed> bookedBeds = new ArrayList<>();
-        bookedBeds.add(new BookedBed(0, new Date(), null, new Bed(0, 1200.0, "B2", "", "tang tren", "101", 1)));
+        bookedBeds.add(new BookedBed(0, new Date(), null, new Bed(4, 1200.0, "B2", "", "tang tren", "101", 1)));
         contractDAO.saveContract(
                 new Contract(0,
                         new Date(),
@@ -31,24 +30,32 @@ public class ContractDAO extends DAO {
     public boolean saveContract(Contract contract) throws SQLException {
         String checkBookedBedStillAvailableQuery =
                 "SELECT tblgiuong.id " +
-                        "FROM tblgiuongdat,tblgiuong " +
-                        "WHERE tblgiuongdat.tblGiuongid=tblgiuong.id " +
-                        "AND(ngayNhanGiuong < ? " +
-                        "AND ngayTraGiuong > ?) OR (ngayNhanGiuong < ? AND ngayTraGiuong is null)";
+                        "FROM tblphong, tblgiuong " +
+                        "WHERE tblphong.id=tblgiuong.tblPhongid " +
+                        "AND tblgiuong.id NOT IN (" +
+                        "SELECT tblGiuongid " +
+                        "FROM tblgiuongdat " +
+                        "WHERE (ngayNhanGiuong <= ? " +
+                        "AND ngayTraGiuong >= ?) OR (ngayNhanGiuong <= ? AND ngayTraGiuong is null))";
         PreparedStatement preparedStatement = con.prepareStatement(checkBookedBedStillAvailableQuery);
         preparedStatement.setDate(1, new java.sql.Date(contract.getCreateDate().getTime()));
         preparedStatement.setDate(2, new java.sql.Date(contract.getCreateDate().getTime()));
         preparedStatement.setDate(3, new java.sql.Date(contract.getCreateDate().getTime()));
+
+        System.out.println("Contract's creation date " + contract.getCreateDate());
         //Ignoring case where price changes during time when we create contract
         ResultSet rs = preparedStatement.executeQuery();
 
-        HashSet<Integer> unavailableBedIds = new HashSet<>();
+        HashSet<Integer> availableBedId = new HashSet<>();
         while (rs.next()) {
-            unavailableBedIds.add(rs.getInt(1));
+            int id = rs.getInt(1);
+            availableBedId.add(id);
+            System.out.println("Available bed: " + id);
         }
 
         for (BookedBed bed : contract.getBookedBeds()) {
-            if (unavailableBedIds.contains(bed.getId())) {
+            System.out.println("Bed id" + bed.getBedDto().getId());
+            if (!availableBedId.contains(bed.getBedDto().getId())) {
                 System.out.println("One of the beds is booked during contract creation time");
                 return false;
             }
@@ -105,6 +112,7 @@ public class ContractDAO extends DAO {
             ps.setDate(1, new java.sql.Date(contract.getCreateDate().getTime()));
             ps.setInt(2, bed.getBedDto().getId());
             ps.setInt(3, contractId);
+            ps.executeUpdate();
         }
 
         return true;

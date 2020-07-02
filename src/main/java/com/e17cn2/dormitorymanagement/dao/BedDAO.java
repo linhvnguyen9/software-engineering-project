@@ -29,8 +29,8 @@ public class BedDAO extends DAO {
                 "AND tblgiuong.id NOT IN (" +
                 "SELECT tblGiuongid " +
                 "FROM tblgiuongdat " +
-                "WHERE (ngayNhanGiuong < ? " +
-                "AND ngayTraGiuong > ?) OR (ngayNhanGiuong < ? AND ngayTraGiuong is null))";
+                "WHERE (ngayNhanGiuong <= ? " +
+                "AND ngayTraGiuong >= ?) OR (ngayNhanGiuong <= ? AND ngayTraGiuong is null))";
         PreparedStatement psmt = con.prepareStatement(query);
 
         java.sql.Date sqlCheckinDate = new java.sql.Date(checkinDate.getTime());
