@@ -23,6 +23,10 @@ public class CreateContractFrm extends JFrame {
         initComponents();
         this.contract = contract;
 
+        for(BookedBed bed : contract.getBookedBeds()) {
+            System.out.println("CreateContractFrm: " + bed);
+        }
+
         Employee employee = contract.getEmployee();
         txtStaffName.setText(employee.getName());
         txtStaffRole.setText(employee.getRole());
@@ -284,6 +288,11 @@ public class CreateContractFrm extends JFrame {
             contract.setDeposit(Double.parseDouble(txtDeposit.getText()));
             contract.setWaterReading(new WaterMeter(0, Float.parseFloat(txtRoomWaterIndex.getText()), new Date(), new Room(contract.getBookedBeds().get(0).getBedDto().getRoomId())));
             contract.setElectricityReading(new ElectricityMeter(0, Float.parseFloat(txtRoomWaterIndex.getText()), new Date(), new Room(contract.getBookedBeds().get(0).getBedDto().getRoomId())));
+
+            for(BookedBed bed : contract.getBookedBeds()) {
+                System.out.println("CreateContractFrm: " + bed);
+            }
+
             boolean isSuccessful = dao.saveContract(contract);
             if (isSuccessful) {
                 int dialogButton = JOptionPane.DEFAULT_OPTION;

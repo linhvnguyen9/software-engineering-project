@@ -1,6 +1,7 @@
 package com.e17cn2.dormitorymanagement.view.createcontract;
 
 import com.e17cn2.dormitorymanagement.dao.StudentDAO;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
 import com.e17cn2.dormitorymanagement.model.entity.Contract;
 import com.e17cn2.dormitorymanagement.model.entity.Student;
 
@@ -167,6 +168,9 @@ public class FindStudentFrm extends javax.swing.JFrame {
 
         try {
             contract.setStudent(new Student(studentId, address, studentName, sdf.parse(dob), idCard, null, null, null, null));
+            for (BookedBed bed : contract.getBookedBeds()) {
+                System.out.println("FindStudentFrm bed: " + bed.getBedDto());
+            }
             new CreateContractFrm(contract).setVisible(true);
             this.setVisible(false);
         } catch (ParseException e) {

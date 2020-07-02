@@ -20,6 +20,8 @@ import com.e17cn2.dormitorymanagement.model.entity.Student;
 import com.e17cn2.dormitorymanagement.model.entity.UsedService;
 import com.e17cn2.dormitorymanagement.model.entity.WaterMeter;
 import com.e17cn2.dormitorymanagement.view.ManageHomeFrm;
+
+import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -685,7 +687,7 @@ public class PayMonthlyBillFrm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         if (jTextField1.getText().isBlank()) {
             JOptionPane.showMessageDialog(null,"NHẬP SỐ TIỀN ĐÃ NHẬN");

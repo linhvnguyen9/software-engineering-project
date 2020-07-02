@@ -79,11 +79,11 @@ public class FindAvailableBedFrm extends JFrame {
 
             },
             new String [] {
-                "id", "Room", "Bed code", "Type", "Price", "Description"
+                "id", "Room id", "Room", "Bed code", "Type", "Price", "Description"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -168,9 +168,10 @@ public class FindAvailableBedFrm extends JFrame {
 
             for (int i = 0; i < availableBeds.size(); i++) {
                 Bed bed = availableBeds.get(i).getFirst();
+                System.out.println("FindAvailableBedFrm bed: " + bed);
                 String roomName = availableBeds.get(i).getSecond();
 
-                model.addRow(new Object[]{bed.getId(), roomName, bed.getName(), bed.getType(), bed.getPrice(), bed.getDescription()});
+                model.addRow(new Object[]{bed.getId(), bed.getRoomId(), roomName, bed.getName(), bed.getType(), bed.getPrice(), bed.getDescription()});
             }
         } catch (ParseException e) {
             System.out.println("Error parsing date!");
@@ -236,12 +237,13 @@ public class FindAvailableBedFrm extends JFrame {
             for (int i = 0; i < selectedBedIndex.length; i++) {
                 DefaultTableModel model = (DefaultTableModel) tblAvailableBedList.getModel();
                 int id = Integer.parseInt(model.getValueAt(selectedBedIndex[i], 0).toString());
-                String roomName = model.getValueAt(selectedBedIndex[i], 1).toString();
-                String bedName = model.getValueAt(selectedBedIndex[i], 2).toString();
-                String bedType = model.getValueAt(selectedBedIndex[i], 3).toString();
-                double price = Double.parseDouble(model.getValueAt(selectedBedIndex[i], 4).toString());
-                String desc = model.getValueAt(selectedBedIndex[i], 5).toString();
-                Bed bed = new Bed(id, price, bedName, desc, bedType, roomName);
+                int roomId = Integer.parseInt(model.getValueAt(selectedBedIndex[i], 1).toString());
+                String roomName = model.getValueAt(selectedBedIndex[i], 2).toString();
+                String bedName = model.getValueAt(selectedBedIndex[i], 3).toString();
+                String bedType = model.getValueAt(selectedBedIndex[i], 4).toString();
+                double price = Double.parseDouble(model.getValueAt(selectedBedIndex[i], 5).toString());
+                String desc = model.getValueAt(selectedBedIndex[i], 6).toString();
+                Bed bed = new Bed(id, price, bedName, desc, bedType, roomName, roomId);
 
                 try {
                     bookedBeds.add(new BookedBed(0, getStartingDate(), null, bed));
