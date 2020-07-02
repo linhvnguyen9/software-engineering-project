@@ -14,12 +14,11 @@ public class Invoice {
     private Contract contract;
     private Employee employee;
     private ArrayList<UsedService> usedService;
-    
 
     //region Constructors
     public Invoice() {
     }
-    
+
     public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, 
             double amountPaid, double amountUnPaid, boolean checkPayed, Contract
             contract, Employee employee, ArrayList<UsedService> usedService) {
@@ -34,13 +33,23 @@ public class Invoice {
         this.employee = employee;
         this.usedService = usedService;
     }
+    //endregion
 
+    //region Getters and setters
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Date getPayingDate() {
@@ -114,6 +123,6 @@ public class Invoice {
     public void setUsedService(ArrayList<UsedService> usedService) {
         this.usedService = usedService;
     }
-    
-    
+
+
 }
