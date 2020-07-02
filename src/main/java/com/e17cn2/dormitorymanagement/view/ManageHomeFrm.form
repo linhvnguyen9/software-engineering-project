@@ -131,6 +131,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pay Monthly Bill"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPayBillActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnStateDebt">
       <Properties>
