@@ -8,10 +8,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ElectricityMeterDAO extends DAO{
+    
+    public boolean saveElectricityMeter(ElectricityMeter electricityMeter) throws SQLException{
+        String query = "INSERT INTO tbldonghodien VALUES (null, ?, ?, ?)";
+        PreparedStatement psmt = con.prepareStatement(query);
+            
+        Date currentDate = new Date();
+        double index = electricityMeter.getCurrentReading();
+        int roomId = electricityMeter.getRoom().getId();
+            
+        psmt.setDouble(1, index);
+        psmt.setDate(2,new java.sql.Date(currentDate.getTime()));
+        psmt.setInt(3, roomId);
+          
+        return psmt.execute();
+    }
     
     public List<ElectricityMeter> getElectricityMeter(int bookedBedId){
         List<ElectricityMeterDto> electricityDtos = new ArrayList<>();

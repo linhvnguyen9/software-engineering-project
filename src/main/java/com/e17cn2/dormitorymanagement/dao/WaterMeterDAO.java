@@ -8,10 +8,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class WaterMeterDAO extends DAO{
+    
+    public boolean saveWaterMeter(WaterMeter waterMeter) throws SQLException{
+        String query = "INSERT INTO tbldonghonuoc VALUES (null, ?, ?, ?)";
+        PreparedStatement psmt = con.prepareStatement(query);
+            
+        Date currentDate = new Date();
+        double index = waterMeter.getCurrentReading();
+        int roomId = waterMeter.getRoom().getId();
+            
+        psmt.setDouble(1, index);
+        psmt.setDate(2, new java.sql.Date(currentDate.getTime()));
+        psmt.setInt(3, roomId);
+          
+        return psmt.execute();
+    }
     
     public List<WaterMeter> getWaterMeter(int bookedBedId){
         List<WaterMeterDto> waterMeters = new ArrayList<>();
@@ -31,7 +47,7 @@ public class WaterMeterDAO extends DAO{
                 
                 dto.setId(rs.getInt("id"));
                 dto.setCurrentReading(rs.getFloat("chiSoHienTai"));
-                dto.setMeasuringDate(rs.getDate("chiSoHienTai"));
+                dto.setMeasuringDate(rs.getDate("ngayLaySo"));
                 dto.setPhongId(rs.getInt("tblPhongid"));
                 
                 waterMeters.add(dto);
@@ -52,7 +68,7 @@ public class WaterMeterDAO extends DAO{
             waterMeter.setId(dto.getId());
             waterMeter.setCurrentReading(dto.getCurrentReading());
             waterMeter.setMeasuringDate(dto.getMeasuringDate());
-            waterMeter.setRoomDto(room);
+            waterMeter.setRoom(room);
             
             return waterMeter;
         }else return null;

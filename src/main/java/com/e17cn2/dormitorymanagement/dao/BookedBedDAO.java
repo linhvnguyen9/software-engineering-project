@@ -1,48 +1,30 @@
 package com.e17cn2.dormitorymanagement.dao;
 
 import static com.e17cn2.dormitorymanagement.dao.DAO.con;
-import com.e17cn2.dormitorymanagement.model.dto.BedDto;
-import com.e17cn2.dormitorymanagement.model.entity.Bed;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BookedBedDAO extends DAO{
-    
-    public List<Bed> getAllBedNotMonthlyBill(){
-        List<Bed> beds = new ArrayList<>();
-        List<BedDto> bedDtos = new ArrayList<>();
-        BedDto bedDto;
+    public BookedBed findBookedBedByBedId(int bedId){
+        BookedBed bookedBed = new BookedBed();
         
-        String sql = "SELECT * FROM tblgiuong" +
-                     "WHERE id IN" +
-                     "(SELECT tblGiuongid FROM tblGiuongDat WHERE id NOT IN " +
-                     "(SELECT tblGiuongDatid FROM tblhoadon WHERE DATE_FORMAT(tblhoadon.ngayLap, '%y-%m') >= DATE_FORMAT(current_timestamp, '%y-%m')));";
-    
+        String sql = "SELECT * FROM tblgiuongdat WHERE tblGiuongid = ?;";
+        
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(bedId));
 
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                bedDto = new BedDto();
-                
-                bedDto.setId(rs.getInt("id"));
-                bedDto.setName(rs.getString("ma"));
-                bedDto.setPrice(rs.getDouble("gia"));
-                bedDto.setType(rs.getString("loai"));
-                bedDto.setDescription(rs.getString("moTa"));
-                bedDto.setRoomId(rs.getInt("tblPhongid"));
-                
-                if (bedDto != null) {
-                    bedDtos.add(bedDto);
-                }
+            if(rs.next()) {
+                bookedBed.setId(rs.getInt("id"));
+                bookedBed.setCheckinDate(rs.getDate("ngayNhanGiuong"));
+                bookedBed.setCheckoutDate(rs.getDate("ngayTraGiuong"));
             }
             }catch(SQLException e) {
                 e.printStackTrace();
-            }
-        return beds;
+         }
+        return bookedBed;
     }
-    
 }

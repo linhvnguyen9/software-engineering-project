@@ -46,9 +46,8 @@ public class StudentDAO extends DAO {
     public Student findStudentByBookedBedId(int bookedBedId){
         StudentDto dto = new StudentDto();
         
-        String sql = "SELECT * FROM tblsinhvien WHERE id" +
-                     "IN(SELECT tblSinhVienid FROM tblhopdong" +
-                     "WHERE id IN (SELECT tblHopDongid FROM tblGiuongDat WHERE tblgiuongdat.id = ?));";
+        String sql = "SELECT * FROM `tblsinhvien` WHERE tblsinhvien.id IN (SELECT `tblSinhVienid` FROM `tblhopdong`" +
+                     "WHERE id IN (SELECT `tblHopDongid` FROM `tblGiuongDat` WHERE tblgiuongdat.id = ?));";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);

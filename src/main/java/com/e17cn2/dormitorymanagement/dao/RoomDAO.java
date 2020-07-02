@@ -10,7 +10,6 @@ import java.sql.SQLException;
 public class RoomDAO extends DAO{
     
     public Room getRoomInfoByBookedBedId(int bookedBedId){
-        Room room = new Room();
         RoomDto dto = new RoomDto();
         
         String sql = "SELECT * FROM tblPhong WHERE id IN"
@@ -31,11 +30,14 @@ public class RoomDAO extends DAO{
                 e.printStackTrace();
          }
         
+        Room room = new Room(dto.getId(), dto.getRoomType(), dto.getRoomName(), 
+                dto.getDescription(), null, null, null);
+        
         return room;
     }
     
-    public RoomDto getRoomById(int id){
-        RoomDto room = new RoomDto();
+    public Room getRoomById(int id){
+        RoomDto dto = new RoomDto();
         String sql = "SELECT * FROM tblPhong WHERE id = ?";
         
         try {
@@ -44,23 +46,23 @@ public class RoomDAO extends DAO{
 
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                room.setId(rs.getInt("id"));
-                room.setRoomName(rs.getString("tenPhong"));
-                room.setRoomType(rs.getString("kieuPhong"));
-                room.setDescription(rs.getString("moTa"));
+                dto.setId(rs.getInt("id"));
+                dto.setRoomName(rs.getString("tenPhong"));
+                dto.setRoomType(rs.getString("kieuPhong"));
+                dto.setDescription(rs.getString("moTa"));
             }
             }catch(SQLException e) {
                 e.printStackTrace();
          }
         
+        Room room = new Room(dto.getId(), dto.getRoomType(), dto.getRoomName(), 
+                dto.getDescription(), null, null, null);
         return room;
     }
     
     private Room convertFromDto(RoomDto dto, int bookedBedId){
         Room room = new Room();
         BookedBedDAO bookedBed = new BookedBedDAO();
-        ElectricityMeterDAO electricityMeter = new ElectricityMeterDAO();
-        WaterMeterDAO waterMeter = new WaterMeterDAO();
         BedDAO bed = new BedDAO();
         
         if (dto != null) {
@@ -69,8 +71,6 @@ public class RoomDAO extends DAO{
             room.setRoomType(dto.getRoomType());
             room.setDescription(dto.getDescription());
             room.setBeds(bed.findAllBedByRoomId(dto.getId()));
-            room.setElectricityMeter(electricityMeter.getElectricityMeter(bookedBedId));
-            room.setWaterMeter(waterMeter.getWaterMeter(bookedBedId));
             
             return room;
         }else return null;

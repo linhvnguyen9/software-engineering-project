@@ -12,23 +12,41 @@ import java.util.Date;
 public class InvoiceDAO extends DAO{
     
     public boolean saveMonthlyInvoice(Invoice invoice, BookedBed bookedBed) throws SQLException{
-        String sql = "INSERT INTO tblhoadon VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO tblhoadon VALUES (null,?,?,?,?,?,?,?,?,?)";
         
         PreparedStatement ps = con.prepareStatement(sql);
+        Date currentDate = new Date();
         InvoiceDto dto = convertToDto(invoice, bookedBed.getId());
-            
-        ps.setInt(1, increaseInvoiceId());
-        ps.setDate(2, (java.sql.Date) dto.getCreatedAt());
-        ps.setDate(3, null);
-        ps.setDouble(4, dto.getTotalAmount());
-        ps.setBoolean(5, dto.isCheckPayed());
-        ps.setInt(6, dto.getAmountUnPaid());
-        ps.setInt(7, dto.getAmountPaid());
-        ps.setInt(8, dto.getContractId());
-        ps.setInt(9, dto.getEmployeeId());
-        ps.setInt(10, dto.getBookedBedId());
+        
+        ps.setDate(1, new java.sql.Date(currentDate.getTime()));
+        ps.setDate(2, null);
+        ps.setDouble(3, dto.getTotalAmount());
+        ps.setBoolean(4, dto.isCheckPayed());
+        ps.setInt(5, dto.getAmountUnPaid());
+        ps.setInt(6, dto.getAmountPaid());
+        ps.setInt(7, dto.getContractId());
+        ps.setInt(8, dto.getEmployeeId());
+        ps.setInt(9, dto.getBookedBedId());
         
         return ps.execute();
+    }
+    
+    public Invoice findAllAmountUnPaidByBookedBedId(BookedBed bookedBed){
+        String sql = "SELECT sum(tienDaNhan),sum(soTienConNo) FROM tblhoadon WHERE tblGiuongDatid = ?;";
+        Invoice invoice = new Invoice();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(bookedBed.getId()));
+
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                invoice.setAmountPaid(rs.getInt(1));
+                invoice.setAmountUnPaid(rs.getInt(2));
+            }
+            }catch(SQLException e) {
+                e.printStackTrace();
+         }
+        return invoice;
     }
     
     public int increaseInvoiceId(){
@@ -52,11 +70,10 @@ public class InvoiceDAO extends DAO{
     
     private InvoiceDto convertToDto(Invoice invoice, int bookedBedId){
         InvoiceDto dto = new InvoiceDto();
-        Date currentDate = new Date();
         
         if (invoice != null) {
             dto.setId(invoice.getId());
-            dto.setCreatedAt(currentDate);
+            dto.setCreatedAt(dto.getCreatedAt());
             dto.setPayingDate(null);
             dto.setTotalAmount(invoice.getTotalAmount());
             dto.setCheckPayed(false);

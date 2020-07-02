@@ -7,6 +7,7 @@ package com.e17cn2.dormitorymanagement.view;
 
 
 import com.e17cn2.dormitorymanagement.model.entity.Employee;
+import com.e17cn2.dormitorymanagement.view.createMonthlyInvoice.BedManageFrm;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,13 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class ManageHomeFrm extends javax.swing.JFrame {
 
-    private Employee employeeDTO;
+    private Employee employee;
     
     
-    public ManageHomeFrm(Employee employeeDTO) {
-        this.employeeDTO = employeeDTO;
+    public ManageHomeFrm(Employee employee) {
+        this.employee = employee;
         initComponents();
-        if (!employeeDTO.getRole().equalsIgnoreCase("manager")) {
+        if (!employee.getRole().equalsIgnoreCase("manager")) {
             btnStateDebt.setVisible(false);
         }
        
@@ -58,6 +59,11 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         btnCreateContract.setText("Create Contract");
 
         btnCreateBill.setText("Create Monthly Bill");
+        btnCreateBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateBillActionPerformed(evt);
+            }
+        });
 
         btnReportBroken.setText("Report Broken");
 
@@ -151,6 +157,12 @@ public class ManageHomeFrm extends javax.swing.JFrame {
            this.dispose();
        }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    
+    private void btnCreateBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateBillActionPerformed
+        BedManageFrm bedManageFrm = new BedManageFrm(employee);
+        bedManageFrm.setVisible(true);
+    }//GEN-LAST:event_btnCreateBillActionPerformed
 
     /**
      * @param args the command line arguments

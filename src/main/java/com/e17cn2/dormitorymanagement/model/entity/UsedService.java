@@ -3,14 +3,16 @@ package com.e17cn2.dormitorymanagement.model.entity;
 public class UsedService {
     private int id;
     private double qty;
+    private Invoice invoice;
     private Service service;
 
     public UsedService() {
     }
 
-    public UsedService(int id, double qty, Service service) {
+    public UsedService(int id, double qty, Invoice invoice, Service service) {
         this.id = id;
         this.qty = qty;
+        this.invoice = invoice;
         this.service = service;
     }
 
@@ -30,6 +32,14 @@ public class UsedService {
         this.qty = qty;
     }
 
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
     public Service getService() {
         return service;
     }
@@ -37,4 +47,5 @@ public class UsedService {
     public void setService(Service service) {
         this.service = service;
     }
+
 }

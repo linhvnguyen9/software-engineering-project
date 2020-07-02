@@ -1,6 +1,5 @@
 package com.e17cn2.dormitorymanagement.model.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

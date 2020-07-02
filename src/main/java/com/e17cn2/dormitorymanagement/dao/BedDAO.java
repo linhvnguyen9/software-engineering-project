@@ -1,6 +1,7 @@
 package com.e17cn2.dormitorymanagement.dao;
 
 import static com.e17cn2.dormitorymanagement.dao.DAO.con;
+import com.e17cn2.dormitorymanagement.model.dto.BedDto;
 import com.e17cn2.dormitorymanagement.model.entity.Bed;
 
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BedDAO extends DAO {
     public BedDAO() {
@@ -108,5 +110,56 @@ public class BedDAO extends DAO {
                 e.printStackTrace();
          }
         return beds;
+    }
+    
+    public List<Bed> getAllBedNotMonthlyBill(){
+        List<BedDto> bedDtos = new ArrayList<>();
+        BedDto bedDto;
+        
+        String sql = "SELECT * FROM `tblgiuong` WHERE tblgiuong.id IN (SELECT `tblGiuongid` FROM `tblGiuongDat` WHERE tblGiuongDat.id NOT IN" +
+                     "(SELECT `tblGiuongDatid` FROM `tblhoadon` WHERE DATE_FORMAT(tblhoadon.ngayLap, '%y-%m') >= DATE_FORMAT(current_timestamp, '%y-%m')));";
+    
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                bedDto = new BedDto();
+                
+                bedDto.setId(rs.getInt("id"));
+                bedDto.setName(rs.getString("ma"));
+                bedDto.setPrice(rs.getDouble("gia"));
+                bedDto.setType(rs.getString("loai"));
+                bedDto.setDescription(rs.getString("moTa"));
+                bedDto.setRoomId(rs.getInt("tblPhongid"));
+                
+                if (bedDto != null) {
+                    bedDtos.add(bedDto);
+                }
+            }
+            }catch(SQLException e) {
+                e.printStackTrace();
+            }
+        return convertFromDtos(bedDtos);
+    }
+    
+    private Bed convertFromDto(BedDto dto){
+        Bed bed = new Bed();
+        
+        if (dto != null) {
+            bed.setId(dto.getId());
+            bed.setName(dto.getName());
+            bed.setPrice(dto.getPrice());
+            bed.setType(dto.getType());
+            bed.setDescription(dto.getDescription());
+            
+            return bed;
+        }else return null;
+    }
+    
+    private List<Bed> convertFromDtos(List<BedDto> dtos){
+        if (dtos != null){
+            return dtos.stream().map(this::convertFromDto).collect(Collectors.toList());
+        } else return null;
     }
 }

@@ -5,19 +5,47 @@
  */
 package com.e17cn2.dormitorymanagement.view.createMonthlyInvoice;
 
+import com.e17cn2.dormitorymanagement.dao.BedDAO;
+import com.e17cn2.dormitorymanagement.dao.BookedBedDAO;
+import com.e17cn2.dormitorymanagement.model.entity.Bed;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
+import com.e17cn2.dormitorymanagement.view.LoginFrm;
+import com.e17cn2.dormitorymanagement.view.ManageHomeFrm;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author BVCN 88
+ * @author N
  */
 public class BedManageFrm extends javax.swing.JFrame {
-
-    /**
-     * Creates new form CreateMonthlyBillFrm
-     */
-    public BedManageFrm() {
+    
+    private Employee employee;
+    
+    public BedManageFrm(Employee employee) {
+        this.employee = employee;
         initComponents();
+        display();
+        tblBedManage.setVisible(true);
     }
-
+    
+    private void display(){
+        BedDAO dao = new BedDAO();
+        List<Bed> beds = dao.getAllBedNotMonthlyBill();
+        DefaultTableModel dtm = (DefaultTableModel) tblBedManage.getModel();
+        
+        for(Bed bed : beds){
+            Object[] data = {bed.getId(), bed.getName(), bed.getPrice(),
+                            bed.getType(), bed.getDescription()};
+            
+            dtm.addRow(data);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +58,7 @@ public class BedManageFrm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBedManage = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        BackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,15 +67,22 @@ public class BedManageFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Name", "Price", "Type", "Description"
+                "    Id", "Name", "Price", "Type", "Description"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblBedManage.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,6 +104,13 @@ public class BedManageFrm extends javax.swing.JFrame {
         jLabel1.setText("Bed Manage ");
         jLabel1.setToolTipText("");
 
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,8 +119,13 @@ public class BedManageFrm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1))
             .addGroup(layout.createSequentialGroup()
-                .addGap(237, 237, 237)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(413, 413, 413)
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 229, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -87,55 +135,73 @@ public class BedManageFrm extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BackButton)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblBedManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBedManageMouseClicked
-        DisplayBillInfoFrm billForm = new DisplayBillInfoFrm();
+        BedDAO dao = new BedDAO();
+        BookedBedDAO bookedBedDAO = new BookedBedDAO();
+        List<Bed> beds = dao.getAllBedNotMonthlyBill();
+        BookedBed bookedBed = new BookedBed();
+        int row = tblBedManage.getSelectedRow();
+        Bed bed = beds.get(tblBedManage.convertRowIndexToModel(row));
+        bookedBed = bookedBedDAO.findBookedBedByBedId(bed.getId());
+        DisplayBillInfoFrm billForm = new DisplayBillInfoFrm(employee, bookedBed, bed);
         billForm.setVisible(true);
         dispose();
     }//GEN-LAST:event_tblBedManageMouseClicked
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+       int logout = JOptionPane.showConfirmDialog(this,"Bạn có muốn đăng xuất?");
+       if(logout==JOptionPane.YES_OPTION){
+           ManageHomeFrm manageHomeFrm = new ManageHomeFrm(employee);
+           this.dispose();
+       }
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BedManageFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BedManageFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BedManageFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BedManageFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BedManageFrm().setVisible(true);
-            }
-        });
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(BedManageFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(BedManageFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(BedManageFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(BedManageFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new BedManageFrm().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblBedManage;
