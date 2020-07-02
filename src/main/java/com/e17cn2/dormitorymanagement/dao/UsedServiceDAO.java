@@ -9,30 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsedServiceDAO extends DAO{
-    public ArrayList<Service> getServiceById(int key){
-		ArrayList<Service> result = new ArrayList<Service>();
-		String sql = "SELECT * FROM dichvusudung,dichvu WHERE (dichvusudung.dichVuId=dichvu.id) AND dichvusudung.tblhoadonId=?;";
-		try{
-			PreparedStatement ps = con.prepareStatement(sql);
-                        ps.setInt(1, key);
-			ResultSet rs = ps.executeQuery();
-
-			while(rs.next()){
-				Service service=new Service();
-				service.setId(rs.getInt("id"));
-				service.setName(rs.getString("ten"));
-                                service.setPrice(rs.getDouble("donGia"));
-                                service.setUnit(rs.getString("donViTinh"));
-				result.add(service);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}	
-		return result;
-	}
-    public List<UsedService> getQuantityById(int key){
+    
+    
+    public List<UsedService> getUsedServicesById(int key){
         List<UsedService> list=new ArrayList<UsedService>();
-		String sql = "SELECT dichvusudung.soLuong FROM dichvusudung,dichvu WHERE "
+		String sql = "SELECT dichvusudung.soLuong,dichvusudung.kiemTra FROM dichvusudung,dichvu WHERE "
                         + "(dichvusudung.dichVuId=dichvu.id) AND dichvusudung.tblhoadonId=?;";
 		try{
                     PreparedStatement ps = con.prepareStatement(sql);
@@ -41,7 +22,8 @@ public class UsedServiceDAO extends DAO{
 
                     while (rs.next()){
                          UsedService usedService=new UsedService();
-                         usedService.setQuantity(rs.getInt("soLuong"));
+                         usedService.setQty(rs.getInt("soLuong"));
+                         usedService.setCheckUnpaid(rs.getBoolean("kiemTra"));
                          list.add(usedService);
                     }
 		}catch(Exception e){
@@ -49,4 +31,17 @@ public class UsedServiceDAO extends DAO{
 		}	
 		return list;
 	}
+    public boolean UpdateUsedService(UsedService usedService){
+	String sql = "UPDATE dichVuSuDung SET kiemTra=? WHERE id=?";
+            try{
+		PreparedStatement ps = con.prepareStatement(sql);
+                ps.setBoolean(1, usedService.isCheckUnpaid());
+		ps.setDouble(2,usedService.getId());
+                
+		ps.executeUpdate();
+	}catch(Exception e){
+            e.printStackTrace();
+	}		
+	return true;        
+    }
 }

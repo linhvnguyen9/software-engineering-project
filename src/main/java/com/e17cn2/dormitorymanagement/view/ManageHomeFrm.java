@@ -5,9 +5,8 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
-
-import com.e17cn2.dormitorymanagement.model.dto.EmployeeDTO;
 import com.e17cn2.dormitorymanagement.view.payMonthlyBillView.SearchBillFrm;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,10 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class ManageHomeFrm extends javax.swing.JFrame {
 
-    private EmployeeDTO employeeDTO;
+    private Employee employeeDTO;
     
     
-    public ManageHomeFrm(EmployeeDTO employeeDTO) {
+    public ManageHomeFrm(Employee employeeDTO) {
         this.employeeDTO = employeeDTO;
         initComponents();
         if (!employeeDTO.getRole().equalsIgnoreCase("manager")) {
@@ -159,7 +158,7 @@ public class ManageHomeFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnPayBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayBillActionPerformed
-        SearchBillFrm searchBillFrm=new SearchBillFrm();
+        SearchBillFrm searchBillFrm=new SearchBillFrm(employeeDTO);
         searchBillFrm.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnPayBillActionPerformed

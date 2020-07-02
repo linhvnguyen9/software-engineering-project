@@ -6,7 +6,7 @@
 package com.e17cn2.dormitorymanagement.view;
 
 import com.e17cn2.dormitorymanagement.dao.EmployeeDAO;
-import com.e17cn2.dormitorymanagement.model.dto.EmployeeDTO;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,12 +40,16 @@ public class LoginFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtPassword.setText("123456");
+
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
+
+        txtUsername.setText("ducanhslvp");
 
         jLabel1.setText("Username");
 
@@ -94,7 +98,7 @@ public class LoginFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        EmployeeDTO dto = new EmployeeDTO();
+        Employee dto = new Employee();
             dto.setUsername(txtUsername.getText());
             dto.setPassword(txtPassword.getText());
 			

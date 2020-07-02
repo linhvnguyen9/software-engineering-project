@@ -6,20 +6,14 @@
 package com.e17cn2.dormitorymanagement.view.payMonthlyBillView;
 
 import com.e17cn2.dormitorymanagement.dao.BedDAO;
-import com.e17cn2.dormitorymanagement.dao.BookedBedDAO;
-import com.e17cn2.dormitorymanagement.dao.ContractDAO;
 import com.e17cn2.dormitorymanagement.dao.InvoiceDAO;
 import com.e17cn2.dormitorymanagement.dao.StudentDAO;
-import com.e17cn2.dormitorymanagement.model.dto.InvoiceDTO;
 import com.e17cn2.dormitorymanagement.model.entity.Bed;
-import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
-import com.e17cn2.dormitorymanagement.model.entity.Contract;
-import com.e17cn2.dormitorymanagement.model.entity.Invoice;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
 import com.e17cn2.dormitorymanagement.model.entity.Student;
-import java.sql.SQLException;
+import com.e17cn2.dormitorymanagement.model.entity.Invoice;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,14 +21,24 @@ import javax.swing.table.DefaultTableModel;
  * @author My PC
  */
 public class SearchBillFrm extends javax.swing.JFrame {
-    int idRow;
+
     private DefaultTableModel tmSearch;
-    public SearchBillFrm() {
+    private Employee employee;
+    private Student student;
+    private Bed bed;
+    private InvoiceDAO invoiceDAO=new InvoiceDAO();    
+    private BedDAO bedDAO=new BedDAO();
+    private StudentDAO studentDAO=new StudentDAO();
+    
+    
+//    public SearchBillFrm() {
+//        initComponents();
+//        initTable();
+//    }
+    public SearchBillFrm(Employee employee1){
+        employee=employee1;
         initComponents();
         initTable();
-    }
-    public int getId(){
-        return idRow;
     }
     public void initTable(){
         String[] col={"Ma Hoa don","Ten sinh vien","Truong","Ma Giuong","Loai giuong"};
@@ -137,30 +141,37 @@ public class SearchBillFrm extends javax.swing.JFrame {
         int row=jTable1.getSelectedRow();
         Invoice invoice=new Invoice();
         String idString=jTable1.getValueAt(row,0).toString();
-        idRow=Integer.parseInt(idString);
-        getId();
-        PayMonthlyBillFrm payMonthlyBillFrm =new PayMonthlyBillFrm(22);
-        payMonthlyBillFrm.setVisible(true);
+        int idRow=Integer.parseInt(idString);
         
+        invoice=invoiceDAO.getInvoiceById(idRow);
+        student=studentDAO.getStudentByInvoiceId(idRow);
+        bed=bedDAO.getBedByInvoiceId(idRow);
+        PayMonthlyBillFrm payMonthlyBillFrm =new PayMonthlyBillFrm(employee,invoice,student,bed);
+        payMonthlyBillFrm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ArrayList<Invoice> listSearch = new ArrayList<Invoice>();
+        
         String key=jTextField1.getText();
-        InvoiceDAO invoiceDAO=new InvoiceDAO();
-        Student student=new Student();
-        Bed bed=new Bed();
-        BedDAO bedDAO=new BedDAO();
-        StudentDAO studentDAO=new StudentDAO();
-        
-        listSearch=invoiceDAO.searchInvoice(key.trim());
-        
-        tmSearch.setRowCount(0);
-        
-        for (Invoice s:listSearch){
-            student=studentDAO.getStudentByInvoiceId(s.getId());
-            bed=bedDAO.getBedByInvoiceId(s.getId());
-            tmSearch.addRow(new Object[] {s.getId(),student.getName(),student.getSchool(),bed.getName(),bed.getType()});
+        if (key.isBlank()) JOptionPane.showMessageDialog(null,"NHẬP MÃ HÓA ĐƠN CẦN TÌM");
+        else if (!key.matches("\\d"))JOptionPane.showMessageDialog(null,"NHẬP SỐ");
+        else{
+            ArrayList<Invoice> listSearch = new ArrayList<Invoice>();
+            InvoiceDAO invoiceDAO=new InvoiceDAO();
+
+            BedDAO bedDAO=new BedDAO();
+            StudentDAO studentDAO=new StudentDAO();
+
+            listSearch=invoiceDAO.searchInvoice(key.trim());
+
+            tmSearch.setRowCount(0);
+
+            for (Invoice s:listSearch){
+                student=studentDAO.getStudentByInvoiceId(s.getId());
+                bed=bedDAO.getBedByInvoiceId(s.getId());
+                tmSearch.addRow(new Object[] {s.getId(),student.getName(),student.getSchool(),bed.getName(),bed.getType()});
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -193,11 +204,11 @@ public class SearchBillFrm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SearchBillFrm().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new SearchBillFrm().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
