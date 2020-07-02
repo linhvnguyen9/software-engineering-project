@@ -11,28 +11,28 @@ public class BedDAO {
     public BedDAO() {
         super();
     }
-    
-    public ArrayList<Bed> searchBed(String key){
-	ArrayList<Bed> result = new ArrayList<Bed>();
-//	String sql = "SELECT * FROM tblgiuong WHERE ma LIKE ?";
-//	try{
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setString(1, "%" + key + "%");
-//            ResultSet rs = ps.executeQuery();
-//
-//            while(rs.next()){
-//		Bed bed = new Bed(rs.getInt("id"),
-//                                  rs.getDouble("gia"),
-//                                  rs.getString("ma"),
-//                                  rs.getString("moTa"),
-//                                  rs.getString("loai"),
-//                                  rs.get);
-//		result.add(bed);
-//            }
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }	
-        return result;
-    }
+     
+      public ArrayList<Bed> getBed(){
+		ArrayList<Bed> result = new ArrayList<Bed>();
+		String sql = "select distinct tblgiuong.ma, tblgiuong.loai\n" +
+"from tblsinhvien, tblhopdong, tblhoadon, tblgiuong,tblphong,tblgiuongdat \n" +
+"where tblsinhvien.id = tblhopdong.tblsinhvienid \n" +
+"and tblhopdong.id = tblhoadon.tblhopdongid and tblhoadon.soTienConNo>0\n" +
+"and tblhopdong.id = tblgiuongdat.tblHopDongid and tblgiuong.id = tblgiuongdat.tblGiuongid;";
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()){
+				Bed rm = new Bed();
+                                rm.setName(rs.getString("ma"));
+                                rm.setType(rs.getString("loai"));
+				result.add(rm);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}	
+		return result;
+	}
 
 }

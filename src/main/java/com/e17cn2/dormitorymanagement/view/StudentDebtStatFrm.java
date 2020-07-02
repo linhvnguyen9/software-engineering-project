@@ -5,7 +5,10 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
+import com.e17cn2.dormitorymanagement.dao.BedDAO;
 import com.e17cn2.dormitorymanagement.dao.InvoiceDAO;
+import com.e17cn2.dormitorymanagement.dao.RoomDAO;
+import com.e17cn2.dormitorymanagement.dao.StudentDAO;
 import com.e17cn2.dormitorymanagement.model.entity.Bed;
 import com.e17cn2.dormitorymanagement.model.entity.Invoice;
 import com.e17cn2.dormitorymanagement.model.entity.Room;
@@ -22,13 +25,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class StudentDebtStatFrm extends javax.swing.JFrame {
 
-    @Override
-    public void print(Graphics g) {
-        super.print(g); //To change body of generated methods, choose Tools | Templates.
-    }
+   
    
     private DefaultTableModel tblStatStudent;
-    private Student student;
     private Invoice invoice;
     private Room room;
     private Bed bed;
@@ -41,6 +40,7 @@ public class StudentDebtStatFrm extends javax.swing.JFrame {
         initTable();
     }
     
+    
     public void initTable(){
         String[] col={"Ma sinh vien","Ten sinh vien","CMT","So DT","Truong","Khoa","Nien Khoa","Ten Phong","Kieu Phong",
         "Ma giuong","Loai Giuong","Tong tien"};
@@ -48,22 +48,22 @@ public class StudentDebtStatFrm extends javax.swing.JFrame {
         jTable1.setModel(tblStatStudent);
         
         InvoiceDAO invoiceDAO = new InvoiceDAO();
-       Student student = new Student();
-       Room room = new Room();
-       Bed bed = new Bed();
-       Invoice invoice = new Invoice();
+        RoomDAO roomDAO = new RoomDAO();
+        BedDAO bedDAO = new BedDAO();
+        StudentDAO studentDAO = new StudentDAO();
        
        ArrayList<Room> listRooms = new ArrayList<>();
-       listRooms = invoiceDAO.getRoom();
+       listRooms = roomDAO.getRoom();
+       
        ArrayList<Bed> listBeds = new ArrayList<>();
-       listBeds = invoiceDAO.getBed();
+       listBeds = bedDAO.getBed();
+       
        ArrayList<Invoice> listInvoices = new ArrayList<>();
        listInvoices = invoiceDAO.getInvoice();
        
        ArrayList<Student> listStudents = new ArrayList<>();
-       listStudents = invoiceDAO.getStudent();
+       listStudents = studentDAO.getStudent();
        for (int i =0;i<listStudents.size();i++) {
-           System.out.println(listStudents.get(i).getName()+"  oke "+listBeds.get(i).getType()+"  oke "+listInvoices.get(i).getAmountUnPaid()+"");
            tblStatStudent.addRow(new Object[] {listStudents.get(i).getId()+"", listStudents.get(i).getName(), 
                listStudents.get(i).getIdCard(),listStudents.get(i).getPhone(), listStudents.get(i).getSchool(),
                listStudents.get(i).getMajor(), listStudents.get(i).getYear(),listRooms.get(i).getRoomName(), 
@@ -72,8 +72,6 @@ public class StudentDebtStatFrm extends javax.swing.JFrame {
        
     }
 
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,9 +137,22 @@ public class StudentDebtStatFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DetailDebtStudentFrm detailDebtStudentFrm = new DetailDebtStudentFrm();
+      
+        StudentDAO studentDAO =  new StudentDAO();
+        ArrayList<Student> listStudents = studentDAO.getStudent();
+        InvoiceDAO invoiceDAO = new InvoiceDAO();
+        ArrayList<Invoice> listInvoices = new ArrayList<>();
+        listInvoices = invoiceDAO.getInvoice();
+        
+        int row = jTable1.getSelectedRow();
+        Student student = listStudents.get(jTable1.convertRowIndexToModel(row));
+        Invoice invoice=listInvoices.get(jTable1.convertRowIndexToModel(row));
+        
+        
+         DetailDebtStudentFrm detailDebtStudentFrm = new DetailDebtStudentFrm(student,invoice);
         detailDebtStudentFrm.setVisible(true);
         dispose();
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
