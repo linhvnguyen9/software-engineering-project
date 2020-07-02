@@ -8,22 +8,17 @@ public class Room {
     private String roomType;
     private String roomName;
     private String description;
-    private ArrayList<Bed> beds;
+    private List<Bed> beds;
     private List<ElectricityMeter> electricityMeter;
-    private List<ElectricityMeter> waterMeter;
+    private List<WaterMeter> waterMeter;
 
     //region Constructor
     public Room() {
 
     }
 
-    public Room(int id) {
-        this.id = id;
-    }
-
-    public Room(int id, String roomType, String roomName, String description,
-                ArrayList<Bed> beds, List<ElectricityMeter> electricityMeter,
-                List<ElectricityMeter> waterMeter) {
+    public Room(int id, String roomType, String roomName, String description, 
+            List<Bed> beds, List<ElectricityMeter> electricityMeter, List<WaterMeter> waterMeter) {
         this.id = id;
         this.roomType = roomType;
         this.roomName = roomName;
@@ -32,6 +27,12 @@ public class Room {
         this.electricityMeter = electricityMeter;
         this.waterMeter = waterMeter;
     }
+
+    public Room(int roomId) {
+        this.id = roomId;
+    }
+
+    
 
     public int getId() {
         return id;
@@ -65,11 +66,11 @@ public class Room {
         this.description = description;
     }
 
-    public ArrayList<Bed> getBeds() {
+    public List<Bed> getBeds() {
         return beds;
     }
 
-    public void setBeds(ArrayList<Bed> beds) {
+    public void setBeds(List<Bed> beds) {
         this.beds = beds;
     }
 
@@ -81,12 +82,12 @@ public class Room {
         this.electricityMeter = electricityMeter;
     }
 
-    public List<ElectricityMeter> getWaterMeter() {
+    public List<WaterMeter> getWaterMeter() {
         return waterMeter;
     }
 
-    public void setWaterMeter(List<ElectricityMeter> waterMeter) {
+    public void setWaterMeter(List<WaterMeter> waterMeter) {
         this.waterMeter = waterMeter;
     }
-    
+
 }

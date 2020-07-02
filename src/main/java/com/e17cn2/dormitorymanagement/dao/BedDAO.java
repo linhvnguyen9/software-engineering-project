@@ -1,13 +1,19 @@
 package com.e17cn2.dormitorymanagement.dao;
 
-import com.e17cn2.dormitorymanagement.model.entity.Bed;
+import static com.e17cn2.dormitorymanagement.dao.DAO.con;
 import com.e17cn2.dormitorymanagement.model.dto.BedDto;
+import com.e17cn2.dormitorymanagement.model.entity.Bed;
 import org.springframework.data.util.Pair;
-
 import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.*;
 
 public class BedDAO extends DAO {
@@ -56,7 +62,109 @@ public class BedDAO extends DAO {
 
         return result;
     }
+    
+    public Bed findBedByBookedBedId(int id){
+        Bed bed = new Bed();
+        String sql = "SELECT * FROM tblgiuong" +
+                     "WHERE id IN (select tblGiuongid from tblGiuongDat WHERE tblgiuongdat.id = ?);";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(id));
 
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                bed.setId(rs.getInt("id"));
+                bed.setName(rs.getString("ma"));
+                bed.setPrice(rs.getDouble("gia"));
+                bed.setType(rs.getString("loai"));
+                bed.setDescription(rs.getString("moTa"));
+            }
+            }catch(SQLException e) {
+                e.printStackTrace();
+         }
+        return bed;
+    }
+    
+    public List<Bed> findAllBedByRoomId(int roomId){
+        List<Bed> beds = new ArrayList<>();
+        Bed bed;
+        
+        String sql = "SELECT * FROM tblgiuong WHERE tblPhongid = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(roomId));
+
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                bed = new Bed();
+                
+                bed.setId(rs.getInt("id"));
+                bed.setName(rs.getString("ma"));
+                bed.setPrice(rs.getDouble("gia"));
+                bed.setType(rs.getString("loai"));
+                bed.setDescription(rs.getString("moTa"));
+                
+                beds.add(bed);
+            }
+            }catch(SQLException e) {
+                e.printStackTrace();
+         }
+        return beds;
+    }
+    
+    public List<Bed> getAllBedNotMonthlyBill(){
+        List<BedDto> bedDtos = new ArrayList<>();
+        BedDto bedDto;
+        
+        String sql = "SELECT * FROM `tblgiuong` WHERE tblgiuong.id IN (SELECT `tblGiuongid` FROM `tblGiuongDat` WHERE tblGiuongDat.id NOT IN" +
+                     "(SELECT `tblGiuongDatid` FROM `tblhoadon` WHERE DATE_FORMAT(tblhoadon.ngayLap, '%y-%m') >= DATE_FORMAT(current_timestamp, '%y-%m')));";
+    
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                bedDto = new BedDto();
+                
+                bedDto.setId(rs.getInt("id"));
+                bedDto.setName(rs.getString("ma"));
+                bedDto.setPrice(rs.getDouble("gia"));
+                bedDto.setType(rs.getString("loai"));
+                bedDto.setDescription(rs.getString("moTa"));
+                bedDto.setRoomId(rs.getInt("tblPhongid"));
+                
+                if (bedDto != null) {
+                    bedDtos.add(bedDto);
+                }
+            }
+            }catch(SQLException e) {
+                e.printStackTrace();
+            }
+        return convertFromDtos(bedDtos);
+    }
+    
+    private Bed convertFromDto(BedDto dto){
+        Bed bed = new Bed();
+        
+        if (dto != null) {
+            bed.setId(dto.getId());
+            bed.setName(dto.getName());
+            bed.setPrice(dto.getPrice());
+            bed.setType(dto.getType());
+            bed.setDescription(dto.getDescription());
+            
+            return bed;
+        }else return null;
+    }
+    
+    private List<Bed> convertFromDtos(List<BedDto> dtos){
+        if (dtos != null){
+            return dtos.stream().map(this::convertFromDto).collect(Collectors.toList());
+        } else return null;
+    }
+    
     public ArrayList<Bed> getBed(){
         ArrayList<Bed> result = new ArrayList<Bed>();
         String sql = "select distinct tblgiuong.ma, tblgiuong.loai\n" +
@@ -79,6 +187,7 @@ public class BedDAO extends DAO {
         }
         return result;
     }
+    
     public Bed getBedByInvoiceId(int key){
         Bed bed=new Bed();
 	String sql = "SELECT tblGiuong.id,tblGiuong.gia,tblGiuong.ma,tblGiuong.mota,tblGiuong.loai\n"

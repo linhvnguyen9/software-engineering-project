@@ -1,23 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.e17cn2.dormitorymanagement.view.createMonthlyInvoice;
 
-/**
- *
- * @author BVCN 88
- */
+import com.e17cn2.dormitorymanagement.dao.BookedBedDAO;
+import com.e17cn2.dormitorymanagement.dao.ContractDAO;
+import com.e17cn2.dormitorymanagement.dao.ElectricityMeterDAO;
+import com.e17cn2.dormitorymanagement.dao.InvoiceDAO;
+import com.e17cn2.dormitorymanagement.dao.RoomDAO;
+import com.e17cn2.dormitorymanagement.dao.ServiceDAO;
+import com.e17cn2.dormitorymanagement.dao.StudentDAO;
+import com.e17cn2.dormitorymanagement.dao.UsedServiceDAO;
+import com.e17cn2.dormitorymanagement.dao.WaterMeterDAO;
+import com.e17cn2.dormitorymanagement.model.entity.Bed;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
+import com.e17cn2.dormitorymanagement.model.entity.Contract;
+import com.e17cn2.dormitorymanagement.model.entity.ElectricityMeter;
+import com.e17cn2.dormitorymanagement.model.entity.Employee;
+import com.e17cn2.dormitorymanagement.model.entity.Invoice;
+import com.e17cn2.dormitorymanagement.model.entity.Room;
+import com.e17cn2.dormitorymanagement.model.entity.Service;
+import com.e17cn2.dormitorymanagement.model.entity.Student;
+import com.e17cn2.dormitorymanagement.model.entity.UsedService;
+import com.e17cn2.dormitorymanagement.model.entity.WaterMeter;
+import com.e17cn2.dormitorymanagement.view.LoginFrm;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class DisplayBillInfoFrm extends javax.swing.JFrame {
-
-    /**
-     * Creates new form DisplayBillInfoFrm
-     */
-    public DisplayBillInfoFrm() {
+    
+    private Employee employee;
+    private BookedBed bookedBed;
+    private Bed bed;
+    private Room room;
+    
+    public DisplayBillInfoFrm(Employee employee, BookedBed bookedBed, Bed bed) {
+        this.employee = employee;
+        this.bookedBed = bookedBed;
+        this.bed = bed;
         initComponents();
+        try {
+            this.display();
+        } catch (SQLException ex) {
+            Logger.getLogger(DisplayBillInfoFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +59,643 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        InvoiceIdlabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        CreateAtLabel = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        BedNamelabel = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        Typebedlabel = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        RoomLabel = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        TypeRoomLabel = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        StudentNameLabel = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        IdcardLabel = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        DobLabel = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        HomeTownLabel = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        PhoneLabel = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        SchoolLabel = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        YearLabel = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        BedMoneyLabel = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        DonGiaLabel = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        DongGiaLabel = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        DebtLabel = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        TotalAmountlabel = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        DescriptionLabel = new javax.swing.JLabel();
+        BackButton = new javax.swing.JButton();
+        WaterIndexField = new javax.swing.JTextField();
+        ElectricityIndexField = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        CleaningLabel = new javax.swing.JLabel();
+        vehicleQuantityField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        EmployeeLabel = new javax.swing.JLabel();
+        parkingPriceLabel = new javax.swing.JLabel();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel1.setText("HOÁ ĐƠN CHI TIẾT THÁNG CHO SINH VIÊN");
+
+        jButton1.setText("Xác nhận hóa đơn");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Lưu hóa đơn");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Mã hóa đơn: ");
+
+        InvoiceIdlabel.setText("jLabel4");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Ngày lập: ");
+
+        CreateAtLabel.setText("jLabel6");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("GIƯỜNG - PHÒNG");
+
+        jLabel8.setText("Tên giường");
+
+        BedNamelabel.setText("jLabel9");
+
+        jLabel10.setText("Kiểu giường");
+
+        Typebedlabel.setText("jLabel11");
+
+        jLabel12.setText("Tên phòng:");
+
+        RoomLabel.setText("jLabel13");
+
+        jLabel14.setText("Kiểu phòng: ");
+
+        TypeRoomLabel.setText("jLabel15");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel16.setText("SINH VIÊN");
+
+        jLabel17.setText("Tên sinh viên:");
+
+        StudentNameLabel.setText("jLabel18");
+
+        jLabel19.setText("Số CMT:");
+
+        IdcardLabel.setText("jLabel20");
+
+        jLabel21.setText("Ngày sinh:");
+
+        DobLabel.setText("jLabel22");
+
+        jLabel23.setText("Quê quán:");
+
+        HomeTownLabel.setText("jLabel24");
+
+        jLabel25.setText("Số ĐT:");
+
+        PhoneLabel.setText("jLabel26");
+
+        jLabel27.setText("Trường:");
+
+        SchoolLabel.setText("jLabel28");
+
+        jLabel29.setText("Khóa: ");
+
+        YearLabel.setText("jLabel30");
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel31.setText("HÓA ĐƠN");
+
+        jLabel32.setText("Tiền thuê giường:");
+
+        BedMoneyLabel.setText("jLabel33");
+
+        jLabel34.setText("Chỉ số điện mới :");
+
+        jLabel37.setText("Đơn giá /kWh:");
+
+        DonGiaLabel.setText("jLabel38");
+
+        jLabel39.setText("Chỉ số nước mới:");
+
+        jLabel41.setText("Đơn giá /m3");
+
+        DongGiaLabel.setText("jLabel43");
+
+        jLabel44.setText("DỊCH VỤ SỬ DỤNG:");
+
+        jLabel48.setText("Tiền còn nợ");
+
+        DebtLabel.setText("jLabel49");
+
+        jLabel50.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel50.setText("TỔNG TIỀN:");
+
+        jLabel52.setText("Mô tả:");
+
+        DescriptionLabel.setText("jLabel53");
+
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
+        WaterIndexField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WaterIndexFieldActionPerformed(evt);
+            }
+        });
+
+        ElectricityIndexField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ElectricityIndexFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel35.setText("Tiền vệ sinh: ");
+
+        jLabel36.setText("Số lượng xe: ");
+
+        CleaningLabel.setText("jLabel40");
+
+        jLabel4.setText("Nhân viên:");
+
+        EmployeeLabel.setText("jLabel6");
+
+        parkingPriceLabel.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(StudentNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(HomeTownLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                                                .addComponent(DobLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(PhoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(IdcardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(SchoolLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                            .addComponent(YearLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(258, 258, 258)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(DebtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(TotalAmountlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(InvoiceIdlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                                .addComponent(CreateAtLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGap(376, 376, 376))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel4)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(370, 370, 370)
+                                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(18, 18, 18)))
+                                    .addComponent(EmployeeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(34, 34, 34))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8))
+                                        .addGap(39, 39, 39)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(DescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(Typebedlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(BedNamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(TypeRoomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(RoomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addContainerGap(194, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(DonGiaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BedMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel35)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(CleaningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(vehicleQuantityField))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel34)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(ElectricityIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(DongGiaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(WaterIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton2)
+                                .addGap(37, 37, 37))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(parkingPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(109, 109, 109))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(227, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(210, 210, 210))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(InvoiceIdlabel)
+                    .addComponent(jLabel4)
+                    .addComponent(EmployeeLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(CreateAtLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(StudentNameLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(IdcardLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(RoomLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(TypeRoomLabel))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(DobLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52)
+                    .addComponent(DescriptionLabel))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(HomeTownLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(BedNamelabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(Typebedlabel))
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(PhoneLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27)
+                            .addComponent(SchoolLabel))
+                        .addGap(13, 13, 13)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(YearLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addGap(18, 18, 18)
+                        .addComponent(BackButton)
+                        .addGap(14, 14, 14))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel29)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DebtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(BedMoneyLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34)
+                            .addComponent(ElectricityIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel37)
+                                    .addComponent(DonGiaLabel)
+                                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(TotalAmountlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel39)
+                            .addComponent(WaterIndexField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel41)
+                            .addComponent(DongGiaLabel))
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CleaningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel44)
+                                    .addComponent(jLabel35))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vehicleQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(parkingPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void display() throws SQLException{
+        int giaDien = 30000;
+        int giaNuoc = 20000;
+        
+        Date now = new Date();
+        InvoiceDAO id = new InvoiceDAO();
+        StudentDAO sd = new StudentDAO();
+        RoomDAO rd = new RoomDAO();
+        ServiceDAO svd = new ServiceDAO();
+        
+        Student student = sd.findStudentByBookedBedId(bookedBed.getId());
+        room = rd.getRoomInfoByBookedBedId(bookedBed.getId());
+        
+        InvoiceIdlabel.setText(String.valueOf(id.increaseInvoiceId()));
+        CreateAtLabel.setText(String.valueOf(now.getTime()));
+        EmployeeLabel.setText(employee.getName());
+        
+        StudentNameLabel.setText(student.getName());
+        IdcardLabel.setText(student.getIdCard());
+        DobLabel.setText(String.valueOf(student.getDob()));
+        HomeTownLabel.setText(student.getHomeTown());
+        PhoneLabel.setText(student.getPhone());
+        PhoneLabel.setText(student.getPhone());
+        SchoolLabel.setText(student.getSchool());
+        YearLabel.setText(student.getYear());
+        
+        RoomLabel.setText(room.getRoomName());
+        TypeRoomLabel.setText(room.getRoomType());
+        DescriptionLabel.setText(room.getDescription());
+        BedNamelabel.setText(bed.getName());
+        Typebedlabel.setText(bed.getType());
+        
+        BedMoneyLabel.setText(String.valueOf(bed.getPrice()));
+        
+        DonGiaLabel.setText(String.valueOf(giaDien));
+        DongGiaLabel.setText(String.valueOf(giaNuoc));
+        
+        double tongTienNo = id.findAllAmountUnPaidByBookedBedId(bookedBed).getAmountUnPaid();
+        DebtLabel.setText(String.valueOf(tongTienNo));
+        
+        Service service = new Service(1, null, 0, null);
+        CleaningLabel.setText(String.valueOf(svd.getServiceById(service).getPrice()));
+        
+        service.setId(2);
+        parkingPriceLabel.setText(String.valueOf(svd.getServiceById(service).getPrice()) + "/xe");
+    }
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            UsedServiceDAO usd = new UsedServiceDAO();
+            InvoiceDAO id = new InvoiceDAO();
+            ContractDAO cd = new ContractDAO();
+            
+            Contract contract = cd.getContractByBookedBedId(bookedBed);
+            int quantity = Integer.parseInt(vehicleQuantityField.getText());
+            Service service = new Service(1, null, 0, null);
+            Invoice iv = new Invoice(id.increaseInvoiceId() - 1, null, null,
+                    0, 0, 0, false, contract, employee, null);
+            UsedService usedService = new UsedService(0, 1, iv, false ,service);
+            usd.saveUsedService(usedService, iv);
+            
+            service.setId(2);
+            usedService.setQty(quantity);
+            usedService.setService(service);
+            usd.saveUsedService(usedService,iv);
+        } catch (SQLException ex) {
+            Logger.getLogger(DisplayBillInfoFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            ElectricityMeterDAO emd = new ElectricityMeterDAO();
+            WaterMeterDAO wmd = new WaterMeterDAO();
+            InvoiceDAO id = new InvoiceDAO();
+            RoomDAO rd = new RoomDAO();
+            ServiceDAO sd = new ServiceDAO();
+            
+            ContractDAO cd = new ContractDAO();
+            
+            Contract contract = cd.getContractByBookedBedId(bookedBed);
+            float electricityIndex = Float.parseFloat(ElectricityIndexField.getText());
+            float waterIndex = Float.parseFloat(WaterIndexField.getText());
+            room = rd.getRoomInfoByBookedBedId(bookedBed.getId());
+            
+            WaterMeter wm = new WaterMeter(0, waterIndex, null, room);
+            ElectricityMeter em = new ElectricityMeter(0, electricityIndex, null, room);
+            
+            emd.saveElectricityMeter(em);
+            wmd.saveWaterMeter(wm);
+            
+            Service service = new Service(1, null, 0, null);
+            double parkingPrice = sd.getServiceById(service).getPrice();
+            
+            service.setId(2);
+            double cleaningPrice = Double.parseDouble(vehicleQuantityField.getText()) * sd.getServiceById(service).getPrice();
+            
+            Invoice invoice = new Invoice(0, null, null, caculateTotalMoney(waterIndex,
+                    electricityIndex, parkingPrice, cleaningPrice), 0, 0,
+                    false, contract, employee, null);
+            
+            id.saveMonthlyInvoice(invoice, bookedBed);
+            TotalAmountlabel.setText(String.valueOf(caculateTotalMoney(waterIndex,
+                    electricityIndex, parkingPrice, cleaningPrice)));
+        } catch (SQLException ex) {
+            Logger.getLogger(DisplayBillInfoFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private double caculateTotalMoney(float wIndex, float eIndex, double parkingPrice, double cleaningPrice) throws SQLException{
+        int giaDien = 30000;
+        int giaNuoc = 20000;
+        double totalMoney = 0;
+        InvoiceDAO idao = new InvoiceDAO();
+        UsedServiceDAO ud = new UsedServiceDAO();
+        ElectricityMeterDAO emd = new ElectricityMeterDAO();
+        WaterMeterDAO wmd = new WaterMeterDAO();
+        RoomDAO rd = new RoomDAO();
+        BookedBedDAO bbd = new BookedBedDAO();
+        List<ElectricityMeter> electricityMeter = emd.getElectricityMeter(bookedBed.getId());
+        List<WaterMeter> waterMeter = wmd.getWaterMeter(bookedBed.getId());
+        
+        float electrixIndex = Math.abs(eIndex - electricityMeter.get(1).getCurrentReading());
+        float waterIndex = Math.abs(wIndex - waterMeter.get(1).getCurrentReading());
+        room = rd.getRoomInfoByBookedBedId(bookedBed.getId());
+        
+        int dienChia = (int) ((electrixIndex * giaDien)/bbd.countBookedBedInRoom(room));
+        int nuocChia = (int) ((waterIndex * giaNuoc)/bbd.countBookedBedInRoom(room));
+        
+        totalMoney += dienChia + nuocChia + parkingPrice + cleaningPrice + idao.findAllAmountUnPaidByBookedBedId(bookedBed).getAmountUnPaid();
+        return totalMoney;
+    }
+    
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+       LoginFrm loginFrm = new LoginFrm();
+       int logout = JOptionPane.showConfirmDialog(this,"Bạn có muốn đăng xuất?");
+       if(logout==JOptionPane.YES_OPTION){
+          BedManageFrm bedManageFrm = new BedManageFrm(employee);
+           this.dispose();
+       }
+    }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void WaterIndexFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WaterIndexFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WaterIndexFieldActionPerformed
+
+    private void ElectricityIndexFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ElectricityIndexFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ElectricityIndexFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -69,15 +723,81 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DisplayBillInfoFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DisplayBillInfoFrm().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new DisplayBillInfoFrm().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
+    private javax.swing.JLabel BedMoneyLabel;
+    private javax.swing.JLabel BedNamelabel;
+    private javax.swing.JLabel CleaningLabel;
+    private javax.swing.JLabel CreateAtLabel;
+    private javax.swing.JLabel DebtLabel;
+    private javax.swing.JLabel DescriptionLabel;
+    private javax.swing.JLabel DobLabel;
+    private javax.swing.JLabel DonGiaLabel;
+    private javax.swing.JLabel DongGiaLabel;
+    private javax.swing.JTextField ElectricityIndexField;
+    private javax.swing.JLabel EmployeeLabel;
+    private javax.swing.JLabel HomeTownLabel;
+    private javax.swing.JLabel IdcardLabel;
+    private javax.swing.JLabel InvoiceIdlabel;
+    private javax.swing.JLabel PhoneLabel;
+    private javax.swing.JLabel RoomLabel;
+    private javax.swing.JLabel SchoolLabel;
+    private javax.swing.JLabel StudentNameLabel;
+    private javax.swing.JLabel TotalAmountlabel;
+    private javax.swing.JLabel TypeRoomLabel;
+    private javax.swing.JLabel Typebedlabel;
+    private javax.swing.JTextField WaterIndexField;
+    private javax.swing.JLabel YearLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel parkingPriceLabel;
+    private javax.swing.JTextField vehicleQuantityField;
     // End of variables declaration//GEN-END:variables
 }

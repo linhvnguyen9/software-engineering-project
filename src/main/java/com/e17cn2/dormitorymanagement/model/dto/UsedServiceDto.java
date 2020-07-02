@@ -1,25 +1,9 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Table(name = "dichvusudung")
 public class UsedServiceDto {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "soLuong")
     private double quantity;
-    
-    @Column(name = "DichVuid")
     private int serviceId;
-    
-    @Column(name = "tblHoaDonid")
     private int invoiceId;
             
     public UsedServiceDto() {

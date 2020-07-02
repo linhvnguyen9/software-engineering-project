@@ -1,26 +1,11 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "tbldonghodien")
 public class ElectricityMeterDto {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "chiSoHienTai")
     private float currentReading;
-    
-    @Column(name = "ngayLaySo")
     private Date measuringDate;
-    
-    @Column(name = "tblPhongid")
     private int roomId;
 
     public ElectricityMeterDto() {

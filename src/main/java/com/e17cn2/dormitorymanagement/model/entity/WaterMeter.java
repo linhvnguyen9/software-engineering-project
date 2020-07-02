@@ -7,16 +7,16 @@ public class WaterMeter {
     private int id;
     private float currentReading;
     private Date measuringDate;
-    private Room roomDto;
+    private Room room;
 
     public WaterMeter() {
     }
 
-    public WaterMeter(int id, float currentReading, Date measuringDate, Room roomDto) {
+    public WaterMeter(int id, float currentReading, Date measuringDate, Room room) {
         this.id = id;
         this.currentReading = currentReading;
         this.measuringDate = measuringDate;
-        this.roomDto = roomDto;
+        this.room = room;
     }
 
     public int getId() {
@@ -43,12 +43,12 @@ public class WaterMeter {
         this.measuringDate = measuringDate;
     }
 
-    public Room getRoomDto() {
-        return roomDto;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomDto(Room roomDto) {
-        this.roomDto = roomDto;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
 }

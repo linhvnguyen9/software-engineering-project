@@ -2,9 +2,6 @@ package com.e17cn2.dormitorymanagement.dao;
 
 import com.e17cn2.dormitorymanagement.utils.DatabaseConnection;
 import com.google.gson.Gson;
-import org.hibernate.dialect.Database;
-
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;

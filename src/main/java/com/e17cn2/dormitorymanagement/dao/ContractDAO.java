@@ -1,5 +1,7 @@
 package com.e17cn2.dormitorymanagement.dao;
 
+import static com.e17cn2.dormitorymanagement.dao.DAO.con;
+import com.e17cn2.dormitorymanagement.model.entity.BookedBed;
 import com.e17cn2.dormitorymanagement.model.entity.*;
 import static com.e17cn2.dormitorymanagement.dao.DAO.con;
 import com.e17cn2.dormitorymanagement.model.entity.Contract;
@@ -139,5 +141,27 @@ public class ContractDAO extends DAO {
         }
 
         return true;
+    }
+    
+    public Contract getContractByBookedBedId(BookedBed bookedBed){
+        Contract contract = new Contract();
+        
+        String sql = "SELECT * FROM tblhopdong WHERE id IN(SELECT tblHopDongid FROM tblgiuongdat WHERE id = ?);";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, String.valueOf(bookedBed.getId()));
+
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                contract.setId(rs.getInt("id"));
+                contract.setCreateDate(rs.getDate("ngayLap"));
+                contract.setDeposit(rs.getDouble("tienDatCoc"));
+            }
+            }catch(SQLException e) {
+                e.printStackTrace();
+         }
+        
+        return contract;
     }
 }

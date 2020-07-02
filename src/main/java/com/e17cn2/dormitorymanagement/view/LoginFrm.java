@@ -98,17 +98,17 @@ public class LoginFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        Employee dto = new Employee();
-            dto.setUsername(txtUsername.getText());
-            dto.setPassword(txtPassword.getText());
+        Employee employee = new Employee();
+            employee.setUsername(txtUsername.getText());
+            employee.setPassword(txtPassword.getText());
 			
             EmployeeDAO dao = new EmployeeDAO();
-            if(dao.checkLogin(dto)) {
-		if(dto.getRole().equalsIgnoreCase("manager") || dto.getRole().equalsIgnoreCase("employee")) {
-                    (new ManageHomeFrm(dto)).setVisible(true);
+            if(dao.checkLogin(employee)) {
+		if(employee.getRole().equalsIgnoreCase("manager") || employee.getRole().equalsIgnoreCase("employee")) {
+                    (new ManageHomeFrm(employee)).setVisible(true);
                     this.dispose();
                 }else
-                    JOptionPane.showMessageDialog(this, "The function of the role " + dto.getRole() + " is under construction!");
+                    JOptionPane.showMessageDialog(this, "The function of the role " + employee.getRole() + " is under construction!");
 		}else {
                     JOptionPane.showMessageDialog(this, "Incorrect username and/or password!");
 		}

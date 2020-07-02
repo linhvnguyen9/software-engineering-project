@@ -1,7 +1,7 @@
 package com.e17cn2.dormitorymanagement.model.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Invoice {
     private int id;
@@ -13,15 +13,15 @@ public class Invoice {
     private boolean checkPayed;
     private Contract contract;
     private Employee employee;
-    private ArrayList<UsedService> usedService;
+    private List<UsedService> usedService;
 
     //region Constructors
     public Invoice() {
     }
 
     public Invoice(int id, Date createdAt, Date payingDate, double totalAmount, 
-            double amountPaid, double amountUnPaid, boolean checkPayed, Contract
-            contract, Employee employee, ArrayList<UsedService> usedService) {
+            double amountPaid, double amountUnPaid, boolean checkPayed, Contract contract, 
+            Employee employee, List<UsedService> usedService) {
         this.id = id;
         this.createdAt = createdAt;
         this.payingDate = payingDate;
@@ -33,9 +33,9 @@ public class Invoice {
         this.employee = employee;
         this.usedService = usedService;
     }
+    
     //endregion
 
-    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -56,65 +56,67 @@ public class Invoice {
         return payingDate;
     }
 
-    public double getTotalAmount() {
-        return totalAmount;
-    }
-
-    public double getAmountPaid() {
-        return amountPaid;
-    }
-
-    public double getAmountUnPaid() {
-        return amountUnPaid;
-    }
-
-    public boolean isCheckPayed() {
-        return checkPayed;
-    }
-
-    public Contract getContract() {
-        return contract;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public ArrayList<UsedService> getUsedService() {
-        return usedService;
-    }
-
     public void setPayingDate(Date payingDate) {
         this.payingDate = payingDate;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
     }
 
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
 
+    public double getAmountPaid() {
+        return amountPaid;
+    }
+
     public void setAmountPaid(double amountPaid) {
         this.amountPaid = amountPaid;
+    }
+
+    public double getAmountUnPaid() {
+        return amountUnPaid;
     }
 
     public void setAmountUnPaid(double amountUnPaid) {
         this.amountUnPaid = amountUnPaid;
     }
 
+    public void setAmountUnPaid(int amountUnPaid) {
+        this.amountUnPaid = amountUnPaid;
+    }
+
+    public boolean isCheckPayed() {
+        return checkPayed;
+    }
+
     public void setCheckPayed(boolean checkPayed) {
         this.checkPayed = checkPayed;
+    }
+
+    public Contract getContract() {
+        return contract;
     }
 
     public void setContract(Contract contract) {
         this.contract = contract;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
-    public void setUsedService(ArrayList<UsedService> usedService) {
-        this.usedService = usedService;
+    public List<UsedService> getUsedService() {
+        return usedService;
     }
 
-
+    public void setUsedService(List<UsedService> usedService) {
+        this.usedService = usedService;
+    }
 }

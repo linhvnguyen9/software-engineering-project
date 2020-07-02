@@ -3,15 +3,17 @@ package com.e17cn2.dormitorymanagement.model.entity;
 public class UsedService {
     private int id;
     private double qty;
+    private Invoice invoice;
     private boolean checkUnpaid;
     private Service service;
 
     public UsedService() {
     }
 
-    public UsedService(int id, double qty, boolean checkUnpaid, Service service) {
+    public UsedService(int id, double qty, Invoice invoice, boolean checkUnpaid, Service service) {
         this.id = id;
         this.qty = qty;
+        this.invoice = invoice;
         this.checkUnpaid = checkUnpaid;
         this.service = service;
     }
@@ -26,6 +28,14 @@ public class UsedService {
 
     public boolean isCheckUnpaid() {
         return checkUnpaid;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     public Service getService() {
@@ -47,6 +57,5 @@ public class UsedService {
     public void setService(Service service) {
         this.service = service;
     }
-
     
 }
