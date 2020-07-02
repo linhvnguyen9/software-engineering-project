@@ -5,7 +5,7 @@
  */
 package com.e17cn2.dormitorymanagement.view;
 
-
+import com.e17cn2.dormitorymanagement.view.payMonthlyBillView.SearchBillFrm;
 import com.e17cn2.dormitorymanagement.model.entity.Employee;
 import com.e17cn2.dormitorymanagement.view.createcontract.FindAvailableBedFrm;
 
@@ -69,6 +69,11 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         btnReportBroken.setText("Report Broken");
 
         btnPayBill.setText("Pay Monthly Bill");
+        btnPayBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPayBillActionPerformed(evt);
+            }
+        });
 
         btnStateDebt.setText("State Debt Of Student");
         btnStateDebt.addActionListener(new java.awt.event.ActionListener() {
@@ -97,9 +102,9 @@ public class ManageHomeFrm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 44, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCreateBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreateContract, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCreateContract)
+                            .addComponent(btnCreateBill))
                         .addGap(72, 72, 72)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPayBill, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,11 +125,15 @@ public class ManageHomeFrm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnManaRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReportBroken, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateContract, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnManaRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnReportBroken, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btnCreateContract, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateBill, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,6 +162,12 @@ public class ManageHomeFrm extends javax.swing.JFrame {
            this.dispose();
        }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnPayBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayBillActionPerformed
+        SearchBillFrm searchBillFrm=new SearchBillFrm(employeeDTO);
+        searchBillFrm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnPayBillActionPerformed
 
     private void btnCreateContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateContractActionPerformed
         FindAvailableBedFrm frm = new FindAvailableBedFrm(employeeDTO);
