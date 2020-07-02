@@ -54,8 +54,6 @@ public class ContractDAO extends DAO {
             }
         }
 
-        //TODO: Insert booked beds into DB
-
         //Assuming that all beds booked in contract belongs to the same room
         WaterMeter waterReading = contract.getWaterReading();
         String waterMeter = "INSERT INTO tbldonghonuoc VALUES (null, ?, ?, ?)";
@@ -82,7 +80,7 @@ public class ContractDAO extends DAO {
         System.out.println(electricityId);
 
         String query = "INSERT INTO tblhopdong VALUES (null, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement psmt = con.prepareStatement(query);
+        PreparedStatement psmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         Date currentDate = new Date();
         double deposit = contract.getDeposit();
@@ -95,6 +93,19 @@ public class ContractDAO extends DAO {
         psmt.setInt(4, employeeId);
         psmt.setInt(5, electricityId);
         psmt.setInt(6, waterId);
+
+        psmt.executeUpdate();
+        ResultSet rs3 = psmt.getGeneratedKeys();
+        rs3.next();
+        int contractId = rs3.getInt(1);
+
+        for (BookedBed bed : contract.getBookedBeds()) {
+            String insertBookedBed = "INSERT INTO tblgiuongdat VALUES (null, ?, null, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(insertBookedBed);
+            ps.setDate(1, new java.sql.Date(contract.getCreateDate().getTime()));
+            ps.setInt(2, bed.getBedDto().getId());
+            ps.setInt(3, contractId);
+        }
 
         return true;
     }

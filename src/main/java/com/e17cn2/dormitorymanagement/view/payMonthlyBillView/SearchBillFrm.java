@@ -121,10 +121,10 @@ public class SearchBillFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        PayMonthlyBillFrm payMonthlyBillFrm =new PayMonthlyBillFrm();
+//        PayMonthlyBillFrm payMonthlyBillFrm =new PayMonthlyBillFrm();
         int row=jTable1.getSelectedRow();
         getId(row);
-        payMonthlyBillFrm.setVisible(true);
+//        payMonthlyBillFrm.setVisible(true);
         
     }//GEN-LAST:event_jTable1MouseClicked
 
