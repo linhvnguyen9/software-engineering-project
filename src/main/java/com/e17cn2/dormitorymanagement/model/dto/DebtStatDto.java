@@ -1,13 +1,13 @@
 package com.e17cn2.dormitorymanagement.model.dto;
 
-public class DebtStatDTO {
+public class DebtStatDto {
     private String debtName;
     private double amount;
 
-    public DebtStatDTO() {
+    public DebtStatDto() {
     }
 
-    public DebtStatDTO(String debtName, double amount) {
+    public DebtStatDto(String debtName, double amount) {
         this.debtName = debtName;
         this.amount = amount;
     }

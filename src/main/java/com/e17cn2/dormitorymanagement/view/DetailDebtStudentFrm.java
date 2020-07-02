@@ -68,11 +68,7 @@ public class DetailDebtStudentFrm extends javax.swing.JFrame {
         for (int i = 0; i < listInvoices.size(); i++) {
             tbModel.addRow(new Object[] {listServices.get(i).getName(),
                                         listInvoices.get(i).getPayingDate(),
-                                        listServices.get(i).getPrice()*listUsedService.get(i).getQuantity()});
-            
-            
-            
-
+                                        listServices.get(i).getPrice()*listUsedService.get(i).getQty()});
         }
     }
     

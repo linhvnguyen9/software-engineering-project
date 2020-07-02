@@ -1,51 +1,37 @@
 package com.e17cn2.dormitorymanagement.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.Date;
 
-@Table(name = "tblhopdong")
 public class Contract {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "ngaylap")
-    private double createDate;
-    
-    @Column(name = "tienDatCoc")
+    private Date createDate;
     private double deposit;
-    
-    @Column(name = "tblDongHoNuocid")
-    private double waterReading;
-    
-    @Column(name = "tblDonghoDienid")
-    private double electricityReading;
-    
-    @Column(name = "tblSinhVienid")
-    private int studentId;
-    
-    @Column(name = "tblNhanVienid")
-    private int employeeId;
+    private WaterMeter waterReading;
+    private ElectricityMeter electricityReading;
+    private Student student;
+    private Employee employee;
+    private ArrayList<BookedBed> bookedBeds;
 
     //region Constructors
     public Contract() {
     }
 
-    public Contract(int id, double createDate, double deposit, double waterReading,
-            double electricityReading, int studentId, int employeeId) {
+    public Contract(int id, Date createDate, double deposit,
+            WaterMeter waterReading, ElectricityMeter electricityReading, Student student,
+            Employee employee, ArrayList<BookedBed> bookedBeds) {
         this.id = id;
         this.createDate = createDate;
         this.deposit = deposit;
         this.waterReading = waterReading;
         this.electricityReading = electricityReading;
-        this.studentId = studentId;
-        this.employeeId = employeeId;
+        this.student = student;
+        this.employee = employee;
+        this.bookedBeds = bookedBeds;
     }
+    //endregion
 
+    //region Getters and setters
     public int getId() {
         return id;
     }
@@ -54,11 +40,11 @@ public class Contract {
         this.id = id;
     }
 
-    public double getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(double createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -70,36 +56,44 @@ public class Contract {
         this.deposit = deposit;
     }
 
-    public double getWaterReading() {
+    public WaterMeter getWaterReading() {
         return waterReading;
     }
 
-    public void setWaterReading(double waterReading) {
+    public void setWaterReading(WaterMeter waterReading) {
         this.waterReading = waterReading;
     }
 
-    public double getElectricityReading() {
+    public ElectricityMeter getElectricityReading() {
         return electricityReading;
     }
 
-    public void setElectricityReading(double electricityReading) {
+    public void setElectricityReading(ElectricityMeter electricityReading) {
         this.electricityReading = electricityReading;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
-    
+
+    public ArrayList<BookedBed> getBookedBeds() {
+        return bookedBeds;
+    }
+
+    public void setBookedBeds(ArrayList<BookedBed> bookedBeds) {
+        this.bookedBeds = bookedBeds;
+    }
+    //endregion
 }

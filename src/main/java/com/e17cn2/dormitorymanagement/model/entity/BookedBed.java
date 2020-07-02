@@ -2,41 +2,24 @@ package com.e17cn2.dormitorymanagement.model.entity;
 
 import com.e17cn2.dormitorymanagement.model.entity.Bed;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Table(name = "tblgiuongdat")
 public class BookedBed {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name = "ngayNhanGiuong")
     private Date checkinDate;
-    
-    @Column(name = "ngayTraGiuong")
     private Date checkoutDate;
-    
-    @Column(name = "tblGiuongid")
-    private int bedId;
-    
-    @Column(name = "tblHopDongid")
-    private int contractId;
+    private Date totalPrice;
+    private Bed bedDto;
 
     public BookedBed() {
     }
 
-    public BookedBed(int id, Date checkinDate, Date checkoutDate, int bedId, 
-            int contractId) {
+    public BookedBed(int id, Date checkinDate, Date checkoutDate, 
+            Date totalPrice, Bed bedDto) {
         this.id = id;
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
-        this.bedId = bedId;
-        this.contractId = contractId;
+        this.totalPrice = totalPrice;
+        this.bedDto = bedDto;
     }
 
     public int getId() {
@@ -63,19 +46,20 @@ public class BookedBed {
         this.checkoutDate = checkoutDate;
     }
 
-    public int getBedId() {
-        return bedId;
+    public Date getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setBedId(int bedId) {
-        this.bedId = bedId;
+    public void setTotalPrice(Date totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public int getContractId() {
-        return contractId;
+    public Bed getBedDto() {
+        return bedDto;
     }
 
-    public void setContractId(int contractId) {
-        this.contractId = contractId;
+    public void setBedDto(Bed bedDto) {
+        this.bedDto = bedDto;
     }
+
 }

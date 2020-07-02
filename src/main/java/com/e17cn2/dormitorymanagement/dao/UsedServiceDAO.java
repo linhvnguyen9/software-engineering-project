@@ -18,7 +18,7 @@ public class UsedServiceDAO extends DAO{
 
 			while(rs.next()){
                                 UsedService rm = new UsedService();
-                                rm.setQuantity(rs.getInt("soLuong"));
+                                rm.setQty(rs.getInt("soLuong"));
                                 rm.setId(rs.getInt("id"));
 				result.add(rm);
 			}
