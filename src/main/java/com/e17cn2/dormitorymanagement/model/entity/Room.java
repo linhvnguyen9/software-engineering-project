@@ -17,9 +17,13 @@ public class Room {
 
     }
 
+    public Room(int id) {
+        this.id = id;
+    }
+
     public Room(int id, String roomType, String roomName, String description,
-            ArrayList<Bed> beds, List<ElectricityMeter> electricityMeter,
-            List<ElectricityMeter> waterMeter) {
+                ArrayList<Bed> beds, List<ElectricityMeter> electricityMeter,
+                List<ElectricityMeter> waterMeter) {
         this.id = id;
         this.roomType = roomType;
         this.roomName = roomName;

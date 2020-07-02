@@ -7,6 +7,8 @@ package com.e17cn2.dormitorymanagement.view;
 
 import com.e17cn2.dormitorymanagement.view.payMonthlyBillView.SearchBillFrm;
 import com.e17cn2.dormitorymanagement.model.entity.Employee;
+import com.e17cn2.dormitorymanagement.view.createcontract.FindAvailableBedFrm;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -56,6 +58,11 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         btnManaBed.setText("Manage Bed");
 
         btnCreateContract.setText("Create Contract");
+        btnCreateContract.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateContractActionPerformed(evt);
+            }
+        });
 
         btnCreateBill.setText("Create Monthly Bill");
 
@@ -148,7 +155,6 @@ public class ManageHomeFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStateDebtActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
         LoginFrm loginFrm = new LoginFrm();
        int logout = JOptionPane.showConfirmDialog(this,"Bạn có muốn đăng xuất?");
        if(logout==JOptionPane.YES_OPTION){
@@ -162,6 +168,12 @@ public class ManageHomeFrm extends javax.swing.JFrame {
         searchBillFrm.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnPayBillActionPerformed
+
+    private void btnCreateContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateContractActionPerformed
+        FindAvailableBedFrm frm = new FindAvailableBedFrm(employeeDTO);
+        frm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCreateContractActionPerformed
 
     /**
      * @param args the command line arguments

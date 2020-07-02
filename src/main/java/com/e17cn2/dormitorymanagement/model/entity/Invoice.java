@@ -84,14 +84,6 @@ public class Invoice {
         return usedService;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public void setPayingDate(Date payingDate) {
         this.payingDate = payingDate;
     }

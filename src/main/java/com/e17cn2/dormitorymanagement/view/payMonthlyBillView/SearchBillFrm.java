@@ -26,11 +26,11 @@ public class SearchBillFrm extends javax.swing.JFrame {
     private Employee employee;
     private Student student;
     private Bed bed;
-    private InvoiceDAO invoiceDAO=new InvoiceDAO();    
+    private InvoiceDAO invoiceDAO=new InvoiceDAO();
     private BedDAO bedDAO=new BedDAO();
     private StudentDAO studentDAO=new StudentDAO();
-    
-    
+
+
 //    public SearchBillFrm() {
 //        initComponents();
 //        initTable();
@@ -137,12 +137,12 @@ public class SearchBillFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
+
         int row=jTable1.getSelectedRow();
         Invoice invoice=new Invoice();
         String idString=jTable1.getValueAt(row,0).toString();
         int idRow=Integer.parseInt(idString);
-        
+
         invoice=invoiceDAO.getInvoiceById(idRow);
         student=studentDAO.getStudentByInvoiceId(idRow);
         bed=bedDAO.getBedByInvoiceId(idRow);
@@ -152,7 +152,7 @@ public class SearchBillFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         String key=jTextField1.getText();
         if (key.isBlank()) JOptionPane.showMessageDialog(null,"NHẬP MÃ HÓA ĐƠN CẦN TÌM");
         else if (!key.matches("\\d"))JOptionPane.showMessageDialog(null,"NHẬP SỐ");

@@ -38,6 +38,7 @@ public class ServiceDAO extends DAO{
         String query = "SELECT * FROM dichvu WHERE ten LIKE 've sinh' LIMIT 1";
         Statement statement = con.createStatement();
         ResultSet rs = statement.executeQuery(query);
+        rs.next();
 
         return rs.getDouble(3);
     }
@@ -46,6 +47,7 @@ public class ServiceDAO extends DAO{
         String query = "SELECT * FROM dichvu WHERE ten LIKE 'gui xe' LIMIT 1";
         Statement statement = con.createStatement();
         ResultSet rs = statement.executeQuery(query);
+        rs.next();
 
         return rs.getDouble(3);
     }
