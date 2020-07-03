@@ -12,14 +12,15 @@ import java.util.List;
 public class UsedServiceDAO extends DAO{
     
     public boolean saveUsedService(UsedService usedService, Invoice inv) throws SQLException{
-        String sql = "INSERT INTO dichvusudung VALUES (?,?,?,?)";
+        String sql = "INSERT INTO dichvusudung VALUES (?,?,?,?,?)";
         
         PreparedStatement ps = con.prepareStatement(sql);
         
-        ps.setInt(1, increaseUsedServiceId());
-        ps.setDouble(2, usedService.getQty());
-        ps.setInt(3, usedService.getService().getId());
-        ps.setInt(4, inv.getId());
+        ps.setInt(1, usedService.getService().getId());
+        ps.setInt(2, inv.getId());
+        ps.setInt(3, increaseUsedServiceId());
+        ps.setDouble(4, usedService.getQty());
+        ps.setBoolean(5, false);
         
         return ps.execute();
     }

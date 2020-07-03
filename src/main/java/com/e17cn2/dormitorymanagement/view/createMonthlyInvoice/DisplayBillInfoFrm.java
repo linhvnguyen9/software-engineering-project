@@ -22,6 +22,7 @@ import com.e17cn2.dormitorymanagement.model.entity.Student;
 import com.e17cn2.dormitorymanagement.model.entity.UsedService;
 import com.e17cn2.dormitorymanagement.model.entity.WaterMeter;
 import com.e17cn2.dormitorymanagement.view.LoginFrm;
+import com.e17cn2.dormitorymanagement.view.ManageHomeFrm;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -682,9 +683,9 @@ public class DisplayBillInfoFrm extends javax.swing.JFrame {
     
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
        LoginFrm loginFrm = new LoginFrm();
-       int logout = JOptionPane.showConfirmDialog(this,"Bạn có muốn đăng xuất?");
+       int logout = JOptionPane.showConfirmDialog(this,"Quay trở lại trang chủ?");
        if(logout==JOptionPane.YES_OPTION){
-          BedManageFrm bedManageFrm = new BedManageFrm(employee);
+           ManageHomeFrm manageHomeFrm = new ManageHomeFrm(employee);
            this.dispose();
        }
     }//GEN-LAST:event_BackButtonActionPerformed
